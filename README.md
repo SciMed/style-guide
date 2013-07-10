@@ -295,10 +295,6 @@ an empty database.
     database with other applications, so imposing data integrity from
     the Rails app is impossible.
 
-* Enforce foreign-key constraints. While ActiveRecord does not support
-them natively, there some great third-party gems like
-[schema_plus](https://github.com/lomba/schema_plus).
-
 * When writing constructive migrations (adding tables or columns), use
   the new Rails 3.1 way of doing the migrations - use the `change`
   method instead of `up` and `down` methods.
