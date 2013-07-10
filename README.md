@@ -367,18 +367,6 @@ used to work might stop, because of changes in the models used.
     config.action_mailer.raise_delivery_errors = true
     ```
 
-* Use `smtp.gmail.com` for SMTP server in the development environment
-  (unless you have local SMTP server, of course).
-
-    ```Ruby
-    # config/environments/development.rb
-
-    config.action_mailer.smtp_settings = {
-      address: 'smtp.gmail.com',
-      # more settings
-    }
-    ```
-
 * Provide default settings for the host name.
 
     ```Ruby
