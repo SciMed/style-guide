@@ -296,7 +296,7 @@ an empty database.
     the Rails app is impossible.
 
 * When writing constructive migrations (adding tables or columns), use
-  the new Rails 3.1 way of doing the migrations - use the `change`
+  the new Rails 3.1+ way of doing the migrations - use the `change`
   method instead of `up` and `down` methods.
 
 
