@@ -116,83 +116,84 @@ You can generate a PDF or an HTML copy of this guide using
 
 * Group macro-style methods (`has_many`, `validates`, etc) in the
   beginning of the class definition.
+* Structure class content in the following order:
+  * Module `extend`
+  * Module `include`
+  * External library macros (like devise or paperclip)
+  * `default_scope` (discouraged)
+  * Constants (discouraged) [DISCUSS, CITE, MORE INFO]
+  * `attr_accessible` (Rails 3 and below)
+  * Callbacks in chronological order.
+  * `validate :custom_method` macros
+  * `validates` macros in alphabetical order
+  * `attr_accesor` attributes
+  * `delegate` macros
+  * `belongs_to` associations in alphabetical order
+  * `has_many` associations in alphabetical order
+  * `scope`
+  * Public Class methods
+  * Public Instance methods
+  * Private Class methods
+  * Private Instance methods
 
     ```Ruby
     class User < ActiveRecord::Base
-      # keep the default scope first (if any)
+      extend Auditable
+      include Emailable
+
       default_scope { where(active: true) }
 
-      # constants come up next
-      GENDERS = %w(male female)
+      has_attachment :document, resize_to_fit: true
+      can_login, memorable: true
 
-      # afterwards we put attr related macros
-      attr_accessor :formatted_date_of_birth
+      GENDERS = %w(male female)
 
       attr_accessible :login, :first_name, :last_name, :email, :password
 
-      # followed by association macros
-      belongs_to :country
+      before_save :cook
+      after_save :update_username_lower
 
-      has_many :authentications, dependent: :destroy
+      validate :within_time_period
+      validate :currently_active_member
 
-      # and validation macros
       validates :email, presence: true
+      validates :password, format: { with: /\A\S{8,128}\z/, allow_nil: true}
       validates :username, presence: true
       validates :username, uniqueness: { case_sensitive: false }
       validates :username, format: { with: /\A[A-Za-z][A-Za-z0-9._-]{2,19}\z/ }
-      validates :password, format: { with: /\A\S{8,128}\z/, allow_nil: true}
 
-      # next we have callbacks
-      before_save :cook
-      before_save :update_username_lower
+      attr_accessor :formatted_date_of_birth
 
-      # other macros (like devise's) should be placed after the callbacks
+      delegate :treats, to: :dog
 
-      ...
-    end
-    ```
+      belongs_to :country
+      belongs_to :city
+      belongs_to :state
+      has_many :authentications
+      has_many :comments
+      has_many :posts
 
-* Prefer `has_many :through` to `has_and_belongs_to_many`. Using `has_many
-:through` allows additional attributes and validations on the join model.
+      scope :administrators, -> { where(admin: true) }
+      scope :active, -> { where(active: true) }
 
-    ```Ruby
-    # using has_and_belongs_to_many
-    class User < ActiveRecord::Base
-      has_and_belongs_to_many :groups
-    end
+      def self.trim_inactive
+        # ...
+      end
 
-    class Group < ActiveRecord::Base
-      has_and_belongs_to_many :users
-    end
+      def calculate_age
+        # ...
+      end
 
-    # prefered way - using has_many :through
-    class User < ActiveRecord::Base
-      has_many :memberships
-      has_many :groups, through: :memberships
-    end
+      private
 
-    class Membership < ActiveRecord::Base
-      belongs_to :user
-      belongs_to :group
-    end
+        def self.some
+          # ...
+        end
 
-    class Group < ActiveRecord::Base
-      has_many :memberships
-      has_many :users, through: :memberships
-    end
-    ```
+        def whatevs
+          # ...
+        end
 
-* Prefer `self[:attribute]` over `read_attribute(:attribute)`.
-
-    ```Ruby
-    # bad
-    def amount
-      read_attribute(:amount) * 100
-    end
-
-    # good
-    def amount
-      self[:amount] * 100
     end
     ```
 
