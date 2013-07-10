@@ -477,17 +477,6 @@ specific gems to a `linux` group:
   some randomly generated file - it makes sure that all of your team
   members get the same gem versions when they do a `bundle install`.
 
-# Further Reading
-
-There are a few excellent resources on Rails style, that you should
-consider if you have time to spare:
-
-* [The Rails 3 Way](http://www.amazon.com/Rails-Way-Addison-Wesley-Professional-Ruby/dp/0321601661)
-* [Ruby on Rails Guides](http://guides.rubyonrails.org/)
-* [The RSpec Book](http://pragprog.com/book/achbd/the-rspec-book)
-* [The Cucumber Book](http://pragprog.com/book/hwcuc/the-cucumber-book)
-* [Everyday Rails Testing with RSpec](https://leanpub.com/everydayrailsrspec)
-
 
 # License
 
