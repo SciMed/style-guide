@@ -108,7 +108,6 @@ You can generate a PDF or an HTML copy of this guide using
 
 ## Models
 
-* Introduce non-ActiveRecord model classes freely.
 * Name the models with meaningful (but short) names without
 abbreviations.
 * If you need model objects that support ActiveRecord behavior(like
@@ -134,6 +133,7 @@ abbreviations.
 
     For a more complete example refer to the
     [RailsCast on the subject](http://railscasts.com/episodes/326-activeattr).
+* Using non-database-backed models is encouraged.
 
 ### ActiveRecord
 
