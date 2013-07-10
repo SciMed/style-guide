@@ -114,18 +114,6 @@ You can generate a PDF or an HTML copy of this guide using
 
 ### ActiveRecord
 
-* Avoid altering ActiveRecord defaults (table names, primary key, etc)
-  unless you have a very good reason (like a database that's not under
-  your control).
-
-    ```Ruby
-    # bad - don't do this if you can modify the schema
-    class Transaction < ActiveRecord::Base
-      self.table_name = 'order'
-      ...
-    end
-    ```
-
 * Group macro-style methods (`has_many`, `validates`, etc) in the
   beginning of the class definition.
 
