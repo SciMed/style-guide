@@ -271,17 +271,6 @@ some regular expression mapping, create a custom validator file.
 
 * Beware of the behavior of the `update_attribute` method. It doesn't
   run the model validations (unlike `update_attributes`) and could easily corrupt the model state.
-  * Use the `friendly_id` gem. It allows creation of human-readable URLs by using some descriptive attribute of the model instead of its `id`.
-
-        ```Ruby
-        class Person
-          extend FriendlyId
-          friendly_id :name, use: :slugged
-        end
-        ```
-
-        Check the [gem documentation](https://github.com/norman/friendly_id) for more information about its usage.
-
 
 ## Migrations
 
