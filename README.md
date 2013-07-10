@@ -415,6 +415,10 @@ used to work might stop, because of changes in the models used.
   maintain and leads to code duplication. There are gems that
   transform the styles and put them in the corresponding html tags.
 
+* Consider sending emails in a background process. Sending emails while
+  generating page response should be avoided. It causes delays in loading
+  of the page and requests can timeout.
+
 ## Bundler
 
 * Do not remove the `Gemfile.lock` from version control. This is not
