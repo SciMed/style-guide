@@ -108,8 +108,6 @@ You can generate a PDF or an HTML copy of this guide using
 
 ## Models
 
-* Name the models with meaningful (but short) names without
-abbreviations.
 * If you need model objects that support ActiveRecord behavior(like
   validation) use the
   [ActiveAttr](https://github.com/cgriego/active_attr) gem.
@@ -134,6 +132,8 @@ abbreviations.
     For a more complete example refer to the
     [RailsCast on the subject](http://railscasts.com/episodes/326-activeattr).
 * Using non-database-backed models is encouraged.
+* Name the models with meaningful, succinct names without
+  abbreviations.
 
 ### ActiveRecord
 
