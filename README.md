@@ -269,20 +269,6 @@ some regular expression mapping, create a custom validator file.
     end
     ```
 
-* When a named scope defined with a lambda and parameters becomes too
-complicated, it is preferable to make a class method instead which serves
-the same purpose of the named scope and returns an
-`ActiveRecord::Relation` object. Arguably you can define even simpler
-scopes like this.
-
-    ```Ruby
-    class User < ActiveRecord::Base
-      def self.with_orders
-        joins(:orders).select('distinct(users.id)')
-      end
-    end
-    ```
-
 * Beware of the behavior of the `update_attribute` method. It doesn't
   run the model validations (unlike `update_attributes`) and could easily corrupt the model state.
 * Use user-friendly URLs. Show some descriptive attribute of the model in the URL rather than its `id`.
