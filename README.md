@@ -97,7 +97,7 @@ You can generate a PDF or an HTML copy of this guide using
 
 ## Controllers
 
-* Keep the controllers skinny - they should only retrieve data for the
+* Keep the controllers skeletal - they should only retrieve data for the
   view layer and shouldn't contain any business logic (all the
   business logic should naturally reside in the model).
 * Each controller action should (ideally) invoke only one method other
