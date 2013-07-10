@@ -34,29 +34,7 @@ You can generate a PDF or an HTML copy of this guide using
 
 ## Routing
 
-* When you need to add more actions to a RESTful resource (do you
-  really need them at all?) use `member` and `collection` routes.
-
-    ```Ruby
-    # bad
-    get 'subscriptions/:id/unsubscribe'
-    resources :subscriptions
-
-    # good
-    resources :subscriptions do
-      get 'unsubscribe', on: :member
-    end
-
-    # bad
-    get 'photos/search'
-    resources :photos
-
-    # good
-    resources :photos do
-      get 'search', on: :collection
-    end
-    ```
-
+* Try to avoid adding non RESTful routes to a resource.
 * If you need to define multiple `member/collection` routes use the
   alternative block syntax.
 
