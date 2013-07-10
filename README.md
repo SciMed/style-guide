@@ -35,6 +35,7 @@ You can generate a PDF or an HTML copy of this guide using
 ## Routing
 
 * Try to avoid adding non RESTful routes to a resource.
+* Favor `resources`, `member`, and `collection` routes over `get`, `post`, `patch` matchers.
 * If you need to define multiple `member/collection` routes use the
   alternative block syntax.
 
