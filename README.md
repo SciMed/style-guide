@@ -234,7 +234,7 @@ some regular expression mapping, create a custom validator file.
     end
     ```
 
-* Keep custom validators under `lib/validators`.
+* Keep custom validators under `models/validators`.
 * Consider extracting custom validators to a shared gem if you're
   maintaining several related apps or the validators are generic
   enough.
