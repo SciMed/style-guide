@@ -422,14 +422,6 @@ used to work might stop, because of changes in the models used.
     config.action_mailer.delivery_method = :test
     ```
 
-* The delivery method for development and production should be `smtp`:
-
-    ```Ruby
-    # config/environments/development.rb, config/environments/production.rb
-
-    config.action_mailer.delivery_method = :smtp
-    ```
-
 * When sending html emails all styles should be inline, as some mail clients
   have problems with external styles. This however makes them harder to
   maintain and leads to code duplication. There are two similar gems that
