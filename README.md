@@ -249,7 +249,7 @@ some regular expression mapping, create a custom validator file.
     end
     ```
 
-* Wrap named scopes in `lambdas` to initialize them lazily.
+* Wrap scopes in `lambdas` to initialize them lazily.
 
     ```Ruby
     # bad
