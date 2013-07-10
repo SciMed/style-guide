@@ -300,26 +300,6 @@ an empty database.
   method instead of `up` and `down` methods.
 
 
-    ```Ruby
-    # the old way
-    class AddNameToPerson < ActiveRecord::Migration
-      def up
-        add_column :persons, :name, :string
-      end
-
-      def down
-        remove_column :person, :name
-      end
-    end
-
-    # the new prefered way
-    class AddNameToPerson < ActiveRecord::Migration
-      def change
-        add_column :persons, :name, :string
-      end
-    end
-    ```
-
 * Don't use model classes in migrations. The model classes are
 constantly evolving and at some point in the future migrations that
 used to work might stop, because of changes in the models used.
