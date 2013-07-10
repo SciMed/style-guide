@@ -97,6 +97,7 @@ You can generate a PDF or an HTML copy of this guide using
 
 ## Controllers
 
+* Try to avoid adding non RESTful actions to a resource.
 * Keep the controllers skeletal - they should only retrieve data for the
   view layer and shouldn't contain any business logic (all the
   business logic should naturally reside in the model).
