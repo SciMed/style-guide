@@ -111,6 +111,8 @@ You can generate a PDF or an HTML copy of this guide using
 * Using non-database-backed models is encouraged.
 * Name the models with meaningful, succinct names without
   abbreviations.
+* Do not camelcase acronyms in class names. Ruby has built-in support for
+  upcased class names.
 
 ### ActiveRecord
 
