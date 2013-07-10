@@ -488,15 +488,6 @@ consider if you have time to spare:
 * [The Cucumber Book](http://pragprog.com/book/hwcuc/the-cucumber-book)
 * [Everyday Rails Testing with RSpec](https://leanpub.com/everydayrailsrspec)
 
-# Contributing
-
-Nothing written in this guide is set in stone. It's my desire to work
-together with everyone interested in Rails coding style, so that we could
-ultimately create a resource that will be beneficial to the entire Ruby
-community.
-
-Feel free to open tickets or send pull requests with improvements. Thanks in
-advance for your help!
 
 # License
 
