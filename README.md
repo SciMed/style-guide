@@ -19,7 +19,6 @@ You can generate a PDF or an HTML copy of this guide using
     * [Models](#models)
     * [Migrations](#migrations)
     * [Views](#views)
-    * [Assets](#assets)
     * [Mailers](#mailers)
     * [Bundler](#bundler)
     * [Priceless Gems](#priceless-gems)
