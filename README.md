@@ -310,48 +310,6 @@ used to work might stop, because of changes in the models used.
 * Never make complex formatting in the views, export the formatting to
   a method in the view helper or the model.
 * Mitigate code duplication by using partial templates and layouts.
-* Add
-  [client side validation](https://github.com/bcardarella/client_side_validations)
-  for the custom validators. The steps to do this are:
-  * Declare a custom validator which extends `ClientSideValidations::Middleware::Base`
-
-        ```Ruby
-        module ClientSideValidations::Middleware
-          class Email < Base
-            def response
-              if request.params[:email] =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-                self.status = 200
-              else
-                self.status = 404
-              end
-              super
-            end
-          end
-        end
-        ```
-
-  * Create a new file
-    `public/javascripts/rails.validations.custom.js.coffee` and add a
-    reference to it in your `application.js.coffee` file:
-
-        ```
-        # app/assets/javascripts/application.js.coffee
-        #= require rails.validations.custom
-        ```
-
-  * Add your client-side validator:
-
-        ```Ruby
-        #public/javascripts/rails.validations.custom.js.coffee
-        clientSideValidations.validators.remote['email'] = (element, options) ->
-          if $.ajax({
-            url: '/validators/email.json',
-            data: { email: element.val() },
-            async: false
-          }).status == 404
-            return options.message || 'invalid e-mail format'
-        ```
-
 
 ## Mailers
 
