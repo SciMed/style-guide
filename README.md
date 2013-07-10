@@ -21,7 +21,6 @@ You can generate a PDF or an HTML copy of this guide using
     * [Views](#views)
     * [Mailers](#mailers)
     * [Bundler](#bundler)
-    * [Managing processes](#managing-processes)
 * [Testing Rails applications](#testing-rails-applications)
     * [Cucumber](#cucumber)
     * [RSpec](#rspec)
@@ -667,11 +666,6 @@ specific gems to a `linux` group:
 * Do not remove the `Gemfile.lock` from version control. This is not
   some randomly generated file - it makes sure that all of your team
   members get the same gem versions when they do a `bundle install`.
-
-## Managing processes
-
-* If your projects depends on various external processes use
-  [foreman](https://github.com/ddollar/foreman) to manage them.
 
 # Testing Rails applications
 
