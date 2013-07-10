@@ -271,23 +271,6 @@ some regular expression mapping, create a custom validator file.
 
 * Beware of the behavior of the `update_attribute` method. It doesn't
   run the model validations (unlike `update_attributes`) and could easily corrupt the model state.
-* Use user-friendly URLs. Show some descriptive attribute of the model in the URL rather than its `id`.
-There is more than one way to achieve this:
-  * Override the `to_param` method of the model. This method is used by Rails for constructing a URL to the object.
-    The default implementation returns the `id` of the record as a String. It could be overridden to include another
-    human-readable attribute.
-
-        ```Ruby
-        class Person
-          def to_param
-            "#{id} #{name}".parameterize
-          end
-        end
-        ```
-
-    In order to convert this to a URL-friendly value, `parameterize` should be called on the string. The `id` of the
-    object needs to be at the beginning so that it can be found by the `find` method of ActiveRecord.
-
   * Use the `friendly_id` gem. It allows creation of human-readable URLs by using some descriptive attribute of the model instead of its `id`.
 
         ```Ruby
