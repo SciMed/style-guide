@@ -56,18 +56,22 @@ You can generate a PDF or an HTML copy of this guide using
 
 * Use nested routes to express better the relationship between
   ActiveRecord models.
+* Avoid more than 1 level of resource nesting.
 
     ```Ruby
-    class Post < ActiveRecord::Base
-      has_many :comments
+    # bad
+    resources :users do
+      resources :posts do
+        resources :comments
+      end
     end
 
-    class Comments < ActiveRecord::Base
-      belongs_to :post
+    # good
+    resources :users do
+      resources :posts
     end
 
-    # routes.rb
-    resources :posts do
+    resources :posts  do
       resources :comments
     end
     ```
