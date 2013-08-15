@@ -314,6 +314,7 @@ You can generate a PDF or an HTML copy of this guide using
 
     end
     ```
+* Use of `class << self` is discouraged in ActiveRecord models.
 * Use of `has_and_belongs_to_many` is strongly discouraged.  Use `has_many :through`
   instead. Using `has_many :through` allows additional attributes and validations
   on the join model.
