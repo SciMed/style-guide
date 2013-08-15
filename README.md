@@ -178,6 +178,7 @@ You can generate a PDF or an HTML copy of this guide using
 
 ### ActiveRecord
 
+* Avoid adding default_scope.
 * Group macro-style methods (`has_many`, `validates`, etc) in the
   beginning of the class definition.
 * Structure class content in the following order:
