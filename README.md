@@ -122,6 +122,51 @@ You can generate a PDF or an HTML copy of this guide using
 * Share no more than two instance variables between a controller and a view.
 * Remove generated `respond_to` blocks from controller actions unless needed.
 * Remove generated comments on Controller actions.
+* Structure Controller content in the following order:
+  * Module `extend`
+  * Module `include`
+  * External library macros (like devise or cancan)
+  * `*_filter` or `*_action` macros in chronological order.
+  * Nondefault controller actions
+  * Default controller actions
+  * Private methods
+
+    ```Ruby
+    class UsersController < ActionController::Base
+      extend Auditable
+      include Emailable
+
+      login_user
+
+      before_action :user_params
+      after_action :refresh_password
+
+      def search
+        # ...
+      end
+
+      def index
+       # ...
+      end
+
+      # def show...
+      # def new...
+      # def create...
+      # def edit...
+      # def update...
+      # def destroy...
+
+      private
+
+        def user_params
+          # ...
+        end
+
+        def refresh_password
+          # ...
+        end
+    end
+    ```
 
 ## Models
 
