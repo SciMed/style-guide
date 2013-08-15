@@ -500,6 +500,3 @@ used to work might stop, because of changes in the models used.
 
 ## Bundler
 
-* Do not remove the `Gemfile.lock` from version control. This is not
-  some randomly generated file - it makes sure that all of your team
-  members get the same gem versions when they do a `bundle install`.
