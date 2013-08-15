@@ -179,6 +179,8 @@ You can generate a PDF or an HTML copy of this guide using
 ### ActiveRecord
 
 * Avoid adding default_scope.
+* Avoid adding callbacks in favor of object composition.
+* Avoid adding callbacks if they are modifying other models.
 * Group macro-style methods (`has_many`, `validates`, etc) in the
   beginning of the class definition.
 * Structure class content in the following order:
