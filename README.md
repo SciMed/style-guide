@@ -390,7 +390,7 @@ some regular expression mapping, create a custom validator file.
     end
     ```
 
-* Beware of the behavior of the `update_attribute` method. It doesn't
+* In Rails 3 and below, beware of the behavior of the `update_attribute` method. It doesn't
   run the model validations (unlike `update_attributes`) and could easily corrupt the model state.
 
 ## Migrations
