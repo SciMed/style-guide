@@ -241,6 +241,7 @@ You can generate a PDF or an HTML copy of this guide using
   * `default_scope` (discouraged)
   * Constants (discouraged) [DISCUSS, CITE, MORE INFO]
   * `attr_accessible` (Rails 3 and below)
+  * `accepts_nested_attributes_for`
   * Callbacks in chronological order.
   * `validate :custom_method` macros
   * `validates` macros in alphabetical order
@@ -267,6 +268,8 @@ You can generate a PDF or an HTML copy of this guide using
       GENDERS = %w(male female)
 
       attr_accessible :login, :first_name, :last_name, :email, :password
+
+      accepts_nested_attributes_for :comments
 
       before_save :cook
       after_save :update_username_lower
