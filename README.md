@@ -120,6 +120,8 @@ You can generate a PDF or an HTML copy of this guide using
 * Each controller action should (ideally) invoke only one method other
   than an initial find or new.
 * Share no more than two instance variables between a controller and a view.
+* Remove generated `respond_to` blocks from controller actions unless needed.
+* Remove generated comments on Controller actions.
 
 ## Models
 
