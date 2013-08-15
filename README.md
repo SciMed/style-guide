@@ -45,9 +45,7 @@ You can generate a PDF or an HTML copy of this guide using
         get 'unsubscribe'
         # more routes
       end
-    end
 
-    resources :photos do
       collection do
         get 'search'
         # more routes
