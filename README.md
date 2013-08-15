@@ -75,16 +75,6 @@ You can generate a PDF or an HTML copy of this guide using
     end
     ```
 
-* Use namespaced routes to group related actions.
-
-    ```Ruby
-    namespace :admin do
-      # Directs /admin/products/* to Admin::ProductsController
-      # (app/controllers/admin/products_controller.rb)
-      resources :products
-    end
-    ```
-
 * In Rails 3 and below, never use the legacy wildcard controller routes. This
   route will make all actions in every controller accessible via GET requests.
 
@@ -92,7 +82,6 @@ You can generate a PDF or an HTML copy of this guide using
     # very bad
     match ':controller(/:action(/:id(.:format)))'
     ```
-
 ## Controllers
 
 * Try to avoid adding non RESTful actions to a resource.
