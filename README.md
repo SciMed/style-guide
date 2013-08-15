@@ -318,6 +318,7 @@ You can generate a PDF or an HTML copy of this guide using
 * Use of `has_and_belongs_to_many` is strongly discouraged.  Use `has_many :through`
   instead. Using `has_many :through` allows additional attributes and validations
   on the join model.
+* Order associations alphabetically by macro name, then model name.
 
 * Always use the new
   ["sexy" validations](http://thelucid.com/2010/01/08/sexy-validation-in-edge-rails-rails-3/).
