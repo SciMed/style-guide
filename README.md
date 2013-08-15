@@ -99,7 +99,23 @@ You can generate a PDF or an HTML copy of this guide using
 * Keep the controllers skeletal - they should only retrieve data for the
   view layer and shouldn't contain any business logic (all the
   business logic should naturally reside in the model).
-* Place non RESTful actions above RESTful actions in the controller.
+* Place non RESTful actions above RESTful actions in the controller. If a
+  controller has more than a few non default actions, there is a high
+  probability that another resource (and controller) is required.
+
+  ```Ruby
+  class UsersController < ActionController::Base
+    # good
+    def search
+      # ...
+    end
+
+    # bad
+    def create_comment
+      # ...
+    end
+  ```
+
 * Each controller action should (ideally) invoke only one method other
   than an initial find or new.
 * Share no more than two instance variables between a controller and a view.
