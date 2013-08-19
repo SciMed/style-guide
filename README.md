@@ -111,7 +111,7 @@ You can generate a PDF or an HTML copy of this guide using
 * Share no more than two instance variables between a controller and a view.
 * Remove generated `respond_to` blocks from controller actions unless needed.
 * Remove generated comments on Controller actions.
-* Structure Controller content [in the following order](samples/controller.rb):
+* Structure Controller content [in the following order](samples/controller.md):
   * Module extend/include
   * Third party macros (devise, paperclip)
   * `*_filter` or `*_action` macros in chronological order.
@@ -147,13 +147,13 @@ You can generate a PDF or an HTML copy of this guide using
 ### ActiveRecord
 
 * Avoid adding default_scope.
-* Avoid adding callbacks in favor of [an object decorator](samples/callback.rb).
+* Avoid adding callbacks in favor of [an object decorator](samples/callback.md).
 * Avoid adding callbacks if they are modifying other models.
 * Group macro-style methods (`has_many`, `validates`, etc) in the
   beginning of the class definition.
 * Consider using a methods instead of constants. Methods are easier
   to stub and test. Methods can also be marked as private/protected.
-* Structure model content [in the following order](samples/model.rb):
+* Structure model content [in the following order](samples/model.md):
   * Module extend/include
   * set_table_name, set_primary_key, default_scope
   * Third party macros (devise, paperclip)
@@ -353,7 +353,7 @@ some regular expression mapping, create a custom validator file.
 * Remove default comments
 * Versioning is discouraged unless a specific version of the gem is required.
 * **Do not** run `bundle update` unless for a specific gem.
-* Structure Gemfile content [in the following order](samples/gemfile.rb):
+* Structure Gemfile content [in the following order](samples/gemfile.md):
   * source
   * Nonstandard modifications
   * Default Rails gems (listed in default order)
