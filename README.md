@@ -449,7 +449,12 @@ some regular expression mapping, create a custom validator file.
 * Never call the model layer directly from a view.
 * Never make complex formatting in the views, export the formatting to
   a method in the view helper or the model.
-* Mitigate code duplication by using partial templates and layouts.
+* Avoid using DRY principles to reduce duplication of code that is visually
+  the same, rather than essentially the same. Code should not be made DRY if
+  the business motivation behind duplicated code differs between cases. Please see
+  [In Defense of Copy Paste](http://zacharyvoase.com/2013/02/08/copypasta/)
+  for more information. While this is applicable in all forms of code, this
+  is particularly problematic in view code.
 
 ## Mailers
 
