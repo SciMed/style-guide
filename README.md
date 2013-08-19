@@ -188,13 +188,13 @@ some regular expression mapping, create a custom validator file.
     ```Ruby
     # bad
     class Person
-      validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+      validates :email, format: { with: /@/i }
     end
 
     # good
     class EmailValidator < ActiveModel::EachValidator
       def validate_each(record, attribute, value)
-        record.errors[attribute] << (options[:message] || 'is not a valid email') unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+        record.errors[attribute] << 'is not a valid email' unless value =~ /@/i
       end
     end
 
