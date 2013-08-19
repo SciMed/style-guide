@@ -226,6 +226,8 @@ You can generate a PDF or an HTML copy of this guide using
 * Structure class content in the following order:
   * Module `extend`
   * Module `include`
+  * `set_table_name` macro
+  * `set_primary_key` macro
   * External library macros (like devise or paperclip)
   * `default_scope` (discouraged)
   * Constants (discouraged) [DISCUSS, CITE, MORE INFO]
@@ -248,6 +250,9 @@ You can generate a PDF or an HTML copy of this guide using
     class User < ActiveRecord::Base
       extend Auditable
       include Emailable
+
+      set_table_name :people
+      set_primary_key :uid
 
       default_scope { where(active: true) }
 
