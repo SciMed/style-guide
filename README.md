@@ -170,7 +170,7 @@ You can generate a PDF or an HTML copy of this guide using
   to lib once it has been determined to be reusable across applications.
   For this reason, Rails does not automatically reload the lib directory.
 * Name the models with meaningful, succinct names without
-  abbreviations.
+  abbreviations. Known acronyms are acceptable.
 * Do not camelCase acronyms in class names. Ruby has built-in support for
   upcased class names.
 
@@ -342,7 +342,6 @@ You can generate a PDF or an HTML copy of this guide using
   instead. Using `has_many :through` allows additional attributes and validations
   on the join model.
 * Order associations alphabetically by macro name, then model name.
-
 * Always use the new
   ["sexy" validations](http://thelucid.com/2010/01/08/sexy-validation-in-edge-rails-rails-3/).
 
