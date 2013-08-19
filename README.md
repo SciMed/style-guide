@@ -238,6 +238,7 @@ You can generate a PDF or an HTML copy of this guide using
   * `attr_accesor` attributes
   * `delegate` macros
   * `belongs_to` associations in alphabetical order
+  * `has_and_belongs_to_many` **DISCOURAGED**
   * `has_many` associations in alphabetical order
   * `accepts_nested_attributes_for`
   * `scope`
@@ -282,6 +283,9 @@ You can generate a PDF or an HTML copy of this guide using
       belongs_to :country
       belongs_to :city
       belongs_to :state
+
+      has_and_belongs_to_many # DISCOURAGED
+
       has_many :authentications
       has_many :comments
       has_many :posts
