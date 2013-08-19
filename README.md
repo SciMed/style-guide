@@ -133,7 +133,6 @@ You can generate a PDF or an HTML copy of this guide using
   abbreviations. Known acronyms are acceptable.
 * Do not camelCase acronyms in class names. Ruby has built-in support for
   upcased class names.
-
   ```Ruby
   # BAD
   class HttpInterface
@@ -173,7 +172,6 @@ You can generate a PDF or an HTML copy of this guide using
 * Order associations alphabetically by macro name, then model name.
 * Always use the new
   ["sexy" validations](http://thelucid.com/2010/01/08/sexy-validation-in-edge-rails-rails-3/).
-
     ```Ruby
     # bad
     validates_presence_of :email
@@ -181,10 +179,8 @@ You can generate a PDF or an HTML copy of this guide using
     # good
     validates :email, presence: true
     ```
-
 * When a custom validation is used more than once or the validation is
 some regular expression mapping, create a custom validator file.
-
     ```Ruby
     # bad
     class Person
@@ -202,13 +198,11 @@ some regular expression mapping, create a custom validator file.
       validates :email, email: true
     end
     ```
-
 * Keep custom validators under `models/validators`.
 * Consider extracting custom validators to a shared gem if you're
   maintaining several related apps or the validators are generic
   enough.
 * Use named scopes freely.
-
     ```Ruby
     class User < ActiveRecord::Base
       scope :active, -> { where(active: true) }
@@ -217,9 +211,7 @@ some regular expression mapping, create a custom validator file.
       scope :with_orders, -> { joins(:orders).select('distinct(users.id)') }
     end
     ```
-
 * Wrap scopes in `lambdas` to initialize them lazily.
-
     ```Ruby
     # bad
     class User < ActiveRecord::Base
@@ -237,7 +229,6 @@ some regular expression mapping, create a custom validator file.
       scope :with_orders, -> { joins(:orders).select('distinct(users.id)') }
     end
     ```
-
 * In Rails 3 and below, beware of the behavior of the `update_attribute` method. It doesn't
   run the model validations (unlike `update_attributes`) and could easily corrupt the model state.
 
@@ -251,21 +242,6 @@ some regular expression mapping, create a custom validator file.
 * Use `rake db:test:prepare` to update the schema of the test database.
 * Enforce default values in the migrations themselves instead of in
   the application layer.
-
-    ```Ruby
-    # bad - application enforced default value
-    def amount
-      self[:amount] or 0
-    end
-    ```
-
-    While enforcing table defaults only in Rails is suggested by many
-    Rails developers it's an extremely brittle approach that
-    leaves your data vulnerable to many application bugs.  And you'll
-    have to consider the fact that most non-trivial apps share a
-    database with other applications, so imposing data integrity from
-    the Rails app is impossible.
-
 * When writing constructive migrations (adding tables or columns), use
   the new Rails 3.1+ way of doing the migrations - use the `change`
   method instead of `up` and `down` methods.
@@ -290,15 +266,12 @@ some regular expression mapping, create a custom validator file.
   related to the mailer.
 * Provide both HTML and plain-text view templates.
 * Enable errors raised on failed mail delivery in your development environment. The errors are disabled by default.
-
     ```Ruby
     # config/environments/development.rb
 
     config.action_mailer.raise_delivery_errors = true
     ```
-
 * Provide default settings for the host name.
-
     ```Ruby
     # config/environments/development.rb
     config.action_mailer.default_url_options = {host: "#{local_ip}:3000"}
@@ -310,11 +283,9 @@ some regular expression mapping, create a custom validator file.
     # in your mailer class
     default_url_options[:host] = 'your_site.com'
     ```
-
 * If you need to use a link to your site in an email, always use the
   `_url`, not `_path` methods. The `_url` methods include the host
   name and the `_path` methods don't.
-
     ```Ruby
     # wrong
     You can always find more info about this course
@@ -324,27 +295,21 @@ some regular expression mapping, create a custom validator file.
     You can always find more info about this course
     = link_to 'here', url_for(course_url(@course))
     ```
-
 * Format the from and to addresses properly. Use the following format:
-
     ```Ruby
     # in your mailer class
     default from: 'Your Name <info@your_site.com>'
     ```
-
 * Make sure that the e-mail delivery method for your test environment is set to `test`:
-
     ```Ruby
     # config/environments/test.rb
 
     config.action_mailer.delivery_method = :test
     ```
-
 * When sending html emails all styles should be inline, as some mail clients
   have problems with external styles. This however makes them harder to
   maintain and leads to code duplication. There are gems that
   transform the styles and put them in the corresponding html tags.
-
 * Consider sending emails in a background process. Sending emails while
   generating page response should be avoided. It causes delays in loading
   of the page and requests can timeout.
