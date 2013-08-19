@@ -123,10 +123,6 @@ You can generate a PDF or an HTML copy of this guide using
 
 * Using non-ActiveRecord models is encouraged.
 * Do not place non-ActiveRecord models in lib, place them in the models
-* Do not develop lib code in the lib directory. Code should initially be
-  developed in the models or initializers directory and subsequently moved
-  to lib once it has been determined to be reusable across applications.
-  For this reason, Rails does not automatically reload the lib directory.
   directory. The lib directory should only be used for code that is not
   within the applications domain model. Consider placing all other code
   in the models or initializers directory. Furthermore, consider vendoring
