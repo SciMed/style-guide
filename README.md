@@ -171,8 +171,18 @@ You can generate a PDF or an HTML copy of this guide using
   For this reason, Rails does not automatically reload the lib directory.
 * Name the models with meaningful, succinct names without
   abbreviations.
-* Do not camelcase acronyms in class names. Ruby has built-in support for
+* Do not camelCase acronyms in class names. Ruby has built-in support for
   upcased class names.
+
+  ```Ruby
+  # BAD
+  class HttpInterface
+  end
+
+  # GOOD
+  class HTTPInterface
+  end
+  ```
 
 ### ActiveRecord
 
