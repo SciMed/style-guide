@@ -232,7 +232,6 @@ You can generate a PDF or an HTML copy of this guide using
   * `default_scope` (discouraged)
   * Constants (discouraged) [DISCUSS, CITE, MORE INFO]
   * `attr_accessible` (Rails 3 and below)
-  * `accepts_nested_attributes_for`
   * Callbacks in chronological order.
   * `validate :custom_method` macros
   * `validates` macros in alphabetical order
@@ -240,6 +239,7 @@ You can generate a PDF or an HTML copy of this guide using
   * `delegate` macros
   * `belongs_to` associations in alphabetical order
   * `has_many` associations in alphabetical order
+  * `accepts_nested_attributes_for`
   * `scope`
   * Public Class methods
   * Public Instance methods
@@ -263,8 +263,6 @@ You can generate a PDF or an HTML copy of this guide using
 
       attr_accessible :login, :first_name, :last_name, :email, :password
 
-      accepts_nested_attributes_for :comments
-
       before_save :cook
       after_save :update_username_lower
 
@@ -287,6 +285,8 @@ You can generate a PDF or an HTML copy of this guide using
       has_many :authentications
       has_many :comments
       has_many :posts
+
+      accepts_nested_attributes_for :comments
 
       scope :administrators, -> { where(admin: true) }
       scope :active, -> { where(active: true) }
