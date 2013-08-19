@@ -240,6 +240,7 @@ You can generate a PDF or an HTML copy of this guide using
   * `belongs_to` associations in alphabetical order
   * `has_and_belongs_to_many` **DISCOURAGED**
   * `has_many` associations in alphabetical order
+  * `has_one` associations in alphabetical order
   * `accepts_nested_attributes_for`
   * `scope`
   * Public Class methods
@@ -289,6 +290,8 @@ You can generate a PDF or an HTML copy of this guide using
       has_many :authentications
       has_many :comments
       has_many :posts
+
+      has_one :address
 
       accepts_nested_attributes_for :comments
 
