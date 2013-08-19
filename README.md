@@ -269,7 +269,7 @@ some regular expression mapping, create a custom validator file.
 * When writing constructive migrations (adding tables or columns), use
   the new Rails 3.1+ way of doing the migrations - use the `change`
   method instead of `up` and `down` methods.
-* Older migrations should be periodically archived in `db/migrate/legacy_migrations` ***  `db/migrate/archived_migrations`
+* Older migrations should be periodically archived in `db/migrate/archived_migrations`
 
 ## Views
 
