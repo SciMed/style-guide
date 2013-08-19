@@ -248,8 +248,6 @@ some regular expression mapping, create a custom validator file.
   systems and are not intended to always work. Use `rake db:schema:load` and `rake db:seed`
   to build the database schema, this is faster and will not cause unintended errors.
 * Keep the `schema.rb` (or `structure.sql`) under version control.
-* Use `rake db:schema:load` instead of `rake db:migrate` to initialize
-  an empty database.
 * Use `rake db:test:prepare` to update the schema of the test database.
 * Enforce default values in the migrations themselves instead of in
   the application layer.
