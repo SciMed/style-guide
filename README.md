@@ -127,6 +127,8 @@ You can generate a PDF or an HTML copy of this guide using
   within the applications domain model. Consider placing all other code
   in the models or initializers directory. Furthermore, consider vendoring
   any code placed in the lib directory as a gem.
+* *** TODO: add directory naming conventions to group models, since there can be
+  several files in the models directory.
 * Name the models with meaningful, succinct names without
   abbreviations. Known acronyms are acceptable.
 * Do not camelCase acronyms in class names. Ruby has built-in support for
