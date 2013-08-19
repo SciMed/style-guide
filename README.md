@@ -76,7 +76,7 @@ You can generate a PDF or an HTML copy of this guide using
     ```
 
 * In Rails 3 and below, never use the legacy wildcard controller routes. This
-  route will make all actions in every controller accessible via GET requests.
+  route will make all actions in every controller accessible via POST requests.
 
     ```Ruby
     # very bad
