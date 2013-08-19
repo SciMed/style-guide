@@ -386,7 +386,7 @@ some regular expression mapping, create a custom validator file.
 
 * Keep the `schema.rb` (or `structure.sql`) under version control.
 * Use `rake db:schema:load` instead of `rake db:migrate` to initialize
-an empty database.
+  an empty database.
 * Use `rake db:test:prepare` to update the schema of the test database.
 * Enforce default values in the migrations themselves instead of in
   the application layer.
@@ -408,8 +408,6 @@ an empty database.
 * When writing constructive migrations (adding tables or columns), use
   the new Rails 3.1+ way of doing the migrations - use the `change`
   method instead of `up` and `down` methods.
-
-
 * Don't use model classes in migrations. The model classes are
 constantly evolving and at some point in the future migrations that
 used to work might stop, because of changes in the models used.
