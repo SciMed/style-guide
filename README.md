@@ -151,101 +151,21 @@ You can generate a PDF or an HTML copy of this guide using
 * Avoid adding callbacks if they are modifying other models.
 * Group macro-style methods (`has_many`, `validates`, etc) in the
   beginning of the class definition.
-* Structure class content in the following order:
-  * Module `extend`
-  * Module `include`
-  * `set_table_name` macro
-  * `set_primary_key` macro
-  * External library macros (like devise or paperclip)
-  * `default_scope` (discouraged)
-  * Constants (discouraged) [DISCUSS, CITE, MORE INFO]
-  * `attr_accessible` (Rails 3 and below)
+* Consider using a methods instead of constants. Methods are easier
+  to stub and test. Methods can also be marked as private/protected.
+* Structure model content [in the following order](samples/model.rb):
+  * Module extend/include
+  * set_table_name, set_primary_key, default_scope
+  * Third party macros (devise, paperclip)
+  * Constants
+  * attr_accessible
   * Callbacks in chronological order.
-  * `validate :custom_method` macros
-  * `validates` macros in alphabetical order
-  * `attr_accesor` attributes
-  * `delegate` macros
-  * `belongs_to` associations in alphabetical order
-  * `has_and_belongs_to_many` **DISCOURAGED**
-  * `has_many` associations in alphabetical order
-  * `has_one` associations in alphabetical order
-  * `accepts_nested_attributes_for`
-  * `scope`
-  * Public Class methods
-  * Public Instance methods
-  * Private Class methods
-  * Private Instance methods
-
-    ```Ruby
-    class User < ActiveRecord::Base
-      extend Auditable
-      include Emailable
-
-      set_table_name :people
-      set_primary_key :uid
-
-      default_scope { where(active: true) }
-
-      has_attachment :document, resize_to_fit: true
-      can_login, memorable: true
-
-      GENDERS = %w(male female)
-
-      attr_accessible :login, :first_name, :last_name, :email, :password
-
-      before_save :cook
-      after_save :update_username_lower
-
-      validate :within_time_period
-      validate :currently_active_member
-
-      validates :email, presence: true
-      validates :password, format: { with: /\A\S{8,128}\z/, allow_nil: true}
-      validates :username, presence: true
-      validates :username, uniqueness: { case_sensitive: false }
-      validates :username, format: { with: /\A[A-Za-z][A-Za-z0-9._-]{2,19}\z/ }
-
-      attr_accessor :formatted_date_of_birth
-
-      delegate :treats, to: :dog
-
-      belongs_to :country
-      belongs_to :city
-      belongs_to :state
-
-      has_and_belongs_to_many # DISCOURAGED
-
-      has_many :authentications
-      has_many :comments
-      has_many :posts
-
-      has_one :address
-
-      accepts_nested_attributes_for :comments
-
-      scope :administrators, -> { where(admin: true) }
-      scope :active, -> { where(active: true) }
-
-      def self.trim_inactive
-        # ...
-      end
-
-      def calculate_age
-        # ...
-      end
-
-      private
-
-        def self.some
-          # ...
-        end
-
-        def whatevs
-          # ...
-        end
-
-    end
-    ```
+  * validate then validates macros in alphabetical order
+  * attr_accesor and delegate macros
+  * associations in alphabetical order
+  * accepts_nested_attributes_for
+  * scopes
+  * Public then private methods
 * Use of `class << self` is discouraged in ActiveRecord models.
 * Use of `has_and_belongs_to_many` is strongly discouraged.  Use `has_many :through`
   instead. Using `has_many :through` allows additional attributes and validations
