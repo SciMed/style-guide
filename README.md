@@ -1,7 +1,7 @@
 # Prelude
 
-> Role models are important. <br/>
-> -- Officer Alex J. Murphy / RoboCop
+> You will find only what you bring in. <br/>
+> -- Master Yoda
 
 The goal of this guide is to present a set of best practices and style
 prescriptions for Ruby on Rails based on SciMed Solutions' years
