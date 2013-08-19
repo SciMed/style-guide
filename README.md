@@ -384,6 +384,10 @@ some regular expression mapping, create a custom validator file.
 
 ## Migrations
 
+* **Do Not** use `rake db:migrate` to build the database schema for a new application.
+  Migrations are intended to be run from a certain point in time for existing production
+  systems and are not intended to always work. Use `rake db:schema:load` and `rake db:seed`
+  to build the database schema, this is faster and will not cause unintended errors.
 * Keep the `schema.rb` (or `structure.sql`) under version control.
 * Use `rake db:schema:load` instead of `rake db:migrate` to initialize
   an empty database.
