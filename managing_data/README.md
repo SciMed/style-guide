@@ -32,9 +32,9 @@
 ### Seed Maintainance Strategies
 
 * Use your Factory Girl factories to seed development data. They are likely to be 
-  updated as your objects change.
+  updated as your tables change.
 * Run the seeds in your test suite, or on CI (based on time) and fail the build
-  they break.
-* Create a generator that creates a seed file when you create a new model.  Opt
+  when they break.
+* Create a rails generator that creates a seed file when you create a new model.  Opt
   out of creating seeds, instead of opting in.
 * Teardown and rebuid your databse regularly.
