@@ -26,8 +26,7 @@ You can generate a PDF or an HTML copy of this guide using
 
 ## Configuration
 
-* Put custom initialization code in `config/initializers`. The code in
-  initializers executes on application startup.
+* Put custom initialization code in `config/initializers`.
 * Keep initialization code for each gem in a separate file
   with the same name as the gem, for example `carrierwave.rb`,
   `active_admin.rb`, etc.
