@@ -4,7 +4,7 @@ This guide provides a set of best practices and style prescriptions
 for application development based on SciMed Solutions' years
 of development experience.
 
-#### Table of Contents
+#### The Runway
 
 * [Rails](#rails)
 * [Ruby](#ruby)
@@ -104,14 +104,14 @@ of development experience.
 * Versioning is discouraged unless a specific version of the gem is required.
 
 # Ruby
-Move along, nothing to see here yet.
+Move along, still accessorizing.
 
 # JavaScript
-Move along, nothing to see here yet.
+Move along, still accessorizing.
 
 # CSS
-Move along, nothing to see here yet.
+Move along, still accessorizing.
 
 # HTML
-Move along, nothing to see here yet.
+Move along, still accessorizing.
 
