@@ -95,7 +95,7 @@ of development experience.
 * Provide both HTML and plain-text view templates.
 * If you need to use a link in an email, always use the `_url`, not `_path` methods.
 * Format the from and to addresses as `Your Name <info@your_site.com>`.
-* Consider sending emails in a background process to prevent delays page load.
+* Consider sending emails in a background process to prevent page load delays.
 
 #### Bundler
 * Structure Gemfile content **[in the following order](samples/gemfile.md)**:
