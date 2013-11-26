@@ -3,7 +3,7 @@
 class Racecar < Car
   validates :must_have_a_drink_sponsor
 
-  def :must_have_a_drink_sponsor
+  def must_have_a_drink_sponsor
     # ...
   end
 end
