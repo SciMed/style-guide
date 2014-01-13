@@ -6,8 +6,8 @@
 
 ```CSS
 .save {
-  @import: button;
-  @import: button-large;
+  @include button;
+  @include button-large;
   color: #fff;
 }
 ```
