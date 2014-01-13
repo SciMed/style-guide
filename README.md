@@ -1,4 +1,4 @@
-# ❀ A Highly Fashionable Style Guide
+# :high_heel: A Highly Fashionable Style Guide
 
 This guide provides a set of best practices and style prescriptions
 for application development based on SciMed Solutions' years
@@ -6,11 +6,17 @@ of development experience.
 
 #### The Runway
 
-* [Rails](#rails)
 * [Ruby](#ruby)
+* [Rails](#rails)
 * [JavaScript](#javascript)
-* [CSS](#css)
+* [SCSS](#scss)
 * [HTML](#html)
+
+# Ruby
+* Encapsulate generic functionality into separate libraries and gems
+* Write integration tests using TDD/BDD
+* Adhere to Rubocop when possible
+* Adhere to Rails Best Practices when possible
 
 # Rails
 
@@ -103,15 +109,36 @@ of development experience.
 * Remove default comments
 * Versioning is discouraged unless a specific version of the gem is required.
 
-# Ruby
-Move along, still accessorizing.
-
 # JavaScript
-Move along, still accessorizing.
+* Use CoffeeScript over JavaScript
+* Use a packet manager like Bower for installing dependencies
+* Prefer a JavaScript framework over vanilla JavaScript
+* Use IIFE or Object Literal notation
+* Separate responsibilities of vanilla JavaScript into separate entities.
+* Query DOM elements using 'js-' or 'data-' attributes instead of CSS classes
+* Do not rely on or store data in the DOM
 
-# CSS
-Move along, still accessorizing.
+# SCSS
+* Order styles alphabetically.
+* Use the SCSS `@import` declaration to require stylesheets vs `*= require`.
+* Use the `asset_path` helper for images and fonts. [see example](samples/asset_path.md)
+* Lowercase and dasherize class names.
+* Avoid the `>` direct descendant selector when the descendant is a tag [see example](samples/descendant.md)
+* Avoid ID selectors
+* Use SCSS variables
+* Generic naming is favored over domain-driven naming (e.g. `.aside` vs `.cytometry`)
+* Prefer naming elements by content type over visual traits (e.g. `.aside` vs `.left-side-bar`)
+* Encapsulate framework and grid system class names into semantic styles [see example](samples/mixins.md)
+* Use `display: border-box;`
+* Prefer SMACSS to organize over
 
 # HTML
-Move along, still accessorizing.
+* Do not use tables for presentational layout. *That's sooo 1999.*
+* Do **not *not*** use tables for tabular data.
+* Do not use `<image>` tags for decorative content. [see example](samples/images.md)
+* Use of presentational markup is discouraged
+* Do not name tags if they don't need to be named
+* Do not directly apply framework and grid system class names. [see example](samples/mixins.md)
+* Use of XHTML markup is discouraged e.g. `<br />`
+* Use layout tags (e.g. `<section>`, `<header>`, `<footer>`, `<aside>`) You are not bound to only having one `<header>` or one `<footer>` tag on a page.
 
