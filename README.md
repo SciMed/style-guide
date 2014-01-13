@@ -43,7 +43,7 @@ of development experience.
 * Organize models into `app/models/`: `services`, `concerns`, `strategies`, `decorators`, `validators`.
 * *Even better*: Organize models into gems or namespaces
 * Do not camelCase acronyms in class names. [see example](samples/camelcasing.md)
-* Avoid adding default_scope.
+* Avoid adding `default_scope`.
 * Avoid adding callbacks in favor of [an object decorator](samples/callback.md).
 * Avoid adding callbacks that modify other models.
 * Consider using methods instead of constants. Methods are easier to stub, test, and mark private.
