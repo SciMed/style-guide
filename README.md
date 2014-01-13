@@ -40,8 +40,8 @@ of development experience.
 * Do not place non-ActiveRecord models in lib, place them in the models.
 * Only use the lib directory for code that is not within the application's domain model.
 * Consider vendoring any code placed in the lib directory as a gem.
-* *** TODO: add directory naming conventions to group models, since there can be
-  several files in the models directory.
+* Organize models into `app/models/`: `services`, `concerns`, `strategies`, `decorators`, `validators`.
+* *Even better*: Organize models into gems or namespaces
 * Do not camelCase acronyms in class names. [see example](samples/camelcasing.md)
 * Avoid adding default_scope.
 * Avoid adding callbacks in favor of [an object decorator](samples/callback.md).
