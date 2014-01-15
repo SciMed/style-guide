@@ -1,7 +1,7 @@
 ```CSS
 /* Good */
 .aside {
-  background-image: url(asset_path('bg_image.png', image));
+  background-image: asset-url('bg_image.png', image);
 }
 
 /* Bad */

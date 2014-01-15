@@ -121,7 +121,7 @@ of development experience.
 # SCSS
 * Order styles alphabetically.
 * Use the SCSS `@import` declaration to require stylesheets vs `*= require`.
-* Use the `asset_path` helper for images and fonts. [see example](samples/asset_path.md)
+* Use the `asset-url` helper for images and fonts. [see example](samples/asset_url.md)
 * Lowercase and dasherize class names.
 * Avoid the `>` direct descendant selector when the descendant is a tag [see example](samples/descendant.md)
 * Avoid ID selectors
