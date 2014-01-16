@@ -1,4 +1,4 @@
-```CSS
+```scss
 /* Good */
 .aside {
   background-image: asset-url('bg_image.png', image);
