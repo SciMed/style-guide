@@ -7,7 +7,8 @@ class UsersController < ActionController::Base
 
   before_action :user_params
   after_action :refresh_password
-
+  
+  # Place all non-standard actions before standard RESTful actions
   def search
     # ...
   end
