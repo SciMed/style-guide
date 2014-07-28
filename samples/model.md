@@ -58,10 +58,6 @@ class User < ActiveRecord::Base
 
   private
 
-    def self.some
-      # ...
-    end
-
     def whatevs
       # ...
     end
