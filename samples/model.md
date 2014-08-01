@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   extend Auditable
   include Emailable
 
-  set_table_name :people
-  set_primary_key :uid
+  self.table_name = 'people'
+  self.primary_key = 'uid'
 
   default_scope { where(active: true) }
 
