@@ -56,11 +56,10 @@ class User < ActiveRecord::Base
     # ...
   end
 
-  private
-
-    def whatevs
-      # ...
-    end
+  def whatevs
+    # ...
+  end
+  private :whatevs
 
 end
 ```

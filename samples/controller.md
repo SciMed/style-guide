@@ -24,14 +24,14 @@ class UsersController < ActionController::Base
   # def update...
   # def destroy...
 
-  private
+  def user_params
+    # ...
+  end
+  private :user_params
 
-    def user_params
-      # ...
-    end
-
-    def refresh_password
-      # ...
-    end
+  def refresh_password
+    # ...
+  end
+  private :refresh_password
 end
 ```
