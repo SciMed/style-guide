@@ -11,6 +11,7 @@ of development experience.
 * [JavaScript](#javascript)
 * [SCSS](#scss)
 * [HTML](#html)
+* [RSpec](#rspec)
 
 # Ruby
 * Encapsulate generic functionality into separate libraries and gems
@@ -150,3 +151,40 @@ of development experience.
 * Use of XHTML markup is discouraged e.g. `<br />`
 * Use layout tags (e.g. `<section>`, `<header>`, `<footer>`, `<aside>`) You are not bound to only having one `<header>` or one `<footer>` tag on a page. (Note that you can have only one <main> tag however).
 
+# RSpec
+
+#### General
+* Adhere to rubocop [(rubocop-rspec)](https://github.com/nevir/rubocop-rspec) when possible
+* Avoid incidental state when setting up expectations. [see example](samples/specs/incidental_state.md)
+* Do not write iterators to generate tests. [see example](samples/specs/iterators.md)
+  * It's okay to not be DRY if repetition of code improves readability.
+* Use factories rather than fixtures
+* Use `described_class` rather than the class name inside the top-level describe block. [see example](samples/spec/described_class.md)
+
+#### What to test
+* Test all possible cases, including edges cases.
+* Prefer checking exception type over checking a specific error message.
+* Use shared examples to test common behavior.
+* Use [shoulda-matchers](https://github.com/thoughtbot/shoulda-matchers) for testing validations, database columns, associations, and delegations in models
+
+#### Mocking and stubbing
+
+* Prefer verifying doubles when mocking (e.g. `instance_double`). [see example](samples/specs/instance_double.md)
+* Use `let` blocks instead of `before(:each)` (`let` blocks are lazily evaluated).
+* Stub HTTP requests.
+* In controllers, mock models and stub their methods.
+
+#### Expectation syntax
+* Favor `expect` over `should` in rspec 2.11+. [see example](samples/specs/expectation_syntax.md)
+
+#### Description blocks
+
+* For consistency, use double quotes for description strings.
+* Keep the full spec description as grammatically correct as possible. [see example](samples/specs/full_description.md)
+* Format `describe` block descriptions for class methods as '.some_class_method_name' and for instance methods as '#some_instance_method_name'.
+* Begin `it` block descriptions with 'returns' or some other verb that describes the functionality (third person, present tense) rather than 'should'. [see example](samples/specs/it_block_description.md)
+* Conditionals and `context` blocks [see example](samples/specs/conditional_block_description.md)
+  * Avoid conditionals in `it` block descriptions. Instead, use `context` blocks to organize different states.
+  * Begin `context` block descriptions with 'when'.
+* Prefer using only one expectation per `it` block, particularly for unit tests.
+  * If setup is expensive, it may be reasonable to use multiple expectations in a single `it` block.
