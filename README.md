@@ -87,6 +87,7 @@ of development experience.
 * Use those database features! Enforce default values, null contraints, uniqueness, etc in the database (in migrations instead) of only in the application layer. (The database can avoid race conditions, is faster and more reliable).
 * When you create a new migration, run it both UP AND DOWN before commiting the change.
 * Prefer using "change" in migrations to writing individual "up" and "down" methods when possible.
+* Make sure to update seeds/factories when adding columns (particularly those with validations) or tables
 
 #### Seeds
 
@@ -149,22 +150,23 @@ of development experience.
 * Do not name tags if they don't need to be named
 * Do not directly apply framework and grid system class names. [see example](samples/mixins.md)
 * Use of XHTML markup is discouraged e.g. `<br />`
-* Use layout tags (e.g. `<section>`, `<header>`, `<footer>`, `<aside>`) You are not bound to only having one `<header>` or one `<footer>` tag on a page. (Note that you can have only one <main> tag however).
+* Use layout tags (e.g. `<section>`, `<header>`, `<footer>`, `<aside>`) You are not bound to only having one `<header>` or one `<footer>` tag on a page. (Note that you can have only one `<main>` tag however).
 
 # RSpec
 
 #### General
 * Adhere to rubocop [(rubocop-rspec)](https://github.com/nevir/rubocop-rspec) when possible
 * Avoid incidental state when setting up expectations. [see example](samples/specs/incidental_state.md)
-* Do not write iterators to generate tests. [see example](samples/specs/iterators.md)
+* Do not write iterators to generate tests; they make debugging more difficult (all of the tests share line numbers and the `it` description block) [see example](samples/specs/iterators.md)
   * It's okay to not be DRY if repetition of code improves readability.
 * Use factories rather than fixtures
-* Use `described_class` rather than the class name inside the top-level describe block. [see example](samples/spec/described_class.md)
+* Use linting with FactoryGirl
+* Use `described_class` rather than the class name inside the top-level describe block. [see example](samples/specs/described_class.md)
 
 #### What to test
-* Test all possible cases, including edges cases.
+* Test all possible paths, including edge cases.
 * Prefer checking exception type over checking a specific error message.
-* Use shared examples to test common behavior.
+* Use shared examples to test common behavior, but avoid including tests that take a long time to execute.
 * Use [shoulda-matchers](https://github.com/thoughtbot/shoulda-matchers) for testing validations, database columns, associations, and delegations in models
 
 #### Mocking and stubbing
@@ -173,18 +175,22 @@ of development experience.
 * Use `let` blocks instead of `before(:each)` (`let` blocks are lazily evaluated).
 * Stub HTTP requests.
 * In controllers, mock models and stub their methods.
+* Prefer writing integration tests over controller tests
 
 #### Expectation syntax
-* Favor `expect` over `should` in rspec 2.11+. [see example](samples/specs/expectation_syntax.md)
+* Favor new syntax (on new projects, use rspec 3.0+), e.g. favor `expect` over `should` on rspec 2.11+ [see example](samples/specs/expectation_syntax.md)
 
 #### Description blocks
 
-* For consistency, use double quotes for description strings.
+* For consistency, use single quotes unless double quotes are needed.
 * Keep the full spec description as grammatically correct as possible. [see example](samples/specs/full_description.md)
 * Format `describe` block descriptions for class methods as '.some_class_method_name' and for instance methods as '#some_instance_method_name'.
 * Begin `it` block descriptions with 'returns' or some other verb that describes the functionality (third person, present tense) rather than 'should'. [see example](samples/specs/it_block_description.md)
 * Conditionals and `context` blocks [see example](samples/specs/conditional_block_description.md)
   * Avoid conditionals in `it` block descriptions. Instead, use `context` blocks to organize different states.
-  * Begin `context` block descriptions with 'when'.
 * Prefer using only one expectation per `it` block, particularly for unit tests.
   * If setup is expensive, it may be reasonable to use multiple expectations in a single `it` block.
+
+#### Capybara
+* Prefer using `feature` and `scenario` instead of `describe` and `it`
+* Take care to not use brittle selectors
