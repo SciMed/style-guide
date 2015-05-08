@@ -56,10 +56,9 @@ class User < ActiveRecord::Base
     # ...
   end
 
-  def whatevs
+  private def whatevs
     # ...
   end
-  private :whatevs
 
 end
 ```
