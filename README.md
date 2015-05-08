@@ -18,7 +18,8 @@ of development experience.
 * Write integration tests using TDD/BDD
 * Adhere to Rubocop when possible
 * Adhere to Rails Best Practices when possible
-* Define methods private by calling "private :my_method" directly after the end of the method.
+* Mark methods as private by calling `private def foo` when using recent Ruby versions (> 2.1.0). For earlier versions, mark methods as private by calling `private :my_method` directly after the end of the method.
+* Keep private methods clustered together at the end of the file.
 * Feel free to use libraries which add little bits of helpful functionality and don't take over the application or require all developers to learn a new skillset. If you are thinking of using a library or framework that will take over the application or require other developers to spend time learning it, be sure to discuss with everyone before using it in your project.
 
 # Rails
@@ -79,14 +80,14 @@ of development experience.
 
 #### Migrations
 
-* Both schema.rb and migration files should be maintained so that developers can migrate from scratch or load the schema.
+* Both `schema.rb` and migration files should be maintained so that developers can migrate from scratch or load the schema.
 * When setting up a new application, use `rake db:schema:load` and `rake db:seed` unless you have a good reason to run migrations from scratch.
 * Keep the `schema.rb` (or `structure.sql`) up to date and under version control.
 * Migrations should define any classes that they use. (If the class is deleted in the future the migrations should still be able to run).
 * For rails 1, 2, and 3 applications use `rake db:test:prepare` to update the schema of the test database. (This is deprecated in Rails 4).
 * Use those database features! Enforce default values, null contraints, uniqueness, etc in the database (in migrations instead) of only in the application layer. (The database can avoid race conditions, is faster and more reliable).
 * When you create a new migration, run it both UP AND DOWN before commiting the change.
-* Prefer using "change" in migrations to writing individual "up" and "down" methods when possible.
+* Prefer using `change` in migrations to writing individual `up` and `down` methods when possible.
 * Make sure to update seeds/factories when adding columns (particularly those with validations) or tables
 
 #### Seeds
@@ -96,10 +97,10 @@ of development experience.
 * Seeds should mirror the current state of the app and provide enough data to access and test all features of the application.
 * Data needed for all environments, including production, should be in seeds.
 * Other seeds should be kept in the `db/seeds` directory.
-* Rake tasks should be created in the db:seed namespace for development data.
+* Rake tasks should be created in the `db:seed` namespace for development data.
 * Use FactoryGirl factories to seed development data.
 * Test the seeds in your test suite, or on CI (based on time).
-* Create a rails generator that creates a seed file when you create a new model. Opt
+* Create a Rails generator that creates a seed file when you create a new model. Opt
   out of creating seeds, instead of opting in.
 * Teardown and rebuild your database regularly.
 
@@ -125,7 +126,7 @@ of development experience.
 * Prefer a JavaScript framework over vanilla JavaScript. (This means don't roll your own custom event library or other things that exist out there. But do make sure the company is on board with any new libraries that are used before including them in a project)
 * Use IIFE or Object Literal notation
 * Separate responsibilities of vanilla JavaScript into separate entities.
-* Query DOM elements using 'js-' or 'data-' attributes instead of CSS classes
+* Query DOM elements using `js-` or `data-` attributes instead of CSS classes
 * Do not rely on or store data in the DOM. (This is particularly true from a security stand point. Do not put secure or sensitive information in the DOM. For example do not have a hidden field with a SSN, or that determines whether someone is an admin).
 
 # SCSS
@@ -146,7 +147,7 @@ of development experience.
 * Do not use tables for presentational layout. *That's sooo 1999.*
 * Do **not *not*** use tables for tabular data *That's sooo 2001.*
 * Do not use `<image>` tags for decorative content. [see example](samples/images.md)
-* Use of presentational markup is discouraged (<b>, <i>, <blink>, etc)
+* Use of presentational markup is discouraged (`<b>`, `<i>`, `<blink>`, etc)
 * Do not name tags if they don't need to be named
 * Do not directly apply framework and grid system class names. [see example](samples/mixins.md)
 * Use of XHTML markup is discouraged e.g. `<br />`
@@ -155,7 +156,7 @@ of development experience.
 # RSpec
 
 #### General
-* Adhere to rubocop [(rubocop-rspec)](https://github.com/nevir/rubocop-rspec) when possible
+* Adhere to Rubocop [(rubocop-rspec)](https://github.com/nevir/rubocop-rspec) when possible
 * Avoid incidental state when setting up expectations. [see example](samples/specs/incidental_state.md)
 * Do not write iterators to generate tests; they make debugging more difficult (all of the tests share line numbers and the `it` description block) [see example](samples/specs/iterators.md)
   * It's okay to not be DRY if repetition of code improves readability.
@@ -184,8 +185,8 @@ of development experience.
 
 * For consistency, use single quotes unless double quotes are needed.
 * Keep the full spec description as grammatically correct as possible. [see example](samples/specs/full_description.md)
-* Format `describe` block descriptions for class methods as '.some_class_method_name' and for instance methods as '#some_instance_method_name'.
-* Begin `it` block descriptions with 'returns' or some other verb that describes the functionality (third person, present tense) rather than 'should'. [see example](samples/specs/it_block_description.md)
+* Format `describe` block descriptions for class methods as `'.some_class_method_name'` and for instance methods as `'#some_instance_method_name'`.
+* Begin `it` block descriptions with `'returns'` or some other verb that describes the functionality (third person, present tense) rather than `'should'`. [see example](samples/specs/it_block_description.md)
 * Conditionals and `context` blocks [see example](samples/specs/conditional_block_description.md)
   * Avoid conditionals in `it` block descriptions. Instead, use `context` blocks to organize different states.
 * Prefer using only one expectation per `it` block, particularly for unit tests.
