@@ -26,7 +26,6 @@ of development experience.
 
 #### Routing
 
-* Try to avoid adding non RESTful routes to a resource.
 * Avoid more than 1 level of resource nesting. [see example](samples/nested_routes.md)
 * Do not use the `match` wildcard route matcher
 
@@ -34,7 +33,7 @@ of development experience.
 
 * Structure Controller content **[in the following order](samples/controller.md)**:
 * Try to avoid adding non RESTful actions to a resource.
-* Storing anything in session is discouraged.
+* Storing anything in session is discouraged. (This can be a security risk unless done carefully. This also makes the browser part of the current state of the application, allowing things to get out of whack. For example keeping the current working record in the session causes problems if users try to use the application with more than one tab or window)
 * Keep controllers skeletal - they shouldn't contain business logic
 * Place non RESTful actions above RESTful actions in the controller.
 * Consider adding a resource if a controller has more than 2 non default actions [see example](samples/restful_controller.md)
@@ -48,9 +47,9 @@ of development experience.
 * Structure model content **[in the following order](samples/model.md)**:
 * Using non-ActiveRecord models is encouraged.
 * Do not place non-ActiveRecord models in lib, place them in the models.
-* Pretty much all of the application's code should stay out of lib. Think of lib as a place to put components that are generalized enought that they could be used in other applications. But then why not make those things into gems?
+* Pretty much all of the application's code should stay out of lib. Think of lib as a place to put components that are generalized enough that they could be used in other applications. But then why not make those things into gems?
 * Consider vendoring any code placed in the lib directory as a gem.
-* Organize models into `app/models/`: `services`, `concerns`, `strategies`, `decorators`, `validators`.
+* Organize objects into `app/`: `services`, `concerns`, `strategies`, `decorators`, `validators`, `services`, `concerns`, `strategies`, `modules`.
 * *Even better*: Organize models into gems or namespaces
 * Do not camelCase acronyms in class names. [see example](samples/camelcasing.md)
 * Avoid adding `default_scope`.
@@ -61,22 +60,23 @@ of development experience.
 * Use of `has_and_belongs_to_many` is *strongly* discouraged.  Use `has_many :through` instead.
 * Use `validates` instead of the `validates_*_of` method. [see example](samples/validates.md)
 * Use a Validator object for custom validations [see example](samples/validator.md)
-* Keep custom validators under `models/validators`.
+* Keep custom validators under `app/validators`.
 * Use named scopes.
-* Use of `update_attribute` is discouraged. (Rails 3-)
+* Use of `update_attribute` is discouraged because it skips validations. Note that it will also persist changes to any other dirty attributes on your model as well, not just the attribute that you are trying to update.
+* Use of `update_column`, `update_columns`, and `update_all` are discouraged because they skip validations and callbacks. However, if you do not need validations or callbacks, `update_column` is preferred over update_attribute because it is easier to remember that it does not run validations.
 
 #### Views
 
 * Accessing database models or the database from the view breaks the separation that is the goal of MVC. It would be best to build presenter objects which store the data needed for the view. (In some cases this may not be worthwhile in practice, but it is good to consider the dependencies being built between the view and the database/models.)
-* Never make complex formatting in the views, export the formatting to
-  a presenter object.
+* Never make complex formatting in the views, moving the formatting to
+  a presenter object. For example if you are displaying a schedule, do not put the logic for grouping events into days in the view.
 * Avoid using DRY principles to reduce duplication of code that is visually
   the same, rather than essentially the same. Code should not be made DRY if
   the business motivation behind duplicated code differs between cases. Please see
   [In Defense of Copy Paste](http://zacharyvoase.com/2013/02/08/copypasta/)
   for more information. While this is applicable in all forms of code, this
   is particularly problematic in view code.
-* Don't make partials for the fun of it. Make partials when it makes sense to have partials around. (It's no fun digging through 10 layers of partials if they don't have some benefit).
+* Don't make partials for the fun of it. Make partials when it makes sense to have partials around. (It's no fun digging through 10 layers of partials if they don't have some benefit). It is discouraged to have partials more than 2 levels deep.
 
 #### Migrations
 
@@ -84,15 +84,21 @@ of development experience.
 * When setting up a new application, use `rake db:schema:load` and `rake db:seed` unless you have a good reason to run migrations from scratch.
 * Keep the `schema.rb` (or `structure.sql`) up to date and under version control.
 * Migrations should define any classes that they use. (If the class is deleted in the future the migrations should still be able to run).
-* For rails 1, 2, and 3 applications use `rake db:test:prepare` to update the schema of the test database. (This is deprecated in Rails 4).
-* Use those database features! Enforce default values, null contraints, uniqueness, etc in the database (in migrations instead) of only in the application layer. (The database can avoid race conditions, is faster and more reliable).
-* When you create a new migration, run it both UP AND DOWN before commiting the change.
+* Use those database features! Enforce default values, null contraints, uniqueness, etc in the database (in migrations) instead of only in the application layer. (The database can avoid race conditions, is faster and more reliable).
+* If you have not-null contraints be sure to do dependant destroy on the parent. Otherwise you will get invalid query exceptions when things are deleted.
+* When you create a new migration, run it both UP AND DOWN before commiting the change. (rake db:migrate:redo will run the very last migration down and then up again)
 * Prefer using `change` in migrations to writing individual `up` and `down` methods when possible.
 * Make sure to update seeds/factories when adding columns (particularly those with validations) or tables
+* If you are modifying data in a migration be sure to call two methods at the beginning of the migration. If you don't reset the column information then some data could be silently lost instead of saved. Also, rails will only reset column information once even if you call it multiple times, which is why the `schema_cache` needs to be cleared first.
+
+```
+Model.connection.schema_cache.clear!
+Model.reset_column_information
+```
 
 #### Seeds
 
-* Avoid developing against production data dumps.
+* Avoid relying on production database dumps for development. Make sure there are reliable seeds so that future developers can get up and running and access all features quickly.
 * Create and update seeds as you develop.
 * Seeds should mirror the current state of the app and provide enough data to access and test all features of the application.
 * Data needed for all environments, including production, should be in seeds.
@@ -163,6 +169,7 @@ of development experience.
 * Use factories rather than fixtures
 * Use linting with FactoryGirl
 * Use `described_class` rather than the class name inside the top-level describe block. [see example](samples/specs/described_class.md)
+* Avoid redefining major parts of the application in tests. For example, don't re-define Rails.development?
 
 #### What to test
 * Test all possible paths, including edge cases.
@@ -195,3 +202,11 @@ of development experience.
 #### Capybara
 * Prefer using `feature` and `scenario` instead of `describe` and `it`
 * Take care to not use brittle selectors
+
+### In Discussion
+* Make a standard for server setup. Possibly as a style guide extension. (Andy? Mike?)
+* Re-write: Pretty much all of the application's code should stay out of lib. Think of lib as a place to put components that are generalized enought that they could be used in other applications. But then why not make those things into gems? (Emerson?)
+* Consider vendoring any code placed in the lib directory as a gem.
+* Do not camelCase acronyms in class names. see example -- It causes problems if you do not camel case sometimes because of the Rails inflector. You can define your own inflections but that is a pain.
+* Database views: In postgres if you run a migration that creates a database view it puts it in schame.rb, but oracle does not do that. When createing database views for oracle, follow this pattern...
+* Data needed for all environments, including production, should be in seeds. Unsure how to deal with this so far...
