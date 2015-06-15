@@ -1,12 +1,12 @@
 ```Ruby
 # BAD
 let(:foo) do
-  double 'Foo'
+  double 'Foo' # Does not do verification
 end
 
 # GOOD
 let(:foo) do
-  instance_double 'Foo'
+  instance_double 'Foo' # Does verification that methods exist on Foo and accept the given parameters.
 end
 
 # For ActiveRecord objects, use object_double, as attribute

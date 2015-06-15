@@ -136,18 +136,20 @@ Model.reset_column_information
 * Do not rely on or store data in the DOM. (This is particularly true from a security stand point. Do not put secure or sensitive information in the DOM. For example do not have a hidden field with a SSN, or that determines whether someone is an admin).
 
 # SCSS
-* Order styles alphabetically.
+* Order styles alphabetically within a selector.
 * Use the SCSS `@import` declaration to require stylesheets vs `*= require`.
-* Use the `asset-url` helper for images and fonts. [see example](samples/asset_url.md)
+  * Imported sass module filenames should begin with an underscore and end with .scss only (e.g. `_mystyles.scss`)
+* Use the `asset-url` helper for images and fonts. [see example](samples/asset_url.md) Note that if you use any of the ruby helpers, the file name requires .erb at the end of the file name. (e.g. my_styles.css.scss.erb)
 * Lowercase and dasherize class names.
 * Avoid the `>` direct descendant selector when the descendant is a tag [see example](samples/descendant.md)
 * Avoid ID selectors
-* Use SCSS variables
+* Use SCSS variables (For example colors are often used in multiple places)
 * Generic naming is favored over domain-driven naming (e.g. `.aside` vs `.cytometry`)
 * Prefer naming elements by content type over visual traits (e.g. `.aside` vs `.left-side-bar`)
 * Encapsulate framework and grid system class names into semantic styles [see example](samples/mixins.md)
 * Use `box-sizing: border-box;` (Whenever browsers support it, this allows you to define the size of actual boxes, rather than the size before padding and borders are added. Generally works for IE8+).
-* Consider the organizational advantages of SMACSS.
+* Consider the organizational advantages of SMACSS. (We should link to our SMACSS guide here.)
+* Sometimes files should be named `my_styles.css.scss.erb`, sometimes it should be `my_styles.scss.erb` (Will - to add detail)
 
 # HTML
 * Do not use tables for presentational layout. *That's sooo 1999.*
@@ -158,13 +160,14 @@ Model.reset_column_information
 * Do not directly apply framework and grid system class names. [see example](samples/mixins.md)
 * Use of XHTML markup is discouraged e.g. `<br />`
 * Use layout tags (e.g. `<section>`, `<header>`, `<footer>`, `<aside>`) You are not bound to only having one `<header>` or one `<footer>` tag on a page. (Note that you can have only one `<main>` tag however).
+* Put the javascript includes in the bottom of your page, not in the top of the page.
 
 # RSpec
 
 #### General
 * Adhere to Rubocop [(rubocop-rspec)](https://github.com/nevir/rubocop-rspec) when possible
 * Avoid incidental state when setting up expectations. [see example](samples/specs/incidental_state.md)
-* Do not write iterators to generate tests; they make debugging more difficult (all of the tests share line numbers and the `it` description block) [see example](samples/specs/iterators.md)
+* Do not write iterators to generate tests; they make debugging more difficult (all of the tests share line numbers and the `it` description block). Or consider printing a custom error message to give more information about which test is failing. [see example](samples/specs/iterators.md)
   * It's okay to not be DRY if repetition of code improves readability.
 * Use factories rather than fixtures
 * Use linting with FactoryGirl
@@ -172,18 +175,18 @@ Model.reset_column_information
 * Avoid redefining major parts of the application in tests. For example, don't re-define Rails.development?
 
 #### What to test
-* Test all possible paths, including edge cases.
+* It would be best to test all possible paths through a method, including edge cases.
 * Prefer checking exception type over checking a specific error message.
 * Use shared examples to test common behavior, but avoid including tests that take a long time to execute.
-* Use [shoulda-matchers](https://github.com/thoughtbot/shoulda-matchers) for testing validations, database columns, associations, and delegations in models
+* Use [shoulda-matchers](https://github.com/thoughtbot/shoulda-matchers) for testing validations, associations, and delegations in models
 
 #### Mocking and stubbing
 
-* Prefer verifying doubles when mocking (e.g. `instance_double`). [see example](samples/specs/instance_double.md)
-* Use `let` blocks instead of `before(:each)` (`let` blocks are lazily evaluated).
-* Stub HTTP requests.
+* Prefer "verifying" doubles when mocking (e.g. `instance_double`). [see example](samples/specs/instance_double.md)
+* Use `let` blocks for assignment instead of `before(:each)` (`let` blocks are lazily evaluated).
+* Stub all external connections (HTTP, FTP, etc).
 * In controllers, mock models and stub their methods.
-* Prefer writing integration tests over controller tests
+* Prefer writing integration tests over controller tests.
 
 #### Expectation syntax
 * Favor new syntax (on new projects, use rspec 3.0+), e.g. favor `expect` over `should` on rspec 2.11+ [see example](samples/specs/expectation_syntax.md)
@@ -194,8 +197,8 @@ Model.reset_column_information
 * Keep the full spec description as grammatically correct as possible. [see example](samples/specs/full_description.md)
 * Format `describe` block descriptions for class methods as `'.some_class_method_name'` and for instance methods as `'#some_instance_method_name'`.
 * Begin `it` block descriptions with `'returns'` or some other verb that describes the functionality (third person, present tense) rather than `'should'`. [see example](samples/specs/it_block_description.md)
-* Conditionals and `context` blocks [see example](samples/specs/conditional_block_description.md)
-  * Avoid conditionals in `it` block descriptions. Instead, use `context` blocks to organize different states.
+* Begin `context` blocks with `having` or `when`
+* Avoid conditionals in `it` block descriptions. Instead, use `context` blocks to organize different states [see example](samples/specs/conditional_block_description.md).
 * Prefer using only one expectation per `it` block, particularly for unit tests.
   * If setup is expensive, it may be reasonable to use multiple expectations in a single `it` block.
 
@@ -203,10 +206,3 @@ Model.reset_column_information
 * Prefer using `feature` and `scenario` instead of `describe` and `it`
 * Take care to not use brittle selectors
 
-### In Discussion
-* Make a standard for server setup. Possibly as a style guide extension. (Andy? Mike?)
-* Re-write: Pretty much all of the application's code should stay out of lib. Think of lib as a place to put components that are generalized enought that they could be used in other applications. But then why not make those things into gems? (Emerson?)
-* Consider vendoring any code placed in the lib directory as a gem.
-* Do not camelCase acronyms in class names. see example -- It causes problems if you do not camel case sometimes because of the Rails inflector. You can define your own inflections but that is a pain.
-* Database views: In postgres if you run a migration that creates a database view it puts it in schame.rb, but oracle does not do that. When createing database views for oracle, follow this pattern...
-* Data needed for all environments, including production, should be in seeds. Unsure how to deal with this so far...
