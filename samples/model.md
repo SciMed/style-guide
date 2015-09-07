@@ -30,8 +30,6 @@ class User < ActiveRecord::Base
   attr_accessor :formatted_date_of_birth
 
   delegate :treats, to: :dog
-  
-  alias_method :foo, :bar
 
   belongs_to :country
   belongs_to :city
@@ -57,6 +55,7 @@ class User < ActiveRecord::Base
   def calculate_age
     # ...
   end
+  alias_method :new_calculate_age, :calculate_age
 
   private def whatevs
     # ...
