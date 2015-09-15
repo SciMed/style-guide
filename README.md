@@ -77,6 +77,14 @@ of development experience.
   for more information. While this is applicable in all forms of code, this
   is particularly problematic in view code.
 * Don't make partials for the fun of it. Make partials when it makes sense to have partials around. (It's no fun digging through 10 layers of partials if they don't have some benefit). It is discouraged to have partials more than 2 levels deep.
+* For new projects, use ERB as the templating engine. For old projects, use whatever is already in place.
+* For multiline embedded Ruby, use the following format:
+```
+<%
+  some_long_ruby
+  some_more_long_ruby
+%>
+```
 
 #### Migrations
 
