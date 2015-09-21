@@ -214,3 +214,10 @@ Model.reset_column_information
 * Prefer using `feature` and `scenario` instead of `describe` and `it`
 * Take care to not use brittle selectors
 
+# Documentation
+* Keep the ReadMe up-to-date, useful, and accurate
+* When a new medium or large feature gets added, add a paragraph or a couple of paragraphs to the ReadMe describing the real life scenarios and people including their goals and how it is itended to be used.
+* The ReadMe should include information about overall application components, process, server infrastructure, and dependencies that people will need to understand to understand the application.
+* The ReadMe should describe how to run the tests.
+* The ReadMe should describe which systems and browsers are supported.
+* The ReadMe should describe how a developer can get the application up and running.
