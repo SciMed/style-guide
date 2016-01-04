@@ -18,6 +18,8 @@ of development experience.
 * Write integration tests using TDD/BDD
 * Adhere to Rubocop when possible
 * Adhere to Rails Best Practices when possible
+* Freeze constants in their definitions (e.g. `ITEMS = %w(banana apple cherry).freeze`) to prevent constant mutation
+* Never `rescue` or `fail`/`raise` a generic `Exception`. Instead, `rescue`/`fail`/`raise` a specific type of `Exception`.
 * Mark methods as private by calling `private def foo` when using recent Ruby versions (> 2.1.0). For earlier versions, mark methods as private by calling `private :my_method` directly after the end of the method.
 * Keep private methods clustered together at the end of the file.
 * Feel free to use libraries which add little bits of helpful functionality and don't take over the application or require all developers to learn a new skillset. If you are thinking of using a library or framework that will take over the application or require other developers to spend time learning it, be sure to discuss with everyone before using it in your project.
@@ -128,6 +130,10 @@ Model.reset_column_information
 * When sending email to multiple users, send an individual email to each person rather than having multiple recipients in one email. (This increases security because users can't see each other's addresses, and makes it easier to handle errors with invalid email addresses)
 * Log when emails are sent and when they fail to send.
 
+#### Time
+
+* Use `Time.zone.now` in lieu of `Time.now` or `Time.current` when referencing the current time. See Issue #11 for more information.
+
 #### Bundler
 * Structure Gemfile content **[in the following order](samples/gemfile.md)**:
 * **Do not** run `bundle update` unless for a specific gem. (Updating all of the gems without paying attention could unintentionally break things)
@@ -181,6 +187,7 @@ Model.reset_column_information
 * Use linting with FactoryGirl
 * Use `described_class` rather than the class name inside the top-level describe block. [see example](samples/specs/described_class.md)
 * Avoid redefining major parts of the application in tests. For example, don't re-define Rails.development?
+* Follow the whitespace guide [here](https://github.com/SciMed/style-guide/blob/master/samples/specs/whitespace.md)
 
 #### What to test
 * It would be best to test all possible paths through a method, including edge cases.
