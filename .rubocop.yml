@@ -16,10 +16,16 @@ AllCops:
   DisplayCopNames: true
   RunRailsCops: true
 
+Metrics/AbcSize:
+  Exclude:
+    - '**/db/migrate/**/*'
 Metrics/LineLength:
   Exclude:
-    - 'spec/**/*'
+    - '**/spec/**/*'
   Max: 80
+Metrics/MethodLength:
+  Exclude:
+    - '**/db/migrate/**/*'
 
 Style/CollectionMethods:
   Enabled: true
@@ -35,4 +41,4 @@ Style/SingleLineBlockParams:
   Enabled: false
 Style/SingleSpaceBeforeFirstArg:
   Exclude:
-    - 'spec/factories/**'
+    - '**/spec/factories/**'
