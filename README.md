@@ -12,6 +12,8 @@ of development experience.
 * [SCSS](#scss)
 * [HTML](#html)
 * [RSpec](#rspec)
+* [SQL](#sql)
+
 
 # Ruby
 * Encapsulate generic functionality into separate libraries and gems
