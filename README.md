@@ -78,6 +78,9 @@ of development experience.
   [In Defense of Copy Paste](http://zacharyvoase.com/2013/02/08/copypasta/)
   for more information. While this is applicable in all forms of code, this
   is particularly problematic in view code.
+* Put data attributes in a hash when using a view helper e.g. `f.input :foo, data: { input_method: :foo }`. Note that underscores in keys will be translated to dashes when rendered to html. The previous example's data attribute will render: `data-input-method="foo"`.
+* Prefer `f,collection_select :foo` over `f.select :foo, options_from_collection_for_select`
+* Use rails helper for labels wherever possible
 * Don't make partials for the fun of it. Make partials when it makes sense to have partials around. (It's no fun digging through 10 layers of partials if they don't have some benefit). It is discouraged to have partials more than 2 levels deep.
 * For new projects, use ERB as the templating engine. For old projects, use whatever is already in place.
 * Try to avoid multiline embedded Ruby--it's likely indicative of logic that should be extracted to a presenter, service object or helper. When necessary, use the following format:
@@ -191,11 +194,7 @@ Model.reset_column_information
 * Use layout tags (e.g. `<section>`, `<header>`, `<footer>`, `<aside>`) You are not bound to only having one `<header>` or one `<footer>` tag on a page. (Note that you can have only one `<main>` tag however).
 * Put the javascript includes in the bottom of your page, not in the top of the page.
 * Modals should be in a partial suffixed with '_modal.html.erb'
-* Use rails helper for labels wherever possible
 * Double-quote HTML attributes e.g. `<i id="foo"></i>`
-* Prefer `f,collection_select :foo` over `f.select :foo, options_from_collection_for_select`
-* Put data attributes in a hash when using a view helper e.g. `f.input :foo, data: { input_method: :foo }`. Note that underscores in keys will be translated to dashes when rendered to html. The previous example's data attribute will render: `data-input-method="foo"`.
-* HTML should not wrap lines [see example](samples/html_nowrap)
 
 # RSpec
 
