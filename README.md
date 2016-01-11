@@ -147,7 +147,7 @@ Model.reset_column_information
 * Use CoffeeScript over JavaScript
 * Namespace javascript objects
 * Implement an initializers file applied to any content loaded on the page [see example](samples/initializers.js.md)
-* Use js classes and encapsulation wherever possible ([class example](samples/js_class), [encapsulation example](samples/js_encapsulation))
+* Use js classes and encapsulation wherever possible ([class example](samples/js_class.md), [encapsulation example](samples/js_encapsulation.md))
 * Use a package manager like Bower for installing dependencies? (This item is questionable as some people raised issues with using Bower with Rails. We can discuss further.)
 * Prefer a JavaScript framework over vanilla JavaScript. (This means don't roll your own custom event library or other things that exist out there. But do make sure the company is on board with any new libraries that are used before including them in a project)
 * Use IIFE or Object Literal notation
