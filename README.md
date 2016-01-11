@@ -23,6 +23,7 @@ of development experience.
 * Mark methods as private by calling `private def foo` when using recent Ruby versions (> 2.1.0). For earlier versions, mark methods as private by calling `private :my_method` directly after the end of the method.
 * Keep private methods clustered together at the end of the file.
 * Feel free to use libraries which add little bits of helpful functionality and don't take over the application or require all developers to learn a new skillset. If you are thinking of using a library or framework that will take over the application or require other developers to spend time learning it, be sure to discuss with everyone before using it in your project.
+* Write arrays on a single line when they are less than 80 charaters long. Otherwise, write them as one line per item. [see example](samples/arrays.md)
 
 # Rails
 
@@ -43,6 +44,7 @@ of development experience.
 * Share no more than two instance variables between a controller and a view.
 * Remove generated `respond_to` blocks from controller actions unless needed.
 * Remove generated comments on Controller actions.
+* Keep empty controller action definitions.
 
 #### Models
 
@@ -222,9 +224,12 @@ Model.reset_column_information
 * Take care to not use brittle selectors
 
 # Documentation
+* Keep the README in the project root directory
+* Use markdown in the `docs/` directory
 * Keep the ReadMe up-to-date, useful, and accurate
 * When a new medium or large feature gets added, add a paragraph or a couple of paragraphs to the ReadMe describing the real life scenarios and people including their goals and how it is itended to be used.
 * The ReadMe should include information about overall application components, process, server infrastructure, and dependencies that people will need to understand to understand the application.
 * The ReadMe should describe how to run the tests.
 * The ReadMe should describe which systems and browsers are supported.
 * The ReadMe should describe how a developer can get the application up and running.
+* Prefer adding documentation to the `README` and `docs/` over the wiki. If documentation exists elsewhere, link to it from the README.
