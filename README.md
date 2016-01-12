@@ -79,8 +79,9 @@ of development experience.
   for more information. While this is applicable in all forms of code, this
   is particularly problematic in view code.
 * Put data attributes in a hash when using a view helper e.g. `f.input :foo, data: { input_method: :foo }`. Note that underscores in keys will be translated to dashes when rendered to html. The previous example's data attribute will render: `data-input-method="foo"`.
-* Prefer `f,collection_select :foo` over `f.select :foo, options_from_collection_for_select`
+* Prefer `f.collection_select :foo` over `f.select :foo, options_from_collection_for_select`
 * Use rails helper for labels wherever possible
+* Ensure the `label_for` attribute connects with the correct form input
 * Don't make partials for the fun of it. Make partials when it makes sense to have partials around. (It's no fun digging through 10 layers of partials if they don't have some benefit). It is discouraged to have partials more than 2 levels deep.
 * For new projects, use ERB as the templating engine. For old projects, use whatever is already in place.
 * Try to avoid multiline embedded Ruby--it's likely indicative of logic that should be extracted to a presenter, service object or helper. When necessary, use the following format:
@@ -145,7 +146,7 @@ Model.reset_column_information
 
 # JavaScript
 * Use CoffeeScript over JavaScript
-* Namespace javascript objects
+* Namespace javascript objects for related chuncks of funcationlity (Components, Engines, etc...)  [example implementation](samples/js_namespace.md)
 * Implement an initializers file applied to any content loaded on the page [see example](samples/initializers.js.md)
 * Use js classes and encapsulation wherever possible ([class example](samples/js_class.md), [encapsulation example](samples/js_encapsulation.md))
 * Use a package manager like Bower for installing dependencies? (This item is questionable as some people raised issues with using Bower with Rails. We can discuss further.)
@@ -158,7 +159,7 @@ Model.reset_column_information
 * Always prefix jQuery variables with `$` e.g. `$finder = $('.finder')`
 * For ternary operations in coffeescript, prefer `if foo then bar else baz`
 * Use [sweetAlert.js](https://github.com/KMontag42/sweetalert2-rails) for popups (disable animations)
-* Prefer replacing HTML with content from the server over complicated javascript
+* Prefer JS templating libraries (Handlebars, Mustache) to rolling your own over-complicated JS
 
 # SCSS
 * See [this example](samples/scss.md) for whitespace usage.
