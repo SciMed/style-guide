@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   self.table_name = 'people'
   self.primary_key = 'uid'
 
+  # Please don't use default scopes.
   default_scope { where(active: true) }
 
   has_attachment :document, resize_to_fit: true
