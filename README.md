@@ -70,6 +70,7 @@ of development experience.
 * Use named scopes.
 * Use of `update_attribute` is discouraged because it skips validations. Note that it will also persist changes to any other dirty attributes on your model as well, not just the attribute that you are trying to update.
 * Use of `update_column`, `update_columns`, and `update_all` are discouraged because they skip validations and callbacks. However, if you do not need validations or callbacks, `update_column` is preferred over update_attribute because it is easier to remember that it does not run validations.
+* Custom Inflectors - It can be tough to decide whether to use customer inflectors for pluarization. The most important piece is to make sure that user facing text is pluralized correctly. You should be able to handle this with Internationalization alone. If you feel it will make future developers lives easier, you can also write a custom inflector so that we can refer to the model correctly in Rails. [internationalization example] (samples/plural_i18n.md); [custom inflector example] (samples/custom_inflector.md)
 
 #### Views
 
