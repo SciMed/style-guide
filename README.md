@@ -152,7 +152,7 @@ Model.reset_column_information
 
 # JavaScript
 * Use CoffeeScript over JavaScript
-* Namespace javascript objects for related chunks of functionality (Components, Engines, etc...) [example implementation](samples/js_namespace.md)
+* Namespace Javascript objects for related chunks of functionality (Components, Engines, etc...) [example implementation](samples/js_namespace.md)
 * For applications using ES5 and lower, implement an initializers file applied to any content loaded on the page [see example](samples/initializers.js.md)
 * Use js classes and encapsulation wherever possible ([class example](samples/js_class.md), [encapsulation example](samples/js_encapsulation.md))
 * Use a package manager like Bower for installing dependencies? (This item is questionable as some people raised issues with using Bower with Rails. We can discuss further.)
@@ -163,7 +163,7 @@ Model.reset_column_information
 * Do not rely on or store data in the DOM. (This is particularly true from a security stand point. Do not put secure or sensitive information in the DOM. For example do not have a hidden field with a SSN, or that determines whether someone is an admin).
 * Coffeescript file extensions should not include `.js` where possible. Prefer `foo.coffee` to `foo.js.coffee.`
 * Always prefix jQuery variables with `$` e.g. `$finder = $('.finder')`
-* For ternary operations in coffeescript, prefer `if foo then bar else baz`. (The `? :` syntax has surprising behavior.)
+* For ternary operations in Coffeescript, prefer `if foo then bar else baz`. (The `? :` syntax has surprising behavior.)
 * In applications that are not using ReactJS, prefer JS templating libraries (Handlebars, Mustache) to rolling your own over-complicated JS
 
 # SCSS
@@ -172,7 +172,7 @@ Model.reset_column_information
 * Order styles alphabetically within a selector.
 * Use the SCSS `@import` declaration to require stylesheets vs `*= require`.
   * Imported sass module filenames should begin with an underscore and end with .scss only (e.g. `_mystyles.scss`)
-* Use the `asset-url` helper for images and fonts. [see example](samples/asset_url.md) Note that if you use any of the ruby helpers, the file name requires .erb at the end of the file name. (e.g. my_styles.css.scss.erb)
+* Use the `asset-url` helper for images and fonts. [see example](samples/asset_url.md) Note that if you use any of the Ruby helpers, the file name requires .erb at the end of the file name. (e.g. my_styles.css.scss.erb)
 * Lowercase and dasherize class names.
 * Avoid the `>` direct descendant selector when the descendant is a tag [see example](samples/descendant.md)
 * Avoid ID selectors
@@ -198,7 +198,7 @@ Model.reset_column_information
 * Do not directly apply framework and grid system class names. [see example](samples/mixins.md)
 * Use of XHTML markup is discouraged e.g. `<br />`
 * Use layout tags (e.g. `<section>`, `<header>`, `<footer>`, `<aside>`) You are not bound to only having one `<header>` or one `<footer>` tag on a page. (Note that you can have only one `<main>` tag however).
-* Put the javascript includes in the bottom of your page, not in the top of the page.
+* Put the Javascript includes in the bottom of your page, not in the top of the page.
 * Modals should be in a partial suffixed with `_modal.html.erb`
 * Double-quote raw HTML attributes e.g. `<i id="foo"></i>`
 
