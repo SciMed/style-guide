@@ -84,9 +84,9 @@ of development experience.
   for more information. While this is applicable in all forms of code, this
   is particularly problematic in view code.
 * Put data attributes in a hash when using a view helper e.g. `f.input :foo, data: { input_method: :foo }`. Note that underscores in keys will be translated to dashes when rendered to html. The previous example's data attribute will render: `data-input-method="foo"`.
-* Prefer `f.collection_select :foo` over `f.select :foo, options_from_collection_for_select`
+* Prefer `f.collection_select :foo` over `f.select :foo, options_from_collection_for_select` when possible. (`collection_select` sets the selected value by default whereas `options_from_collection_for_select` needs the selected value to be specified as a parameter.)
 * Use rails helper for labels wherever possible
-* Ensure the `label_for` attribute connects with the correct form input
+* Ensure that label tags connect with the correct form input
 * Don't make partials for the fun of it. Make partials when it makes sense to have partials around. (It's no fun digging through 10 layers of partials if they don't have some benefit). It is discouraged to have partials more than 2 levels deep.
 * For new projects, use ERB as the templating engine. For old projects, use whatever is already in place.
 * Try to avoid multiline embedded Ruby--it's likely indicative of logic that should be extracted to a presenter, service object or helper. When necessary, use the following format:
@@ -142,6 +142,7 @@ Model.reset_column_information
 #### Time
 
 * Use `Time.zone.now` in lieu of `Time.now` or `Time.current` when referencing the current time. See Issue #11 for more information.
+* Use `Time.zone.today` to access the current date, `Time.zone.yesterday` to access yesterday's date (Rails 4.1.8+), and `Time.zone.tomorrow` (Rails 4.1.8+) to access tomorrow's date.
 
 #### Bundler
 * Structure Gemfile content **[in the following order](samples/gemfile.md)**:
@@ -151,24 +152,23 @@ Model.reset_column_information
 
 # JavaScript
 * Use CoffeeScript over JavaScript
-* Namespace javascript objects for related chuncks of funcationlity (Components, Engines, etc...)  [example implementation](samples/js_namespace.md)
-* Implement an initializers file applied to any content loaded on the page [see example](samples/initializers.js.md)
+* Namespace javascript objects for related chunks of functionality (Components, Engines, etc...) [example implementation](samples/js_namespace.md)
+* For applications using ES5 and lower, implement an initializers file applied to any content loaded on the page [see example](samples/initializers.js.md)
 * Use js classes and encapsulation wherever possible ([class example](samples/js_class.md), [encapsulation example](samples/js_encapsulation.md))
 * Use a package manager like Bower for installing dependencies? (This item is questionable as some people raised issues with using Bower with Rails. We can discuss further.)
 * Prefer a JavaScript framework over vanilla JavaScript. (This means don't roll your own custom event library or other things that exist out there. But do make sure the company is on board with any new libraries that are used before including them in a project)
 * Use IIFE or Object Literal notation
 * Separate responsibilities of vanilla JavaScript into separate entities.
-* Query DOM elements using `js-` or `data-` attributes instead of CSS classes
+* Query DOM elements using `data-` attributes instead of CSS classes. CSS classes should be used exclusively for styling, whereas `data-` attributes should be used exclusively for Javascript querying.
 * Do not rely on or store data in the DOM. (This is particularly true from a security stand point. Do not put secure or sensitive information in the DOM. For example do not have a hidden field with a SSN, or that determines whether someone is an admin).
-* Coffeescript file extensions not include `.js` where possible. Prefer `foo.coffee` to `foo.js.coffee.`
+* Coffeescript file extensions should not include `.js` where possible. Prefer `foo.coffee` to `foo.js.coffee.`
 * Always prefix jQuery variables with `$` e.g. `$finder = $('.finder')`
-* For ternary operations in coffeescript, prefer `if foo then bar else baz`
-* Use [sweetAlert.js](https://github.com/KMontag42/sweetalert2-rails) for popups (disable animations)
-* Prefer JS templating libraries (Handlebars, Mustache) to rolling your own over-complicated JS
+* For ternary operations in coffeescript, prefer `if foo then bar else baz`. (The `? :` syntax has surprising behavior.)
+* In applications that are not using ReactJS, prefer JS templating libraries (Handlebars, Mustache) to rolling your own over-complicated JS
 
 # SCSS
 * See [this example](samples/scss.md) for whitespace usage.
-* Use [semantic-ui](https://github.com/doabit/semantic-ui-sass) where possible
+* Use agreed-upon css framework (e.g. [semantic-ui](https://github.com/doabit/semantic-ui-sass)) where possible
 * Order styles alphabetically within a selector.
 * Use the SCSS `@import` declaration to require stylesheets vs `*= require`.
   * Imported sass module filenames should begin with an underscore and end with .scss only (e.g. `_mystyles.scss`)
@@ -182,12 +182,12 @@ Model.reset_column_information
 * Encapsulate framework and grid system class names into semantic styles [see example](samples/mixins.md)
 * Use `box-sizing: border-box;` (Whenever browsers support it, this allows you to define the size of actual boxes, rather than the size before padding and borders are added. Generally works for IE8+).
 * Consider the organizational advantages of SMACSS. (We should link to our SMACSS guide here.)
-* Sometimes files should be named `my_styles.css.scss.erb`, sometimes it should be `my_styles.scss.erb` (Will - to add detail)
 * Write out the full hex code in uppercase. e.g. `#AAAAAA` instead of `#aaa`
 * Avoid meta-programming classes
-* Sass file extensions not include `.css` where possible. Prefer `foo.scss` to `foo.css.scss`.
-* Follow smacss guidelines for css organization (Base, Layout, Module, State, Theme). Avoid model-specific css. 
-* Always use a [css reset](https://github.com/markmcconachie/normalize-rails)
+* Sass file extensions should not include `.css` where possible. Prefer `foo.scss` to `foo.css.scss`.
+* Prefer .scss over .sass
+* Follow [smacss guidelines](https://smacss.com/book/categorizing) for css organization (Base, Layout, Module, State, Theme). Avoid model-specific css.
+* Always use a css reset. If the css framework being used does not provide one, consider using [normalize-rails](https://github.com/markmcconachie/normalize-rails)
 
 # HTML
 * Do not use tables for presentational layout. *That's sooo 1999.*
@@ -199,8 +199,8 @@ Model.reset_column_information
 * Use of XHTML markup is discouraged e.g. `<br />`
 * Use layout tags (e.g. `<section>`, `<header>`, `<footer>`, `<aside>`) You are not bound to only having one `<header>` or one `<footer>` tag on a page. (Note that you can have only one `<main>` tag however).
 * Put the javascript includes in the bottom of your page, not in the top of the page.
-* Modals should be in a partial suffixed with '_modal.html.erb'
-* Double-quote HTML attributes e.g. `<i id="foo"></i>`
+* Modals should be in a partial suffixed with `_modal.html.erb`
+* Double-quote raw HTML attributes e.g. `<i id="foo"></i>`
 
 # RSpec
 
@@ -220,6 +220,8 @@ Model.reset_column_information
 * Prefer checking exception type over checking a specific error message.
 * Use shared examples to test common behavior, but avoid including tests that take a long time to execute.
 * Use [shoulda-matchers](https://github.com/thoughtbot/shoulda-matchers) for testing validations, associations, and delegations in models
+* Prefer testing complicated scopes using an integration test that confirms the expected behavior against persisted records
+* Extract complicated scopes into a QueryBuilder object for easier unit-testing
 
 #### Mocking and stubbing
 
