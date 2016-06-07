@@ -4,6 +4,9 @@ This guide provides a set of best practices and style prescriptions
 for application development based on SciMed Solutions' years
 of development experience.
 
+**Read this before making any changes to the style guide**
+If you make any changes to the style guide, please clearly describe the logic that lead to the decision clearly in your commit message. Developers who are not privy to the initial discussion will need to understand why the decision was made in order to evaluate whether the decision is still relevant, and whether it is pertinent to their current situation.
+
 #### The Runway
 
 * [Ruby](#ruby)
