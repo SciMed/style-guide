@@ -153,6 +153,12 @@ Model.reset_column_information
 * Remove default comments
 * Versioning is discouraged unless a specific version of the gem is required. (But keep an eye out for breaking things when gem versions update!)
 
+#### Localization/Internationalization (i18n) configuration
+
+* Consider using localization/internationalization config files to encapsulate customer-facing strings such as error messages when:
+  * the text is likely to change frequently OR
+  * the text is a template that is used in multiple places (i.e. to keep the code DRY) (Note that i18n supports [variable interpolation](http://guides.rubyonrails.org/i18n.html#passing-variables-to-translations))
+
 # JavaScript
 * Use CoffeeScript over JavaScript
 * Namespace Javascript objects for related chunks of functionality (Components, Engines, etc...) [example implementation](samples/js_namespace.md)
