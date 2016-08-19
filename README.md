@@ -5,6 +5,7 @@ for application development based on SciMed Solutions' years
 of development experience.
 
 **Read this before making any changes to the style guide**
+
 If you make any changes to the style guide, please clearly describe the logic that lead to the decision clearly in your commit message. Developers who are not privy to the initial discussion will need to understand why the decision was made in order to evaluate whether the decision is still relevant, and whether it is pertinent to their current situation.
 
 #### The Runway
@@ -12,11 +13,11 @@ If you make any changes to the style guide, please clearly describe the logic th
 * [Ruby](#ruby)
 * [Rails](#rails)
 * [JavaScript](#javascript)
+* [JSON](#json)
 * [SCSS](#scss)
 * [HTML](#html)
 * [RSpec](#rspec)
 * [SQL](#sql)
-
 
 # Ruby
 * Encapsulate generic functionality into separate libraries and gems
@@ -28,7 +29,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Mark methods as private by calling `private def foo` when using recent Ruby versions (> 2.1.0). For earlier versions, mark methods as private by calling `private :my_method` directly after the end of the method.
 * Keep private methods clustered together at the end of the file.
 * Feel free to use libraries which add little bits of helpful functionality and don't take over the application or require all developers to learn a new skillset. If you are thinking of using a library or framework that will take over the application or require other developers to spend time learning it, be sure to discuss with everyone before using it in your project.
-* Write arrays on a single line when they are less than 80 charaters long. Otherwise, write them as one line per item. [see example](samples/arrays.md)
+* Write arrays on a single line when they are less than 80 characters long. Otherwise, write them as one line per item. [see example](samples/arrays.md)
 
 # Rails
 
@@ -106,9 +107,9 @@ If you make any changes to the style guide, please clearly describe the logic th
 * When setting up a new application, use `rake db:schema:load` and `rake db:seed` unless you have a good reason to run migrations from scratch.
 * Keep the `schema.rb` (or `structure.sql`) up to date and under version control.
 * Migrations should define any classes that they use. (If the class is deleted in the future the migrations should still be able to run).
-* Use those database features! Enforce default values, null contraints, uniqueness, etc in the database (in migrations) instead of only in the application layer. (The database can avoid race conditions, is faster and more reliable).
-* If you have not-null contraints be sure to do dependant destroy on the parent. Otherwise you will get invalid query exceptions when things are deleted.
-* When you create a new migration, run it both UP AND DOWN before commiting the change. (rake db:migrate:redo will run the very last migration down and then up again)
+* Use those database features! Enforce default values, null constraints, uniqueness, etc in the database (in migrations) instead of only in the application layer. (The database can avoid race conditions, is faster and more reliable).
+* If you have not-null constraints be sure to do dependent destroy on the parent. Otherwise you will get invalid query exceptions when things are deleted.
+* When you create a new migration, run it both UP AND DOWN before committing the change. (rake db:migrate:redo will run the very last migration down and then up again)
 * Prefer using `change` in migrations to writing individual `up` and `down` methods when possible.
 * Make sure to update seeds/factories when adding columns (particularly those with validations) or tables
 * If you are modifying data in a migration be sure to call two methods at the beginning of the migration. If you don't reset the column information then some data could be silently lost instead of saved. Also, rails will only reset column information once even if you call it multiple times, which is why the `schema_cache` needs to be cleared first.
@@ -161,19 +162,26 @@ Model.reset_column_information
 
 # JavaScript
 * Use CoffeeScript over JavaScript
-* Namespace Javascript objects for related chunks of functionality (Components, Engines, etc...) [example implementation](samples/js_namespace.md)
+* Namespace JavaScript objects for related chunks of functionality (Components, Engines, etc...) [example implementation](samples/js_namespace.md)
 * For applications using ES5 and lower, implement an initializers file applied to any content loaded on the page [see example](samples/initializers.js.md)
 * Use js classes and encapsulation wherever possible ([class example](samples/js_class.md), [encapsulation example](samples/js_encapsulation.md))
 * Use a package manager like Bower for installing dependencies? (This item is questionable as some people raised issues with using Bower with Rails. We can discuss further.)
 * Prefer a JavaScript framework over vanilla JavaScript. (This means don't roll your own custom event library or other things that exist out there. But do make sure the company is on board with any new libraries that are used before including them in a project)
 * Use IIFE or Object Literal notation
 * Separate responsibilities of vanilla JavaScript into separate entities.
-* Query DOM elements using `data-` attributes instead of CSS classes. CSS classes should be used exclusively for styling, whereas `data-` attributes should be used exclusively for Javascript querying.
+* Query DOM elements using `data-` attributes instead of CSS classes. CSS classes should be used exclusively for styling, whereas `data-` attributes should be used exclusively for JavaScript querying.
 * Do not rely on or store data in the DOM. (This is particularly true from a security stand point. Do not put secure or sensitive information in the DOM. For example do not have a hidden field with a SSN, or that determines whether someone is an admin).
-* Coffeescript file extensions should not include `.js` where possible. Prefer `foo.coffee` to `foo.js.coffee.`
+* CoffeeScript file extensions should not include `.js` where possible. Prefer `foo.coffee` to `foo.js.coffee.`
 * Always prefix jQuery variables with `$` e.g. `$finder = $('.finder')`
-* For ternary operations in Coffeescript, prefer `if foo then bar else baz`. (The `? :` syntax has surprising behavior.)
+* For ternary operations in CoffeeScript, prefer `if foo then bar else baz`. (The `? :` syntax has surprising behavior.)
 * In applications that are not using ReactJS, prefer JS templating libraries (Handlebars, Mustache) to rolling your own over-complicated JS
+
+# JSON
+* If you are designing a JSON API, consider conforming to the [JSON API specification](http://jsonapi.org/format/). Also, it is generally considered good practice to keep your JSON structure as shallow as possible.
+* Test the schema of JSON generated by your app.
+  * Create a JSON schema according to the documentation provided [here](http://json-schema.org/).
+  * Check your schema's validity using tools [like this one](http://www.jsonschemavalidator.net/).
+  * Add examples to your specs to check JSON generated by your app against the appropriate schema.  The approach [described by Thoughtbot](https://robots.thoughtbot.com/validating-json-schemas-with-an-rspec-matcher) using [the json-schema gem](https://github.com/ruby-json-schema/json-schema) has proven successful.
 
 # SCSS
 * See [this example](samples/scss.md) for whitespace usage.
@@ -207,7 +215,7 @@ Model.reset_column_information
 * Do not directly apply framework and grid system class names. [see example](samples/mixins.md)
 * Use of XHTML markup is discouraged e.g. `<br />`
 * Use layout tags (e.g. `<section>`, `<header>`, `<footer>`, `<aside>`) You are not bound to only having one `<header>` or one `<footer>` tag on a page. (Note that you can have only one `<main>` tag however).
-* Put the Javascript includes in the bottom of your page, not in the top of the page.
+* Put the JavaScript includes in the bottom of your page, not in the top of the page.
 * Modals should be in a partial suffixed with `_modal.html.erb`
 * Double-quote raw HTML attributes e.g. `<i id="foo"></i>`
 
@@ -262,7 +270,7 @@ Model.reset_column_information
 * Keep the README in the project root directory
 * Use markdown in the `docs/` directory
 * Keep the ReadMe up-to-date, useful, and accurate
-* When a new medium or large feature gets added, add a paragraph or a couple of paragraphs to the ReadMe describing the real life scenarios and people including their goals and how it is itended to be used.
+* When a new medium or large feature gets added, add a paragraph or a couple of paragraphs to the ReadMe describing the real life scenarios and people including their goals and how it is intended to be used.
 * The ReadMe should include information about overall application components, process, server infrastructure, and dependencies that people will need to understand to understand the application.
 * The ReadMe should describe how to run the tests.
 * The ReadMe should describe which systems and browsers are supported.
