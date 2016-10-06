@@ -22,7 +22,7 @@ set expandtab
 set backspace=2   " Backspace deletes like most programs in insert mode
 
 " Numbers
-set number
+set relativenumber
 set numberwidth=5
 
 " General preferences
