@@ -159,8 +159,8 @@ Model.reset_column_information
   * the text is likely to change frequently OR
   * the text is a template that is used in multiple places (i.e. to keep the code DRY) (Note that i18n supports [variable interpolation](http://guides.rubyonrails.org/i18n.html#passing-variables-to-translations))
 
-# JavaScript
-* Use CoffeeScript over JavaScript
+# CoffeeScript
+* Use CoffeeScript for JS embedded in Rails applications
 * Namespace Javascript objects for related chunks of functionality (Components, Engines, etc...) [example implementation](samples/js_namespace.md)
 * For applications using ES5 and lower, implement an initializers file applied to any content loaded on the page [see example](samples/initializers.js.md)
 * Use js classes and encapsulation wherever possible ([class example](samples/js_class.md), [encapsulation example](samples/js_encapsulation.md))
@@ -174,6 +174,22 @@ Model.reset_column_information
 * Always prefix jQuery variables with `$` e.g. `$finder = $('.finder')`
 * For ternary operations in Coffeescript, prefer `if foo then bar else baz`. (The `? :` syntax has surprising behavior.)
 * In applications that are not using ReactJS, prefer JS templating libraries (Handlebars, Mustache) to rolling your own over-complicated JS
+
+# ReactJS
+* Use ReactJS when building complex, stateful UIs
+#### Technology Stack
+* Use Redux when using ReactJS
+* Use the react-on-rails gem to integrate ReactJS apps into Rails projects
+* Use ES6
+* Use Babel to transpile ES6
+* Use WebPack to build JS artifacts
+* Use npm for dependency management
+* Use mocha and chai for testing
+#### Redux
+* Use selectors to read the state tree [example](samples/redux_selectors.js.md)
+#### Testing
+* Use the setup function pattern [example](samples/js_testing_setup_function.js.md)
+* Use reusable setup functions for building the state tree [example](samples/js_testing_setup_state.js.md)
 
 # SCSS
 * See [this example](samples/scss.md) for whitespace usage.
