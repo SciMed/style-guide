@@ -32,6 +32,9 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Feel free to use libraries which add little bits of helpful functionality and don't take over the application or require all developers to learn a new skillset. If you are thinking of using a library or framework that will take over the application or require other developers to spend time learning it, be sure to discuss with everyone before using it in your project.
 * Write arrays on a single line when they are less than 80 characters long. Otherwise, write them as one line per item. [see example](samples/arrays.md)
 
+#### Documentation
+* Document methods using [Yard](http://yardoc.org/) style documentation. (e.g. `@param [Array<String>] names The names that will be joined`, and `@return [String] a concatenated list of names`) 
+
 # Rails
 
 #### Routing
