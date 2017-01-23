@@ -184,13 +184,16 @@ Model.reset_column_information
 * Use Babel to transpile ES6
 * Use WebPack to build JS artifacts
 * Use npm for dependency management
-* Use mocha and chai for testing
 * Use ImmutableJS for the state tree
 #### Redux
 * Use selectors to read the state tree [example](samples/redux_selectors.js.md)
 #### Testing
 * Use the setup function pattern [example](samples/js_testing_setup_function.js.md)
 * Use reusable setup functions for building the state tree [example](samples/js_testing_setup_state.js.md)
+* Use mocha (testing framework), chai (BDD), sinon (spies, stubs, mocks), enzyme
+  (airbnb test utils), babel-plugin-rewire (rewire dependencies - note regular
+rewire will not work for webpack projects), fetch-mock (mocks the global fetch
+function), jsdom (server-side DOM implementation)
 
 # SCSS
 * See [this example](samples/scss.md) for whitespace usage.
