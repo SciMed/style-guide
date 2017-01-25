@@ -19,6 +19,9 @@ AllCops:
 Metrics/AbcSize:
   Exclude:
     - '**/db/migrate/**/*'
+Metrics/BlockLength:
+  Exclude:
+    - '**/spec/**/*'
 Metrics/LineLength:
   Exclude:
     - '**/spec/**/*'
