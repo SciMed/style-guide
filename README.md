@@ -277,6 +277,7 @@ Model.reset_column_information
 
 #### Description blocks
 
+* Always provide a description string to `it` blocks unless the block contains a [Shoulda Matcher](http://matchers.shoulda.io/) expectation.
 * For consistency, use single quotes unless double quotes are needed.
 * Keep the full spec description as grammatically correct as possible. [see example](samples/specs/full_description.md)
 * Format `describe` block descriptions for class methods as `'.some_class_method_name'` and for instance methods as `'#some_instance_method_name'`.
