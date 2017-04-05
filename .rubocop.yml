@@ -3,8 +3,9 @@ require: rubocop-rspec
 AllCops:
   Exclude:
     - '**/bin/**/*'
+    - '**/components/**/spec/test_app/**/*'
     - '**/config/**/*'
-    - '**/db/**/*'
+    - '**/db/schema.rb'
     - '**/script/**/*'
     - '**/spec/rails_helper.rb'
     - '**/spec/spec_helper.rb'
@@ -15,6 +16,7 @@ AllCops:
     - '**/*.gemspec'
   DisplayCopNames: true
   RunRailsCops: true
+  TargetRubyVersion: 2.4
 
 Metrics/AbcSize:
   Exclude:
@@ -32,6 +34,8 @@ Metrics/MethodLength:
 
 Style/CollectionMethods:
   Enabled: true
+Style/ConditionalAssignment:
+  Enabled: false
 Style/Documentation:
   Enabled: false
 Style/GuardClause:
@@ -45,3 +49,8 @@ Style/SingleLineBlockParams:
 Style/SingleSpaceBeforeFirstArg:
   Exclude:
     - '**/spec/factories/**'
+
+Rails/Output:
+  Exclude:
+    - '**/db/seeds.rb'
+    - '**/lib/tasks/**/*'
