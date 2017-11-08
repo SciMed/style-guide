@@ -59,17 +59,16 @@ Style/AutoResourceCleanup:
   Enabled: true
 # We prefer `alias_method`
 Style/Alias:
-  Enabled: false
+  EnforcedStyle: prefer_alias_method
 Style/CollectionMethods:
   Enabled: true
-# Reduces readability
 Style/ConditionalAssignment:
-  Enabled: false
+  EnforcedStyle: assign_inside_condition
+  IncludeTernaryExpressions: false
 Style/InlineComment:
   Enabled: true
-# Increases verbosity for scopes
 Style/Lambda:
-  Enabled: false
+  EnforcedStyle: literal
 Style/OptionHash:
   Enabled: true
 Style/ReturnNil:
