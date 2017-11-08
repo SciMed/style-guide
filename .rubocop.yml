@@ -2,55 +2,130 @@ require: rubocop-rspec
 
 AllCops:
   Exclude:
-    - '**/bin/**/*'
-    - '**/components/**/spec/test_app/**/*'
-    - '**/config/**/*'
+    - '**/spec/test_app/**/*'
     - '**/db/schema.rb'
-    - '**/script/**/*'
-    - '**/spec/rails_helper.rb'
-    - '**/spec/spec_helper.rb'
-    - '**/Gemfile'
-    - '**/Guardfile'
-    - '**/Rakefile'
-    - '**/Vagrantfile'
     - '**/*.gemspec'
   DisplayCopNames: true
-  RunRailsCops: true
   TargetRubyVersion: 2.4
+  TargetRailsVersion: 5.1
+
+Layout/FirstArrayElementLineBreak:
+  Enabled: true
+Layout/FirstHashElementLineBreak:
+  Enabled: true
+Layout/FirstMethodArgumentLineBreak:
+  Enabled: true
+Layout/FirstMethodParameterLineBreak:
+  Enabled: true
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+Layout/SpaceBeforeFirstArg:
+  Exclude:
+    - '**/spec/factories/**/*'
+
+# Disabled for specs to allow following pattern:
+# expect { Foo.create }.to change { Foo.count }
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - '**/spec/**/*'
 
 Metrics/AbcSize:
   Exclude:
     - '**/db/migrate/**/*'
 Metrics/BlockLength:
   Exclude:
+    - '**/config/**/*'
+    - '**/db/migrate/**/*'
     - '**/spec/**/*'
 Metrics/LineLength:
   Exclude:
+    - '**/bin/**/*'
+    - '**/config/**/*'
+    - '**/db/migrate/**/*'
     - '**/spec/**/*'
   Max: 80
 Metrics/MethodLength:
   Exclude:
     - '**/db/migrate/**/*'
 
+# `foo.downcase == bar.downcase` is more readable than
+# `foo.casecmp(bar).zero?`
+Performance/Casecmp:
+  Enabled: false
+
+Style/AutoResourceCleanup:
+  Enabled: true
+# We prefer `alias_method`
+Style/Alias:
+  Enabled: false
 Style/CollectionMethods:
   Enabled: true
+# Reduces readability
 Style/ConditionalAssignment:
   Enabled: false
-Style/Documentation:
-  Enabled: false
-Style/GuardClause:
-  Enabled: false
+Style/InlineComment:
+  Enabled: true
+# Increases verbosity for scopes
 Style/Lambda:
   Enabled: false
-Style/MultilineOperationIndentation:
-  EnforcedStyle: indented
+Style/OptionHash:
+  Enabled: true
+Style/ReturnNil:
+  Enabled: true
+Style/SafeNavigation:
+  Enabled: false
+Style/Send:
+  Enabled: true
+# Prevents self-documentation
 Style/SingleLineBlockParams:
   Enabled: false
-Style/SingleSpaceBeforeFirstArg:
-  Exclude:
-    - '**/spec/factories/**'
+Style/StringMethods:
+  Enabled: true
+Style/StringHashKeys:
+  Enabled: true
 
+Rails:
+  Enabled: true
+# Keyword arguments aren't functionally equivalent to positional arguments.
+# Using keyword arguments in controller specs makes the param keys strings and
+# not symbols, even if adding `.with_indifferent_access`.
+Rails/HttpPositionalArguments:
+  Enabled: false
+# There are often no reasonable defaults for not null columns
+Rails/NotNullColumn:
+  Enabled: false
 Rails/Output:
   Exclude:
     - '**/db/seeds.rb'
     - '**/lib/tasks/**/*'
+Rails/SaveBang:
+  Enabled: true
+Rails/UniqBeforePluck:
+  EnforcedStyle: aggressive
+
+# Prefer eq
+RSpec/BeEql:
+  Enabled: false
+# No class to describe for feature tests
+RSpec/DescribeClass:
+  Exclude:
+    '**/spec/features/**/*'
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/LeadingSubject:
+  Enabled: false
+RSpec/LetSetup:
+  Exclude:
+    - '**/spec/features/**/*'
+RSpec/MessageChain:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/NamedSubject:
+  Enabled: false
+RSpec/NestedGroups:
+  Enabled: false
+RSpec/SubjectStub:
+  Enabled: false
