@@ -33,7 +33,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Write arrays on a single line when they are less than 80 characters long. Otherwise, write them as one line per item. [see example](samples/arrays.md)
 
 #### Documentation
-* Document methods using [Yard](http://yardoc.org/) style documentation. (e.g. `@param [Array<String>] names The names that will be joined`, and `@return [String] a concatenated list of names`) 
+* Document methods using [Yard](http://yardoc.org/) style documentation. (e.g. `@param [Array<String>] names The names that will be joined`, and `@return [String] a concatenated list of names`)
 
 # Rails
 
@@ -119,7 +119,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Make sure to update seeds/factories when adding columns (particularly those with validations) or tables
 * If you are modifying data in a migration be sure to call two methods at the beginning of the migration. If you don't reset the column information then some data could be silently lost instead of saved. Also, rails will only reset column information once even if you call it multiple times, which is why the `schema_cache` needs to be cleared first.
 
-```
+```ruby
 Model.connection.schema_cache.clear!
 Model.reset_column_information
 ```
@@ -310,7 +310,7 @@ Model.reset_column_information
 * Write table names, column names, and aliases in lower case
 * Put primary keywords for the main query at the beginning of a new line. E.g.,
 
-  ```
+  ```sql
   SELECT ...
   FROM ...
   WHERE ...
@@ -326,7 +326,7 @@ Model.reset_column_information
 * Put the first selected column on the same line as `SELECT`. Put each additional
   selected column name on its own line, indented by two spaces. E.g.,
 
-  ```
+  ```sql
   SELECT users.first_name,
     users.last_name,
     posts.title,
@@ -344,7 +344,7 @@ Model.reset_column_information
   different contexts. In this case, choose aliases that explain how the table is
   used differently in each context.  E.g.,
 
-  ```
+  ```sql
   SELECT supervisors.first_name AS "supervisor_first_name",
     supervisors.last_name AS "supervisor_last_name",
     employees.first_name AS "employee_first_name",
@@ -362,7 +362,7 @@ Model.reset_column_information
 * Start `AND` or `OR` clauses on the line after the `ON` clause, indented by
   two spaces more than the `ON` line.
 
-  ```
+  ```sql
   SELECT ...
   FROM assays
     JOIN preps
@@ -381,7 +381,7 @@ Model.reset_column_information
   paren and indent lines inside the parentheses. Place the closing paren on a new
   line indented as far as the start of the line where the parentheses start:
 
-  ```
+  ```sql
   SELECT ...
   FROM ...
   WHERE scored_on IS NOT NULL
@@ -399,7 +399,7 @@ Model.reset_column_information
   Place the closing paren on a new line indented as far as the start of the line
   where the parentheses start, followed by the alias if one is used:
 
-  ```
+  ```sql
   SELECT ...
   FROM (
     SELECT COUNT(*) AS "num_positions_filled",
