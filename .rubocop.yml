@@ -105,13 +105,13 @@ Rails/SaveBang:
 Rails/UniqBeforePluck:
   EnforcedStyle: aggressive
 
-# Prefer eq
+# Prefer eql
 RSpec/BeEql:
   Enabled: false
 # No class to describe for feature tests
 RSpec/DescribeClass:
   Exclude:
-    '**/spec/features/**/*'
+    - '**/spec/features/**/*'
 RSpec/ExampleLength:
   Enabled: false
 RSpec/LeadingSubject:
