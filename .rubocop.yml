@@ -2,9 +2,17 @@ require: rubocop-rspec
 
 AllCops:
   Exclude:
+    - '**/bin/**/*'
+    - '**/config/**/*'
+    - '**/node_modules/**/*'
+    - '**/script/**/*'
     - '**/spec/test_app/**/*'
-    - '**/db/schema.rb'
     - '**/*.gemspec'
+    - '**/Gemfile'
+    - '**/Guardfile'
+    - '**/Rakefile'
+    - '**/Vagrantfile'
+    - '**/db/schema.rb'
   DisplayCopNames: true
   TargetRubyVersion: 2.4
   TargetRailsVersion: 5.1
@@ -37,6 +45,7 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Exclude:
     - '**/config/**/*'
+    - '**/helpers/**/*'
     - '**/db/migrate/**/*'
     - '**/spec/**/*'
 Metrics/LineLength:
@@ -50,43 +59,19 @@ Metrics/MethodLength:
   Exclude:
     - '**/db/migrate/**/*'
 
+Naming/VariableNumber:
+  EnforcedStyle: snake_case
+
 # `foo.downcase == bar.downcase` is more readable than
 # `foo.casecmp(bar).zero?`
 Performance/Casecmp:
   Enabled: false
 
-Style/AutoResourceCleanup:
-  Enabled: true
-# We prefer `alias_method`
-Style/Alias:
-  EnforcedStyle: prefer_alias_method
-Style/CollectionMethods:
-  Enabled: true
-Style/ConditionalAssignment:
-  EnforcedStyle: assign_inside_condition
-  IncludeTernaryExpressions: false
-Style/InlineComment:
-  Enabled: true
-Style/Lambda:
-  EnforcedStyle: literal
-Style/OptionHash:
-  Enabled: true
-Style/ReturnNil:
-  Enabled: true
-Style/SafeNavigation:
-  Enabled: false
-Style/Send:
-  Enabled: true
-# Prevents self-documentation
-Style/SingleLineBlockParams:
-  Enabled: false
-Style/StringMethods:
-  Enabled: true
-Style/StringHashKeys:
-  Enabled: true
-
 Rails:
   Enabled: true
+Rails/Blank:
+  NilOrEmpty: false
+  UnlessPresent: false
 # Keyword arguments aren't functionally equivalent to positional arguments.
 # Using keyword arguments in controller specs makes the param keys strings and
 # not symbols, even if adding `.with_indifferent_access`.
@@ -115,9 +100,6 @@ RSpec/ExampleLength:
   Enabled: false
 RSpec/LeadingSubject:
   Enabled: false
-RSpec/LetSetup:
-  Exclude:
-    - '**/spec/features/**/*'
 RSpec/MessageChain:
   Enabled: false
 RSpec/MultipleExpectations:
@@ -128,3 +110,46 @@ RSpec/NestedGroups:
   Enabled: false
 RSpec/SubjectStub:
   Enabled: false
+
+Style/AccessorMethodName:
+  Enabled: false
+Style/AutoResourceCleanup:
+  Enabled: true
+# We prefer `alias_method`
+Style/CollectionMethods:
+  Enabled: true
+Style/ConditionalAssignment:
+  EnforcedStyle: assign_inside_condition
+  IncludeTernaryExpressions: false
+Style/Documentation:
+  Exclude:
+    - '**/controllers/**/*'
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+Style/Lambda:
+  EnforcedStyle: literal
+Style/NumericPredicate:
+  Enabled: false
+Style/OptionHash:
+  Enabled: true
+Style/SafeNavigation:
+  Enabled: false
+Style/Send:
+  Enabled: true
+# Prevents self-documentation
+Style/SingleLineBlockParams:
+  Enabled: false
+Style/StringMethods:
+  Enabled: true
+Style/StringHashKeys:
+  Enabled: true
+
+# Defaults; may make sense to turn off for specific projects
+RSpec/LetSetup:
+  Exclude:
+    - '**/spec/features/**/*'
+
+Style/RedundantBegin:
+  Enabled: true
+Style/ZeroLengthPredicate:
+  Enabled: true
