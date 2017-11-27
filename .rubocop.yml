@@ -64,6 +64,8 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Max: 5
 
+Naming/AccessorMethodName:
+  Enabled: false
 Naming/VariableNumber:
   EnforcedStyle: snake_case
 
@@ -116,8 +118,6 @@ RSpec/SubjectStub:
 RSpec/ReturnFromStub:
   Enabled: false
 
-Style/AccessorMethodName:
-  Enabled: false
 Style/AutoResourceCleanup:
   Enabled: true
 # We prefer `alias_method`
