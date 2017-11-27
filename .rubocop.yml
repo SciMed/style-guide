@@ -48,6 +48,8 @@ Metrics/BlockLength:
     - '**/helpers/**/*'
     - '**/db/migrate/**/*'
     - '**/spec/**/*'
+Metrics/CyclomaticComplexity:
+  Max: 5
 Metrics/LineLength:
   Exclude:
     - '**/bin/**/*'
@@ -56,8 +58,11 @@ Metrics/LineLength:
     - '**/spec/**/*'
   Max: 80
 Metrics/MethodLength:
+  Max: 15
   Exclude:
     - '**/db/migrate/**/*'
+Metrics/PerceivedComplexity:
+  Max: 5
 
 Naming/VariableNumber:
   EnforcedStyle: snake_case
@@ -84,8 +89,6 @@ Rails/Output:
   Exclude:
     - '**/db/seeds.rb'
     - '**/lib/tasks/**/*'
-Rails/SaveBang:
-  Enabled: true
 Rails/UniqBeforePluck:
   EnforcedStyle: aggressive
 
@@ -110,6 +113,8 @@ RSpec/NestedGroups:
   Enabled: false
 RSpec/SubjectStub:
   Enabled: false
+RSpec/ReturnFromStub:
+  Enabled: false
 
 Style/AccessorMethodName:
   Enabled: false
@@ -126,6 +131,8 @@ Style/Documentation:
     - '**/controllers/**/*'
 Style/EmptyMethod:
   EnforcedStyle: expanded
+Style/FormatStringToken:
+  Enabled: false
 Style/Lambda:
   EnforcedStyle: literal
 Style/NumericPredicate:
@@ -141,10 +148,14 @@ Style/SingleLineBlockParams:
   Enabled: false
 Style/StringMethods:
   Enabled: true
-Style/StringHashKeys:
-  Enabled: true
 
 # Defaults; may make sense to turn off for specific projects
+Layout/CaseIndentation:
+  Enabled: false
+
+Rails/SaveBang:
+  Enabled: true
+
 RSpec/LetSetup:
   Exclude:
     - '**/spec/features/**/*'
