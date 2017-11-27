@@ -166,20 +166,82 @@ Model.reset_column_information
   * the text is a template that is used in multiple places (i.e. to keep the code DRY) (Note that i18n supports [variable interpolation](http://guides.rubyonrails.org/i18n.html#passing-variables-to-translations))
 
 # JavaScript
-* Use CoffeeScript over JavaScript
-* Namespace JavaScript objects for related chunks of functionality (Components, Engines, etc...) [example implementation](samples/js_namespace.md)
-* For applications using ES5 and lower, implement an initializers file applied to any content loaded on the page [see example](samples/initializers.js.md)
-* Use js classes and encapsulation wherever possible ([class example](samples/js_class.md), [encapsulation example](samples/js_encapsulation.md))
-* Use a package manager like Bower for installing dependencies? (This item is questionable as some people raised issues with using Bower with Rails. We can discuss further.)
-* Prefer a JavaScript framework over vanilla JavaScript. (This means don't roll your own custom event library or other things that exist out there. But do make sure the company is on board with any new libraries that are used before including them in a project)
-* Use IIFE or Object Literal notation
-* Separate responsibilities of vanilla JavaScript into separate entities.
+
+## General conventions
 * Query DOM elements using `data-` attributes instead of CSS classes. CSS classes should be used exclusively for styling, whereas `data-` attributes should be used exclusively for JavaScript querying.
 * Do not rely on or store data in the DOM. (This is particularly true from a security stand point. Do not put secure or sensitive information in the DOM. For example do not have a hidden field with a SSN, or that determines whether someone is an admin).
+* Always prefix jQuery variables with `$`, e.g. `$finder = $('.finder')`
+* Always prefix Immutable.js variables with `$$`, e.g., `$$state`
+
+## ES6
+All new apps should: 
+
+* Aim to support at least ES6/ES2015
+* Use Babel to transpile to ES5 if called for by browser support requirements
+* Use webpack for bundling and module resolution
+* Use `yarn` for npm package management
+
+The most straightforward way to meet these requirement is by installing and configuring the `webpacker` gem.  
+
+Prefer the ES6 `import` syntax when possible, but you can use `require` for npm packages where needed.
+
+### eslint
+
+Each project supporting ES6 should use eslint, using a `.eslintrc` file, as in [this example](./.eslintrc) (note that the `env` and `globals` values may vary by project.
+
+Eslint can by run on the command line with `yarn eslint` if the following is added to your project's `package.json`:
+
+```
+{
+  "scripts": {
+    "eslint": "eslint --format codeframe app/client"
+  }
+}
+```
+
+Eslint should be run as part of your project's default rake task.
+
+## CoffeeScript
+Many of our legacy apps include CoffeeScript code for JS functionality. In these cases, come to a consensus within the project team about whether to install the `webpacker` gem to support modern JS, or to add any new functionality in CoffeeScript.
+
+When using CoffeeScript:
+
+* Namespace Javascript objects for related chunks of functionality (Components, Engines, etc...) [example implementation](samples/js_namespace.md)
+* Use JS classes and encapsulation (e.g., IIFE or Object Literal notation) wherever possible ([class example](samples/js_class.md), [encapsulation example](samples/js_encapsulation.md))
+* Prefer a JavaScript framework over vanilla JavaScript. (This means don't roll your own custom event library or other things that exist out there. But do make sure the company is on board with any new libraries that are used before including them in a project)
+* Separate responsibilities of vanilla JavaScript into separate entities.
 * CoffeeScript file extensions should not include `.js` where possible. Prefer `foo.coffee` to `foo.js.coffee.`
-* Always prefix jQuery variables with `$` e.g. `$finder = $('.finder')`
 * For ternary operations in CoffeeScript, prefer `if foo then bar else baz`. (The `? :` syntax has surprising behavior.)
 * In applications that are not using ReactJS, prefer JS templating libraries (Handlebars, Mustache) to rolling your own over-complicated JS
+
+## React
+Use React when building complex, stateful UIs
+
+### Technology Stack
+* Use Redux when using React
+* Use ES6
+* Use Babel to transpile ES6
+* Use WebPack to build JS artifacts
+* Use yarn for dependency management
+* Use ImmutableJS for the state tree
+
+### Redux
+* Use selectors to read the state tree [example](samples/redux_selectors.js.md)
+* Put selectors in the same file as the reducers for the same part of the state tree.
+* Selectors should be responsible for converting Immutable objects into vanilla JS where appropriate (e.g., this conversion should not be done by Components or Containers).
+
+### Testing
+* Use the setup function pattern [example](samples/js_testing_setup_function.js.md)
+* Use reusable setup functions for building the state tree [example](samples/js_testing_setup_state.js.md)
+* Developers have found the following tools useful in testing, but conventions are still being established:
+	- mocha (testing framework)
+	- jest (alternative testing framework)
+	- chai (BDD)
+	- sinon (spies, stubs, mocks)
+	- enzyme (airbnb test utils)
+	- babel-plugin-rewire (rewire dependencies - note regular rewire will not work for webpack projects)
+	- fetch-mock (mocks the global fetch function)
+	- jsdom (server-side DOM implementation)
 
 # JSON
 * If you are designing a JSON API, consider conforming to the [JSON API specification](http://jsonapi.org/format/). Also, it is generally considered good practice to keep your JSON structure as shallow as possible.
