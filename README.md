@@ -32,6 +32,9 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Feel free to use libraries which add little bits of helpful functionality and don't take over the application or require all developers to learn a new skillset. If you are thinking of using a library or framework that will take over the application or require other developers to spend time learning it, be sure to discuss with everyone before using it in your project.
 * Write arrays on a single line when they are less than 80 characters long. Otherwise, write them as one line per item. [see example](samples/arrays.md)
 
+#### Documentation
+* Document methods using [Yard](http://yardoc.org/) style documentation. (e.g. `@param [Array<String>] names The names that will be joined`, and `@return [String] a concatenated list of names`)
+
 # Rails
 
 #### Routing
@@ -76,6 +79,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Use of `update_attribute` is discouraged because it skips validations. Note that it will also persist changes to any other dirty attributes on your model as well, not just the attribute that you are trying to update.
 * Use of `update_column`, `update_columns`, and `update_all` are discouraged because they skip validations and callbacks. However, if you do not need validations or callbacks, `update_column` is preferred over update_attribute because it is easier to remember that it does not run validations.
 * Custom Inflectors - It can be tough to decide whether to use customer inflectors for pluarization. The most important piece is to make sure that user facing text is pluralized correctly. You should be able to handle this with Internationalization alone. If you feel it will make future developers lives easier, you can also write a custom inflector so that we can refer to the model correctly in Rails. [internationalization example] (samples/plural_i18n.md); [custom inflector example] (samples/custom_inflector.md)
+* When accessing associations through other associations, use `has_many` or `has_one` `through` rather than a delegation or a custom method **when all target objects in the associations are persisted**. Use delegations or custom methods **when there is useful data that is not yet persisted**. Keeping the data in associations allows preloading to prevent n+1 queries and ensures that more processing is done via SQL than Ruby, which is more performant. Unfortunately, associations `through` other associations will not see non-persisted objects.
 
 #### Views
 
@@ -115,7 +119,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Make sure to update seeds/factories when adding columns (particularly those with validations) or tables
 * If you are modifying data in a migration be sure to call two methods at the beginning of the migration. If you don't reset the column information then some data could be silently lost instead of saved. Also, rails will only reset column information once even if you call it multiple times, which is why the `schema_cache` needs to be cleared first.
 
-```
+```ruby
 Model.connection.schema_cache.clear!
 Model.reset_column_information
 ```
@@ -336,6 +340,7 @@ Use React when building complex, stateful UIs
 
 #### Description blocks
 
+* Always provide a description string to `it` blocks unless the block contains a [Shoulda Matcher](http://matchers.shoulda.io/) expectation.
 * For consistency, use single quotes unless double quotes are needed.
 * Keep the full spec description as grammatically correct as possible. [see example](samples/specs/full_description.md)
 * Format `describe` block descriptions for class methods as `'.some_class_method_name'` and for instance methods as `'#some_instance_method_name'`.
@@ -368,7 +373,7 @@ Use React when building complex, stateful UIs
 * Write table names, column names, and aliases in lower case
 * Put primary keywords for the main query at the beginning of a new line. E.g.,
 
-  ```
+  ```sql
   SELECT ...
   FROM ...
   WHERE ...
@@ -384,7 +389,7 @@ Use React when building complex, stateful UIs
 * Put the first selected column on the same line as `SELECT`. Put each additional
   selected column name on its own line, indented by two spaces. E.g.,
 
-  ```
+  ```sql
   SELECT users.first_name,
     users.last_name,
     posts.title,
@@ -402,7 +407,7 @@ Use React when building complex, stateful UIs
   different contexts. In this case, choose aliases that explain how the table is
   used differently in each context.  E.g.,
 
-  ```
+  ```sql
   SELECT supervisors.first_name AS "supervisor_first_name",
     supervisors.last_name AS "supervisor_last_name",
     employees.first_name AS "employee_first_name",
@@ -420,7 +425,7 @@ Use React when building complex, stateful UIs
 * Start `AND` or `OR` clauses on the line after the `ON` clause, indented by
   two spaces more than the `ON` line.
 
-  ```
+  ```sql
   SELECT ...
   FROM assays
     JOIN preps
@@ -439,7 +444,7 @@ Use React when building complex, stateful UIs
   paren and indent lines inside the parentheses. Place the closing paren on a new
   line indented as far as the start of the line where the parentheses start:
 
-  ```
+  ```sql
   SELECT ...
   FROM ...
   WHERE scored_on IS NOT NULL
@@ -457,7 +462,7 @@ Use React when building complex, stateful UIs
   Place the closing paren on a new line indented as far as the start of the line
   where the parentheses start, followed by the alias if one is used:
 
-  ```
+  ```sql
   SELECT ...
   FROM (
     SELECT COUNT(*) AS "num_positions_filled",
