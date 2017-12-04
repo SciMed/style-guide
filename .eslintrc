@@ -1,0 +1,28 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "jquery": true,
+    "jest/globals": true
+  },
+  "globals": {
+    "CKEDITOR": true,
+    "Rails": true,
+   },
+  "extends": "airbnb",
+  "plugins": [
+      "react",
+      "jsx-a11y",
+      "import",
+      "jest"
+  ],
+  "rules": {
+    "comma-dangle": ["error", "never"],
+    "class-methods-use-this": "off",
+    "function-paren-newline": ["error", "consistent"],
+    "prefer-destructuring": "off"
+  }
+}
