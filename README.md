@@ -168,6 +168,7 @@ Model.reset_column_information
 * Do not rely on or store data in the DOM. (This is particularly true from a security stand point. Do not put secure or sensitive information in the DOM. For example do not have a hidden field with a SSN, or that determines whether someone is an admin).
 * Always prefix jQuery variables with `$`, e.g. `$finder = $('.finder')`
 * Always prefix Immutable.js variables with `$$`, e.g., `$$state`
+* When short-circuiting an event listener, explicitly call `event.stopPropogation` and/or `event.preventDefault` as appropriate rather than relying on `return false`.  This is because `return false` has different effects in different contexts (see the discussion [here](https://stackoverflow.com/a/4379435)).
 
 ## ES6
 All new apps should: 
@@ -214,7 +215,7 @@ When using CoffeeScript:
 Use React when building complex, stateful UIs
 
 ### Technology Stack
-* Use Redux when using React
+* Use Redux when using React if building something stateful or at least moderately complex.
 * Use ES6
 * Use Babel to transpile ES6
 * Use WebPack to build JS artifacts
@@ -222,13 +223,13 @@ Use React when building complex, stateful UIs
 * Use ImmutableJS for the state tree
 
 ### Redux
-* Use selectors to read the state tree [example](samples/redux_selectors.js.md)
+* Use selectors to read the state tree ([example](samples/redux_selectors.js.md))
+* Always test your selectors.
 * Put selectors in the same file as the reducers for the same part of the state tree.
-* Selectors should be responsible for converting Immutable objects into vanilla JS where appropriate (e.g., this conversion should not be done by Components or Containers).
 
 ### Testing
-* Use the setup function pattern [example](samples/js_testing_setup_function.js.md)
-* Use reusable setup functions for building the state tree [example](samples/js_testing_setup_state.js.md)
+* Use the setup function pattern ([example](samples/js_testing_setup_function.js.md))
+* Use reusable setup functions for building the state tree ([example](samples/js_testing_setup_state.js.md))
 * Developers have found the following tools useful in testing, but conventions are still being established:
 	- mocha (testing framework)
 	- jest (alternative testing framework)
