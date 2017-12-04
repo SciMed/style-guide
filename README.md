@@ -351,7 +351,7 @@ Use React when building complex, stateful UIs
   * If setup is expensive, it may be reasonable to use multiple expectations in a single `it` block.
 
 #### Capybara
-* Prefer using `feature` and `scenario` instead of `describe` and `it`
+* Prefer using `describe`, `context`, and `it` instead of `feature` and `scenario`
 * Take care to not use brittle selectors
 
 # Documentation
