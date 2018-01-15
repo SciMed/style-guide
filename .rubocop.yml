@@ -120,7 +120,6 @@ RSpec/ReturnFromStub:
 
 Style/AutoResourceCleanup:
   Enabled: true
-# We prefer `alias_method`
 Style/CollectionMethods:
   Enabled: true
 Style/ConditionalAssignment:
