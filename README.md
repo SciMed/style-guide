@@ -19,6 +19,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * [HTML](#html)
 * [RSpec](#rspec)
 * [SQL](#sql)
+* [Performance](#performance)
 
 # Ruby
 * Encapsulate generic functionality into separate libraries and gems.
@@ -536,3 +537,65 @@ Use React when building complex, stateful UIs.
 
   ```
 * Use the same style guidelines as the main query, but indented.
+
+# Performance
+
+* Set up [bullet](https://github.com/flyerhzm/bullet) in all development
+  environments to detect n+1 queries.
+* Consider memory usage and garbage collection. Using too much of a machine's
+  memory causes performance issues by itself, but it also leads to more garbage
+  collection, which is _very_ slow.
+* When appropriate and possible, include filtering/sorting/aggregation logic in
+  your SQL queries rather than running a query and operating on the resulting
+  relation in Ruby. For example:
+
+  * Use ActiveRecord's `pluck` over Ruby's `map`.
+  * Use ActiveRecord's `order` over Ruby's `sort`/`sort_by`.
+  * Use ActiveRecord's `maximum` over `map`/`pluck` and Ruby's `max`.
+  * Use ActiveRecord's `minimum` over `map`/`pluck` and Ruby's `min`.
+  * Use ActiveRecord's `sum` over `map`/`pluck` and Ruby's `sum`.
+  * Use ActiveRecord's `average` over a custom `average` or `mean` method.
+
+* Use database indexes (including multi-column and partial indexes when
+  appropriate).
+* Consider using `select` when writing ActiveRecord queries.
+  * Not only will the query be faster, Ruby will be able to instantiate fewer
+    and lighter-weight objects, thereby leading to less garbage collection.
+* Use `includes` or other pre-loading strategies to prevent n+1 queries.
+* Be aware of the following situations where preloading data can lead to
+  worsened performance.
+  * [Example](./samples/preloading.md)
+* When an association needs to be preloaded, do so at the earliest possible
+  opportunity, such as when loading a record with `params[:id]` in the
+  controller layer. This will help provide a single source of truth about what
+  is loaded into memory. This has several advantages:
+
+  1. Future developers will know whether they need to start or stop preloading
+     any associations added or removed in new code.
+  1. Future developers will know whether to use Ruby or SQL for data
+     filtering (e.g. `where(baz: true)` if the association is not already in
+     memory or `select(&:baz?)` when it is already in memory).
+
+* Utilize collection rendering rather than rendering a partial for each element
+  in a collection.
+  * [Example](./samples/collection_rendering.md)
+* Minimize external resources that need to be fetched upon page load.
+  * [Example](./samples/google_fonts.md)
+* Cache and memoize when appropriate.
+* When possible, opt against reading or writing to the database in unit tests.
+* Set `config.profile_examples` in your `spec_helper.rb` to see if any tests are
+  particularly slow.
+* Consider the following performance resources:
+  * _Ruby Performance Optimization_ by Alexander Dymo
+  * [Rails Guide to Caching](http://guides.rubyonrails.org/caching_with_rails.html)
+  * Native extensions such as [fast_blank](https://github.com/SciMed/fast_blank)
+  * [Rubocop's performance cops](https://github.com/bbatsov/rubocop/tree/master/lib/rubocop/cop/performance)
+  * [Fast Ruby](https://github.com/JuanitoFatas/fast-ruby),
+    [fasterer](https://github.com/DamirSvrtan/fasterer) and
+    [Erik Michaels-Ober's talk on Writing fast Ruby](https://www.youtube.com/watch?v=fGFM_UrSp70)
+    * **NOTE**: the Fast Ruby/fasterer data currently comes only from Ruby 2.2.0
+      on OSX; please run the benchmarks in your specific environments to
+      validate their suggestions.
+  * [ruby-prof](https://github.com/ruby-prof/ruby-prof)
+  * [benchmark-ips](https://github.com/evanphx/benchmark-ips)
+  * Chrome developer tools' Performance features (including performance audits)
