@@ -1,11 +1,11 @@
 ```CSS
-/* Good */
-.aside > .signature {
+/* Bad */
+.aside > p {
   color: #444;
 }
 
-/* Bad */
-.aside > p {
+/* Good */
+.aside > .signature {
   color: #444;
 }
 ```
