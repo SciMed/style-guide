@@ -5,7 +5,7 @@ application.coffee:
 $ ->
   $body = $('body')
   new window.Initializers($body)
-  
+
   $body.on 'cocoon:after-insert' ($newField) ->
     new window.Initializers($newField)
 ```

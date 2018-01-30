@@ -2,7 +2,7 @@
 # BAD
 describe 'IntegerProperties' do
   describe '#even?' do
-    [2,4,6,8].each do |x|
+    [2, 4, 6, 8].each do |x|
       it 'returns true' do
         expect(subject.even?(x)).to eql true
       end

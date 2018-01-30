@@ -13,6 +13,7 @@ describe('AnimalWhisperer', () => {
       expect(whisperer.talkToAnimal()).to.eql('meow meow cat');
     });
   });
+
   context('when the animal is a dog, () => {
     let animal = { type: 'dog', language: 'woof' };
     let { whisperer } = setup({animal});

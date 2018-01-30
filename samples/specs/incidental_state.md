@@ -8,6 +8,7 @@ describe Bookbag do
     subject.save
     subject
   end
+
   describe '#add_book' do
     it 'changes the book count to 2' do
       book2 = Book.create!
@@ -26,10 +27,11 @@ describe Bookbag do
     subject.save
     subject
   end
+
   describe '#add_book' do
     it 'increases the book count by 1' do
-    book2 = Book.create!
-      expect{ subject.add_book(book2) }.to change { subject.books.count }.by(1)
+      book2 = Book.create!
+      expect { subject.add_book(book2) }.to change { subject.books.count }.by(1)
     end
   end
 end

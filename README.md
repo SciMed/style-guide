@@ -175,14 +175,14 @@ Model.reset_column_information
 * When short-circuiting an event listener, explicitly call `event.stopPropogation` and/or `event.preventDefault` as appropriate rather than relying on `return false`.  This is because `return false` has different effects in different contexts (see the discussion [here](https://stackoverflow.com/a/4379435)).
 
 ## ES6
-All new apps should: 
+All new apps should:
 
 * Aim to support at least ES6/ES2015
 * Use Babel to transpile to ES5 if called for by browser support requirements
 * Use webpack for bundling and module resolution
 * Use `yarn` for npm package management
 
-The most straightforward way to meet these requirement is by installing and configuring the `webpacker` gem.  
+The most straightforward way to meet these requirement is by installing and configuring the `webpacker` gem.
 
 Prefer the ES6 `import` syntax when possible, but you can use `require` for npm packages where needed.
 
@@ -276,7 +276,7 @@ Use React when building complex, stateful UIs
 * Order styles alphabetically within a selector.
 * Use the SCSS `@import` declaration to require stylesheets vs `*= require`.
   * Imported sass module filenames should begin with an underscore and end with .scss only (e.g. `_mystyles.scss`)
-* Use the `asset-url` helper for images and fonts. [see example](samples/asset_url.md) Note that if you use any of the Ruby helpers, the file name requires .erb at the end of the file name. (e.g. my_styles.css.scss.erb)
+* Use the `asset-url` helper for images and fonts. [see example](samples/asset_url.md) Note that if you use any of the Ruby helpers, the file name requires .erb at the end of the file name. (e.g. my_styles.scss.erb)
 * Lowercase and dasherize class names.
 * Avoid the `>` direct descendant selector when the descendant is a tag [see example](samples/descendant.md)
 * Avoid ID selectors

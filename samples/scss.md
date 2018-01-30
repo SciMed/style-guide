@@ -9,7 +9,7 @@
 
 body {
   box-sizing: border-box;
-
+}
 
 /* MODULES */
 

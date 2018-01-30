@@ -17,7 +17,7 @@ window.SomeComponent ||= {} # this is required to ensure that SomeComponent exis
 class window.SomeComponent.Things
   constructor: ->
     console.log 'some component-namespaced things'
-    
+
 class window.SomeComponent.OtherThings
   constructor: ->
     console.log 'some component-namespaced other things

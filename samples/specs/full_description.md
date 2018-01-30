@@ -3,13 +3,13 @@
 
 # GOOD
 describe Foo do
-  describe "#hello" do
-    context "when an argument is passed in" do
-      it "returns a string with the argument interpolated" do
+  describe '#hello' do
+    context 'when an argument is passed in' do
+      it 'returns a string with the argument interpolated' do
         expect(subject.hello('SciMed')).to eql 'Hello, SciMed.'
       end
     end
-    context "when no arguments are passed in" do
+    context 'when no arguments are passed in' do
       it "returns 'hello'" do
         expect(subject.hello).to eql 'Hello.'
       end
