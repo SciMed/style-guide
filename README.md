@@ -35,7 +35,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 
 #### Documentation
 * Document methods using [Yard](http://yardoc.org/) style documentation, e.g.
-  ```
+  ```ruby
   # @param [Array<String>] names The names that will be joined
   # @return [String] a concatenated list of names
   def foo(names)
@@ -72,7 +72,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 
 * Structure model content **[in this order](samples/model.md)**.
 * Using non-ActiveRecord models is encouraged.
-* Do not place non-ActiveRecord models in `lib/`, place them in `app/models`.
+* Do not place non-ActiveRecord models in `lib/`, place them in `app/models/`.
 * Pretty much all of the application's code should stay out of `lib/`. Think of `lib/` as a place to put components that are generalized enough that they could be used in other applications (but then why not make those things into gems?).
 * Consider vendoring any code placed in the `lib/` directory as a gem.
 * Organize objects into `app/`: `concerns/`, `decorators/`, `modules/`, `services/`, `strategies/`, `validators/`.
@@ -130,10 +130,10 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Both `schema.rb` and migration files should be maintained so that developers can migrate from scratch or load the schema.
 * When setting up a new application, use `rake db:schema:load` and `rake db:seed` unless you have a good reason to run migrations from scratch.
 * Keep the `schema.rb` (or `structure.sql`) up to date and under version control.
-* Migrations should define any classes that they use (if the class is deleted in the future the migrations should still be able to run).
+* Migrations should define any classes that they use (if the class is deleted in the future, the migrations should still be able to run).
 * Use those database features! Enforce default values, null constraints, uniqueness, etc in the database (via migrations) instead of only in the application layer, as the database can avoid race conditions and is faster and more reliable.
 * If you have not-null constraints be sure to do dependent destroy on the parent. Otherwise you will get invalid query exceptions when things are deleted.
-* When you create a new migration, run it both UP AND DOWN before committing the change (`rake db:migrate:redo` will run the very last migration down and then up again).
+* When you create a new migration, run it both `up` ***and*** `down` before committing the change (`rake db:migrate:redo` will run the very last migration down and then up again).
 * Prefer using `change` in migrations to writing individual `up` and `down` methods when possible.
 * Make sure to update seeds/factories when adding columns (particularly those with validations) or tables.
 * If you are modifying data in a migration be sure to call two methods at the beginning of the migration. If you don't reset the column information then some data could be silently lost instead of saved. Also, Rails will only reset column information once even if you call it multiple times, which is why the `schema_cache` needs to be cleared first.
@@ -264,14 +264,14 @@ Use React when building complex, stateful UIs.
 * Use reusable setup functions for building the state tree.
   * [Example](samples/js_testing_setup_state.js.md)
 * Developers have found the following tools useful in testing, but conventions are still being established:
-  - mocha (testing framework)
-  - jest (alternative testing framework)
-  - chai (BDD)
-  - sinon (spies, stubs, mocks)
-  - enzyme (Airbnb test utils)
-  - babel-plugin-rewire (rewire dependencies - note regular rewire will not work for webpack projects)
-  - fetch-mock (mocks the global fetch function)
-  - jsdom (server-side DOM implementation)
+  - [mocha](https://github.com/mochajs/mocha) (testing framework)
+  - [jest](https://github.com/facebook/jest) (alternative testing framework)
+  - [chai](https://github.com/chaijs/chai) (BDD)
+  - [sinon](https://github.com/sinonjs/sinon) (spies, stubs, mocks)
+  - [enzyme](https://github.com/airbnb/enzyme) (Airbnb test utils)
+  - [babel-plugin-rewire](https://github.com/speedskater/babel-plugin-rewire) (rewire dependencies; note that regular rewire will not work for webpack projects)
+  - [fetch-mock](https://github.com/wheresrhys/fetch-mock) (mocks the global fetch function)
+  - [jsdom](https://github.com/jsdom/jsdom) (server-side DOM implementation)
 
 # JSON
 * If you are designing a JSON API, consider conforming to the [JSON API specification](http://jsonapi.org/format/). Also, it is generally considered good practice to keep your JSON structure as shallow as possible.
@@ -347,7 +347,7 @@ Use React when building complex, stateful UIs.
 # RSpec
 
 #### General
-* Adhere to [(rubocop-rspec)](https://github.com/nevir/rubocop-rspec) when possible.
+* Adhere to Rubocop [(rubocop-rspec)](https://github.com/nevir/rubocop-rspec) when possible.
 * Avoid incidental state when setting up expectations.
   * [Example](samples/specs/incidental_state.md)
 * Do not write iterators to generate tests; they make debugging more difficult (all of the tests share line numbers and the `it` description block). Or consider printing a custom error message to give more information about which test is failing.
