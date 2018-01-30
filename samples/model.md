@@ -56,11 +56,10 @@ class User < ActiveRecord::Base
   def calculate_age
     # ...
   end
-  alias_method :new_calculate_age, :calculate_age
+  alias new_calculate_age calculate_age
 
   private def whatevs
     # ...
   end
-
 end
 ```
