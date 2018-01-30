@@ -132,7 +132,7 @@ Model.reset_column_information
 * Data needed for all environments, including production, should be in seeds.
 * Other seeds should be kept in the `db/seeds` directory.
 * Rake tasks should be created in the `db:seed` namespace for development data.
-* Use FactoryGirl factories to seed development data.
+* Use FactoryGirl/Bot factories to seed development data.
 * Test the seeds in your test suite, or on CI (based on time).
 * Create a Rails generator that creates a seed file when you create a new model. Opt
   out of creating seeds, instead of opting in.
@@ -314,7 +314,7 @@ Use React when building complex, stateful UIs
 * Do not write iterators to generate tests; they make debugging more difficult (all of the tests share line numbers and the `it` description block). Or consider printing a custom error message to give more information about which test is failing. [see example](samples/specs/iterators.md)
   * It's okay to not be DRY if repetition of code improves readability.
 * Use factories rather than fixtures
-* Use linting with FactoryGirl
+* Use linting with FactoryGirl/Bot
 * Use `described_class` rather than the class name inside the top-level describe block. [see example](samples/specs/described_class.md)
 * Avoid redefining major parts of the application in tests. For example, don't re-define Rails.development?
 * Follow the whitespace guide [here](https://github.com/SciMed/style-guide/blob/master/samples/specs/whitespace.md)
