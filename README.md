@@ -24,6 +24,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Encapsulate generic functionality into separate libraries and gems.
 * Write integration tests using TDD/BDD.
 * Adhere to Rubocop when possible.
+  * See our default [`.rubocop.yml`](./.rubocop.yml).
 * Adhere to Rails Best Practices when possible.
 * Freeze constants in their definitions to prevent constant mutation.
   * Example: `ITEMS = %w(banana apple cherry).freeze`
@@ -359,6 +360,7 @@ Use React when building complex, stateful UIs.
 
 #### General
 * Adhere to Rubocop [(rubocop-rspec)](https://github.com/nevir/rubocop-rspec) when possible.
+  * See our default [`.rubocop.yml`](./.rubocop.yml).
 * Avoid incidental state when setting up expectations.
   * [Example](samples/specs/incidental_state.md)
 * Do not write iterators to generate tests; they make debugging more difficult (all of the tests share line numbers and the `it` description block). Or consider printing a custom error message to give more information about which test is failing.
