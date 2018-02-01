@@ -6,7 +6,7 @@ of development experience.
 
 **Read this before making any changes to the style guide**
 
-If you make any changes to the style guide, please clearly describe the logic that lead to the decision clearly in your commit message. Developers who are not privy to the initial discussion will need to understand why the decision was made in order to evaluate whether the decision is still relevant, and whether it is pertinent to their current situation.
+If you make any changes to the style guide, please clearly describe the logic that led to the decision clearly in your commit message. Developers who are not privy to the initial discussion will need to understand why the decision was made in order to evaluate whether the decision is still relevant and whether it is pertinent to their current situation.
 
 #### The Runway
 
@@ -25,7 +25,8 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Write integration tests using TDD/BDD.
 * Adhere to Rubocop when possible.
 * Adhere to Rails Best Practices when possible.
-* Freeze constants in their definitions (e.g. `ITEMS = %w(banana apple cherry).freeze`) to prevent constant mutation.
+* Freeze constants in their definitions to prevent constant mutation.
+  * Example: `ITEMS = %w(banana apple cherry).freeze`
 * Never `rescue` or `fail`/`raise` a generic `Exception`. Instead, `rescue`/`fail`/`raise` a specific type of `Exception`.
 * Mark methods as private by calling `private def foo` when using recent Ruby versions (> 2.1.0). For earlier versions, mark methods as private by calling `private :my_method` directly after the end of the method.
 * Keep private methods clustered together at the end of the file.
@@ -34,7 +35,8 @@ If you make any changes to the style guide, please clearly describe the logic th
   * [Example](samples/arrays.md)
 
 #### Documentation
-* Document methods using [Yard](http://yardoc.org/) style documentation, e.g.
+* Document methods using [Yard](http://yardoc.org/) style documentation.
+  * Example:
   ```ruby
   # @param [Array<String>] names The names that will be joined
   # @return [String] a concatenated list of names
@@ -90,7 +92,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Use a Validator object for custom validations.
   * [Example](samples/validator.md)
 * Keep custom validators under `app/validators`.
-* Use named scopes.
+* Use scopes.
 * Use of `update_attribute` is discouraged because it skips validations. Note that it will also persist changes to any other dirty attributes on your model as well, not just the attribute that you are trying to update.
 * Use of `update_column`, `update_columns`, and `update_all` are discouraged because they skip validations and callbacks. However, if you do not need validations or callbacks, `update_column` is preferred over update_attribute because it is easier to remember that it does not run validations.
 * Custom Inflectors: It can be tough to decide whether to use customer inflectors for pluralization. The most important piece is to make sure that user facing text is pluralized correctly. You should be able to handle this with Internationalization alone. If you feel it will make future developers' lives easier, you can also write a custom inflector so that we can refer to the model correctly in Rails.
@@ -110,7 +112,9 @@ If you make any changes to the style guide, please clearly describe the logic th
   [In Defense of Copy Paste](http://zacharyvoase.com/2013/02/08/copypasta/)
   for more information. While this is applicable in all forms of code, this
   is particularly problematic in view code.
-* Put data attributes in a hash when using a view helper e.g. `f.input :foo, data: { input_method: :foo }`. Note that underscores in keys will be translated to dashes when rendered to html. The previous example's data attribute will render: `data-input-method="foo"`.
+* Put data attributes in a hash when using a view helper.
+  * Example: `f.input :foo, data: { input_method: :foo }`
+  * Note that underscores in keys will be translated to dashes when rendered to HTML. The previous example's data attribute will render as `data-input-method="foo"`.
 * Prefer `f.collection_select :foo` over `f.select :foo, options_from_collection_for_select` when possible.
   * Note that `collection_select` sets the selected value by default whereas `options_from_collection_for_select` needs the selected value to be specified as a parameter.
 * Use Rails helper for labels wherever possible.
@@ -191,8 +195,10 @@ Model.reset_column_information
 * Query DOM elements using `data-` attributes instead of CSS classes. CSS classes should be used exclusively for styling, whereas `data-` attributes should be used exclusively for JavaScript querying.
 * Do not rely on or store data in the DOM.
   * This is particularly true from a security stand point. Do not put secure or sensitive information in the DOM. For example, do not have a hidden field with a SSN or that determines whether someone is an admin.
-* Always prefix jQuery variables with `$`, e.g. `$finder = $('.finder')`
-* Always prefix Immutable.js variables with `$$`, e.g., `$$state`
+* Always prefix jQuery variables with `$`
+  * Example: `$finder = $('.finder')`
+* Always prefix Immutable.js variables with `$$`
+  * Example: `$$state`
 * When short-circuiting an event listener, explicitly call `event.stopPropogation` and/or `event.preventDefault` as appropriate rather than relying on `return false`.
   * This is because `return false` has different effects in different contexts (see the discussion [here](https://stackoverflow.com/a/4379435)).
 
@@ -307,8 +313,11 @@ Use React when building complex, stateful UIs.
 * Use agreed-upon CSS framework (e.g. [semantic-ui](https://github.com/doabit/semantic-ui-sass)) where possible.
 * Order styles alphabetically within a selector.
 * Use the SCSS `@import` declaration to require stylesheets vs `*= require`.
-  * Imported sass module filenames should begin with an underscore and end with .scss only (e.g. `_mystyles.scss`)
-* Use the `asset-url` helper for images and fonts. [see example](samples/asset_url.md) Note that if you use any of the Ruby helpers, the file name requires .erb at the end of the file name. (e.g. my_styles.scss.erb)
+* Imported SASS module filenames should begin with an underscore and end with `.scss` only.
+  * Example: `_mystyles.scss`
+* Use the `asset-url` helper for images and fonts.
+  * [Example](samples/asset_url.md)
+  * Note that if you use any of the Ruby helpers, the file name requires `.erb` at the end of the file name (e.g. `my_styles.scss.erb`).
 * Lowercase and dasherize class names.
 * Avoid the `>` direct descendant selector when the descendant is a tag.
   * [Example](samples/descendant.md)
@@ -318,12 +327,13 @@ Use React when building complex, stateful UIs.
 * Prefer naming elements by content type over visual traits (e.g. `.aside` vs `.left-side-bar`).
 * Encapsulate framework and grid system class names into semantic styles.
   * [Example](samples/mixins.md)
-* Use `box-sizing: border-box;`
+* Use `box-sizing: border-box;`.
   * Whenever browsers support it, this allows you to define the size of actual boxes, rather than the size before padding and borders are added. Generally works for IE8+.
-* Write out the full hex code in uppercase, e.g. `#AAAAAA` instead of `#aaa`.
+* Write out the full hex code in uppercase.
+  * Example: `#AAAAAA` instead of `#aaa`.
 * Avoid meta-programming classes.
-* Sass file extensions should not include `.css` where possible. Prefer `foo.scss` to `foo.css.scss`.
-* Prefer .scss over .sass.
+* SASS file extensions should not include `.css` where possible. Prefer `foo.scss` to `foo.css.scss`.
+* Prefer `.scss` over `.sass`.
 * Follow [SMACSS guidelines](https://smacss.com/book/categorizing) for CSS organization (Base, Layout, Module, State, Theme).
 * Avoid model-specific CSS.
 * Always use a CSS reset. If the CSS framework being used does not provide one, consider using [normalize-rails](https://github.com/markmcconachie/normalize-rails).
@@ -342,7 +352,8 @@ Use React when building complex, stateful UIs.
   * Note that you are _not_ bound to have only one `<header>` or one `<footer>` tag on a page, but you can only have one `<main>` tag.
 * Put the JavaScript includes in the bottom of your page, not in the top of the page.
 * Modals should be in a partial suffixed with `_modal.html.erb`.
-* Double-quote raw HTML attributes e.g. `<i id="foo"></i>`.
+* Double-quote raw HTML attributes.
+  * Example: `<i id="foo"></i>`
 
 # RSpec
 
@@ -417,7 +428,8 @@ Use React when building complex, stateful UIs.
 
 * Write SQL keywords in upper case.
 * Write table names, column names, and aliases in lower case.
-* Put primary keywords for the main query at the beginning of a new line. E.g.,
+* Put primary keywords for the main query at the beginning of a new line.
+  * Example:
 
   ```sql
   SELECT ...
@@ -433,7 +445,8 @@ Use React when building complex, stateful UIs.
 ## SELECT
 
 * Put the first selected column on the same line as `SELECT`. Put each additional
-  selected column name on its own line, indented by two spaces. E.g.,
+  selected column name on its own line, indented by two spaces.
+  * Example: 
 
   ```sql
   SELECT users.first_name,
@@ -451,7 +464,8 @@ Use React when building complex, stateful UIs.
 * In general, avoid aliasing tables; use the full table name instead.
 * **Do** alias tables when your query refers to the same table more than once in
   different contexts. In this case, choose aliases that explain how the table is
-  used differently in each context.  E.g.,
+  used differently in each context.
+  * Example:
 
   ```sql
   SELECT supervisors.first_name AS "supervisor_first_name",
