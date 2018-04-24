@@ -13,10 +13,11 @@ AllCops:
     - '**/Rakefile'
     - '**/Vagrantfile'
     - '**/db/schema.rb'
-  DisplayCopNames: true
   TargetRubyVersion: 2.5
   TargetRailsVersion: 5.2
 
+Layout/ClassStructure:
+  Enabled: true
 Layout/FirstArrayElementLineBreak:
   Enabled: true
 Layout/FirstHashElementLineBreak:
@@ -66,6 +67,18 @@ Metrics/PerceivedComplexity:
 
 Naming/AccessorMethodName:
   Enabled: false
+Naming/UncommunicativeBlockParamName:
+  AllowedNames:
+    - id
+    - x
+    - y
+    - _
+Naming/UncommunicativeMethodParamName:
+  AllowedNames:
+    - id
+    - x
+    - y
+    - _
 Naming/VariableNumber:
   EnforcedStyle: snake_case
 
@@ -103,6 +116,8 @@ RSpec/DescribeClass:
     - '**/spec/features/**/*'
 RSpec/ExampleLength:
   Enabled: false
+RSpec/ExpectChange:
+  EnforcedStyle: block
 RSpec/LeadingSubject:
   Enabled: false
 RSpec/MessageChain:
@@ -130,6 +145,8 @@ Style/ConditionalAssignment:
 Style/Documentation:
   Exclude:
     - '**/controllers/**/*'
+Style/EmptyLineAfterGuardClause:
+  Enabled: true
 Style/EmptyMethod:
   EnforcedStyle: expanded
 Style/FormatStringToken:
