@@ -14,8 +14,8 @@ AllCops:
     - '**/Vagrantfile'
     - '**/db/schema.rb'
   DisplayCopNames: true
-  TargetRubyVersion: 2.4
-  TargetRailsVersion: 5.1
+  TargetRubyVersion: 2.5
+  TargetRailsVersion: 5.2
 
 Layout/FirstArrayElementLineBreak:
   Enabled: true
@@ -118,6 +118,8 @@ RSpec/SubjectStub:
 RSpec/ReturnFromStub:
   Enabled: false
 
+Style/AccessModifierDeclarations:
+  EnforcedStyle: inline
 Style/AutoResourceCleanup:
   Enabled: true
 Style/CollectionMethods:
