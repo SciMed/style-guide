@@ -1,5 +1,5 @@
 ```Ruby
-# BAD
+# Bad
 describe IntegerProperties do
   describe '#even?' do
     it 'returns true if the argument is an even integer' do
@@ -11,7 +11,7 @@ describe IntegerProperties do
   end
 end
 
-# GOOD
+# Good
 describe IntegerProperties do
   describe '#even?' do
     context 'when argument is an even integer' do
@@ -19,6 +19,7 @@ describe IntegerProperties do
         expect(subject.even?(2)).to eql true
       end
     end
+
     context 'when argument is an odd integer' do
       it 'returns false' do
         expect(subject.even?(3)).to eql false

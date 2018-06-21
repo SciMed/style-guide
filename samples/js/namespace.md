@@ -9,7 +9,7 @@ $ ->
   new window.Foo
 ```
 
-Related JavaScript should be further namespaced
+Related JavaScript should be further namespaced:
 
 ```coffee
 window.SomeComponent ||= {} # this is required to ensure that SomeComponent exists before adding an object on it
@@ -20,5 +20,5 @@ class window.SomeComponent.Things
 
 class window.SomeComponent.OtherThings
   constructor: ->
-    console.log 'some component-namespaced other things
+    console.log 'some component-namespaced other things'
 ```

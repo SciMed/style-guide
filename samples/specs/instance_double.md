@@ -1,10 +1,10 @@
 ```Ruby
-# BAD
+# Bad
 let(:foo) do
   double 'Foo' # Does not do verification
 end
 
-# GOOD
+# Good
 let(:foo) do
   instance_double 'Foo' # Does verification that methods exist on Foo and accept the given parameters.
 end

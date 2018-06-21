@@ -1,12 +1,12 @@
 ```Ruby
-# bad
+# Bad
 resources :users do
   resources :posts do
     resources :comments
   end
 end
 
-# good
+# Good
 resources :users do
   resources :posts
 end

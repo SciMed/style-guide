@@ -29,5 +29,3 @@ class window.Initializers
   tooltip: ->
     @$scope.find("[data-toggle='tooltip']").tooltip()
 ```
-
-

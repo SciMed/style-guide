@@ -1,4 +1,4 @@
-#SCSS Whitespace Guidelines
+# SCSS Whitespace Guidelines
 
 * One line after section comment
 * One line before section comment

@@ -1,7 +1,7 @@
 ```Ruby
-# BAD
+# Bad
 
-# GOOD
+# Good
 describe Foo do
   describe '#hello' do
     context 'when an argument is passed in' do
@@ -9,6 +9,7 @@ describe Foo do
         expect(subject.hello('SciMed')).to eql 'Hello, SciMed.'
       end
     end
+
     context 'when no arguments are passed in' do
       it "returns 'hello'" do
         expect(subject.hello).to eql 'Hello.'
@@ -17,7 +18,11 @@ describe Foo do
   end
 end
 
-## The full spec descriptions for these two specs are
-"Foo#hello when an argument is passed in returns a string with the argument interpolated" and
-"Foo#hello when no arguments are passed in returns 'hello'"
+# The full spec descriptions for these two specs are:
+#
+# "Foo#hello when an argument is passed in returns a string with the argument interpolated"
+#
+# and
+#
+# "Foo#hello when no arguments are passed in returns 'hello'"
 ```

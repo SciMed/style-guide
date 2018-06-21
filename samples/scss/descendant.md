@@ -1,4 +1,4 @@
-```CSS
+```SCSS
 /* Bad */
 .aside > p {
   color: #444;

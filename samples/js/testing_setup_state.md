@@ -3,7 +3,7 @@ which rely on the state ensures that the shape of the state used in your tests
 remains the same across all tests. Using setup functions also makes it easier to
 change parts of the state for different test contexts.
 
-```
+```js
 export const setupEntites({
   $$animals = Immutable.fromJS({}),
   $$animalTypes = Immutable.fromJS({}),

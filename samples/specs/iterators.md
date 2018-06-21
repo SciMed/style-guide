@@ -1,5 +1,5 @@
 ```Ruby
-# BAD
+# Bad
 describe 'IntegerProperties' do
   describe '#even?' do
     [2, 4, 6, 8].each do |x|
@@ -10,7 +10,7 @@ describe 'IntegerProperties' do
   end
 end
 
-# GOOD
+# Good
 describe 'IntegerProperties' do
   describe '#even?' do
     it 'returns true for 2' do

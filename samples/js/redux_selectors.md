@@ -1,8 +1,8 @@
 Suppose we have a state which looks like this:
 
-```
-// The state object itsels has to be a POJSO, but the state object should
-contain only ImmutableJS objects
+```js
+// The state object itself has to be a POJSO, but the state object should
+// contain only ImmutableJS objects
 state = {
   $$animalWhispererState: Immutable.fromJS({
     whispering: false,
@@ -44,8 +44,10 @@ state = {
 }
 ```
 
-All Redux containers get access to the full state tree, and they must figure out what they need to know by reading the tree. Use selector functions to hide the state shape from the containers.
-```
+All Redux containers get access to the full state tree, and they must figure out
+what they need to know by reading the tree. Use selector functions to hide the
+state shape from the containers.
+```js
 export const getAnimalWhispererState = (state) => {
   return state.$$animalWhispererState;
 };
@@ -78,7 +80,7 @@ export const getAnimalTypeByName = (state, typeName) => {
 
 export const getLanguage = (state, id) => {
   // use createSelector even in this simple case because this will be memoized
-by reselect - if getLanguages returns same thing, result is cached
+  // by reselect - if getLanguages returns same thing, result is cached
   return createSelector([getLanguages], ($$languages) => {
     return $$languages.get(id.toString());
   })(state);
@@ -91,11 +93,11 @@ export const getLanguageWords = (state, id) => {
 };
 
 // Suppose we want to get the words an animal can speak using the name of the
-animal, e.g. 'dog'
+// animal, e.g. 'dog'
 export const getWordsForAnimal = (state, animalTypeName) => {
   return createSelector([getAnimalTypeByName], ($$animalType) => {
-    return getLanguageWords(state, $$animalType.get('languageId')); //could
-refactor this $$animalType.get('languageId') into separate selector
+    // could refactor this $$animalType.get('languageId') into separate selector
+    return getLanguageWords(state, $$animalType.get('languageId'));
   })(state, animalTypeName);
 };
 ```

@@ -1,6 +1,6 @@
 ```Ruby
-# BAD
-### Expects exactly one book to exist before running the test, and exactly 2 after.
+# Bad
+### Expects exactly one book to exist before running the test and exactly 2 after.
 describe Bookbag do
   subject do
     book1 = Book.new
@@ -18,7 +18,7 @@ describe Bookbag do
   end
 end
 
-# GOOD
+# Good
 ### Just checks to make sure there is one more book than before, which is less brittle.
 describe Bookbag do
   subject do

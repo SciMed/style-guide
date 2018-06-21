@@ -1,9 +1,7 @@
 ```Ruby
-
-# BAD
+# Bad
 subject.foo.should eql 'foo'
 
-# GOOD
+# Good
 expect(subject.foo).to eql 'foo'
-
 ```

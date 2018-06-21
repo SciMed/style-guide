@@ -33,7 +33,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Keep private methods clustered together at the end of the file.
 * Feel free to use libraries which add little bits of helpful functionality and don't take over the application or require all developers to learn a new skillset. If you are thinking of using a library or framework that will take over the application or require other developers to spend time learning it, be sure to discuss with everyone before using it in your project.
 * Write arrays on a single line when they are less than 80 characters long. Otherwise, write them as one line per item.
-  * [Example](samples/arrays.md)
+  * [Example](samples/ruby/arrays.md)
 
 #### Documentation
 * Document methods using [Yard](http://yardoc.org/) style documentation.
@@ -52,19 +52,19 @@ If you make any changes to the style guide, please clearly describe the logic th
 #### Routing
 
 * Avoid more than 1 level of resource nesting.
-  * [Example](samples/nested_routes.md)
+  * [Example](samples/ruby/nested_routes.md)
 * Do not use the `match` wildcard route matcher.
 
 #### Controllers
 
-* Structure Controller content **[in this order](samples/controller.md)**.
+* Structure Controller content **[in this order](samples/ruby/controller.md)**.
 * Try to avoid adding non RESTful actions to a resource.
 * Storing anything in session is discouraged.
   * This can be a security risk unless done carefully. This also makes the browser part of the current state of the application, allowing things to get out of whack. For example keeping the current working record in the session causes problems if users try to use the application with more than one tab or window.
 * Keep controllers skeletal—they shouldn't contain business logic.
 * Place non RESTful actions above RESTful actions in the controller.
 * Consider adding a resource if a controller has more than two non-default actions.
-  * [Example](samples/restful_controller.md)
+  * [Example](samples/ruby/restful_controller.md)
 * Each controller action should ideally invoke only one method other than `find` or `new`.
 * Share no more than two instance variables between a controller and a view.
 * Remove generated `respond_to` blocks from controller actions unless needed.
@@ -73,7 +73,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 
 #### Models
 
-* Structure model content **[in this order](samples/model.md)**.
+* Structure model content **[in this order](samples/ruby/model.md)**.
 * Using non-ActiveRecord models is encouraged.
 * Do not place non-ActiveRecord models in `lib/`, place them in `app/models/`.
 * Pretty much all of the application's code should stay out of `lib/`. Think of `lib/` as a place to put components that are generalized enough that they could be used in other applications (but then why not make those things into gems?).
@@ -81,24 +81,24 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Organize objects into `app/`: `concerns/`, `decorators/`, `modules/`, `services/`, `strategies/`, `validators/`.
 * *Even better*: organize models into gems or namespaces.
 * Do not camelCase acronyms in class names.
-  * [Example](samples/camelcasing.md)
+  * [Example](samples/ruby/camelcasing.md)
 * Avoid adding `default_scope`.
-* Avoid adding callbacks in favor of [an object decorator](samples/callback.md).
+* Avoid adding callbacks in favor of [an object decorator](samples/ruby/callback.md).
 * Avoid adding callbacks that modify other models.
 * Consider using methods instead of constants. Methods are easier to stub, test, and mark private.
 * Use of `class << self` is discouraged in ActiveRecord models.
 * Use of `has_and_belongs_to_many` is *strongly* discouraged.  Use `has_many :through` instead.
 * Use `validates` instead of the `validates_*_of` method.
-  * [Example](samples/validates.md)
+  * [Example](samples/ruby/validates.md)
 * Use a Validator object for custom validations.
-  * [Example](samples/validator.md)
+  * [Example](samples/ruby/validator.md)
 * Keep custom validators under `app/validators`.
 * Use scopes.
 * Use of `update_attribute` is discouraged because it skips validations. Note that it will also persist changes to any other dirty attributes on your model as well, not just the attribute that you are trying to update.
 * Use of `update_column`, `update_columns`, and `update_all` are discouraged because they skip validations and callbacks. However, if you do not need validations or callbacks, `update_column` is preferred over update_attribute because it is easier to remember that it does not run validations.
 * Custom Inflectors: It can be tough to decide whether to use customer inflectors for pluralization. The most important piece is to make sure that user facing text is pluralized correctly. You should be able to handle this with Internationalization alone. If you feel it will make future developers' lives easier, you can also write a custom inflector so that we can refer to the model correctly in Rails.
-  * [Internationalization example](samples/plural_i18n.md)
-  * [Custom inflector example](samples/custom_inflector.md)
+  * [Internationalization example](samples/ruby/plural_i18n.md)
+  * [Custom inflector example](samples/ruby/custom_inflector.md)
 * When accessing associations through other associations, use `has_many` or `has_one` `through` rather than a delegation or a custom method **when all target objects in the associations are persisted**. Use delegations or custom methods **when there is useful data that is not yet persisted**. Keeping the data in associations allows preloading to prevent n+1 queries and ensures that more processing is done via SQL than Ruby, which is more performant. Unfortunately, associations `through` other associations will not see non-persisted objects.
 
 #### Views
@@ -179,7 +179,7 @@ Model.reset_column_information
 * Use `Time.zone.today` to access the current date, `Time.zone.yesterday` to access yesterday's date (Rails 4.1.8+), and `Time.zone.tomorrow` (Rails 4.1.8+) to access tomorrow's date.
 
 #### Bundler
-* Structure Gemfile content **[in this order](samples/gemfile.md)**.
+* Structure Gemfile content **[in this order](samples/ruby/gemfile.md)**.
 * **Do not** run `bundle update` unless for a specific gem. Updating all of the gems without paying attention could unintentionally break things.
 * Remove default comments.
 * Versioning is discouraged unless a specific version of the gem is required (but keep an eye out for breaking things when gem versions update!).
@@ -237,10 +237,10 @@ Many of our legacy apps include CoffeeScript code for JS functionality. In these
 When using CoffeeScript:
 
 * Namespace JavaScript objects for related chunks of functionality (Components, Engines, etc...).
-  * [Example](samples/js_namespace.md)
+  * [Example](samples/js/namespace.md)
 * Use JS classes and encapsulation (e.g., IIFE or Object Literal notation) wherever possible.
-  * [Class example](samples/js_class.md)
-  * [Encapsulation example](samples/js_encapsulation.md)
+  * [Class example](samples/js/class.md)
+  * [Encapsulation example](samples/js/encapsulation.md)
 * Prefer a JavaScript framework over vanilla JavaScript.
   * This means don't roll your own custom event library or other things that exist out there, but do make sure the company is on board with any new libraries that are used before including them in a project.
 * Separate responsibilities of vanilla JavaScript into separate entities.
@@ -261,15 +261,15 @@ Use React when building complex, stateful UIs.
 
 ### Redux
 * Use selectors to read the state tree.
-  * [Example](samples/redux_selectors.js.md)
+  * [Example](samples/js/redux_selectors.md)
 * Always test your selectors.
 * Put selectors in the same file as the reducers for the same part of the state tree.
 
 ### Testing
 * Use the setup function pattern.
-  * [Example](samples/js_testing_setup_function.js.md)
+  * [Example](samples/js/testing_setup_function.md)
 * Use reusable setup functions for building the state tree.
-  * [Example](samples/js_testing_setup_state.js.md)
+  * [Example](samples/js/testing_setup_state.md)
 * Developers have found the following tools useful in testing, but conventions are still being established:
   - [mocha](https://github.com/mochajs/mocha) (testing framework)
   - [jest](https://github.com/facebook/jest) (alternative testing framework)
@@ -310,24 +310,24 @@ Use React when building complex, stateful UIs.
   occurring.
 
 # SCSS
-* See [this example](samples/scss.md) for whitespace usage.
+* See [this example](samples/scss/whitespace.md) for whitespace usage.
 * Use agreed-upon CSS framework (e.g. [semantic-ui](https://github.com/doabit/semantic-ui-sass)) where possible.
 * Order styles alphabetically within a selector.
 * Use the SCSS `@import` declaration to require stylesheets vs `*= require`.
 * Imported SASS module filenames should begin with an underscore and end with `.scss` only.
   * Example: `_mystyles.scss`
 * Use the `asset-url` helper for images and fonts.
-  * [Example](samples/asset_url.md)
+  * [Example](samples/scss/asset_url.md)
   * Note that if you use any of the Ruby helpers, the file name requires `.erb` at the end of the file name (e.g. `my_styles.scss.erb`).
 * Lowercase and dasherize class names.
 * Avoid the `>` direct descendant selector when the descendant is a tag.
-  * [Example](samples/descendant.md)
+  * [Example](samples/scss/descendant.md)
 * Avoid ID selectors.
 * Use SCSS variables (for example, colors are often used in multiple places).
 * Generic naming is favored over domain-driven naming (e.g. `.aside` vs `.cytometry`).
 * Prefer naming elements by content type over visual traits (e.g. `.aside` vs `.left-side-bar`).
 * Encapsulate framework and grid system class names into semantic styles.
-  * [Example](samples/mixins.md)
+  * [Example](samples/html/mixins.md)
 * Use `box-sizing: border-box;`.
   * Whenever browsers support it, this allows you to define the size of actual boxes, rather than the size before padding and borders are added. Generally works for IE8+.
 * Write out the full hex code in uppercase.
@@ -343,11 +343,11 @@ Use React when building complex, stateful UIs.
 * Do not use tables for presentational layout. *That's sooo 1999.*
 * Do **not *not*** use tables for tabular data *That's sooo 2001.*
 * Do not use `<image>` tags for decorative content.
-  * [Example](samples/images.md)
+  * [Example](samples/html/images.md)
 * Use of presentational markup is discouraged (`<b>`, `<i>`, `<blink>`, etc).
 * Do not name tags if they don't need to be named.
 * Do not directly apply framework and grid system class names.
-  * [Example](samples/mixins.md)
+  * [Example](samples/html/mixins.md)
 * Use of XHTML markup is discouraged, e.g. `<br />`.
 * Use layout tags (e.g. `<section>`, `<header>`, `<footer>`, `<aside>`).
   * Note that you are _not_ bound to have only one `<header>` or one `<footer>` tag on a page, but you can only have one `<main>` tag.

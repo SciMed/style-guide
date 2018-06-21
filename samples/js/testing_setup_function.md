@@ -1,4 +1,4 @@
-```
+```js
 describe('AnimalWhisperer', () => {
   const setup = ({ animal }) => {
     const whisperer = new AnimalWhisperer(animal);

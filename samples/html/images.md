@@ -1,4 +1,4 @@
-### Bad
+# Bad
 
 ```HTML
 <a href="/">
@@ -6,7 +6,7 @@
 </a>
 ```
 
-### Good
+# Good
 
 ```HTML
 <a href="/" class="logo"></a>
