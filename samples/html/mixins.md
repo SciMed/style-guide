@@ -1,4 +1,10 @@
-### Good
+# Bad
+
+```HTML
+<a class="button button-large"></a>
+```
+
+# Good
 
 ```HTML
 <a class="save"></a>
@@ -11,10 +17,3 @@
   color: #fff;
 }
 ```
-
-### Bad
-
-```HTML
-<a class="button button-large"></a>
-```
-

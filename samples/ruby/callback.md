@@ -1,19 +1,17 @@
 ```Ruby
 # Bad
-class User < ActiveRecord
-  belongs_to :api_key
-
+class User < ApplicationRecord
   before_save :geolocate_address
   after_save :refresh_api_key
 
-  private
+  belongs_to :api_key
 
-    # def geolocate_address...
-    # def refresh_api_key...
+  # private def geolocate_address...
+  # private def refresh_api_key...
 end
 
 # Good
-class User < ActiveRecord
+class User < ApplicationRecord
   belongs_to :api_key
 end
 

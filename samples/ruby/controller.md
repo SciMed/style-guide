@@ -7,7 +7,7 @@ class UsersController < ActionController::Base
 
   before_action :user_params
   after_action :refresh_password
-  
+
   # Place all non-standard actions before standard RESTful actions
   def search
     # ...
@@ -24,14 +24,12 @@ class UsersController < ActionController::Base
   # def update...
   # def destroy...
 
-  def user_params
+  private def user_params
     # ...
   end
-  private :user_params
 
-  def refresh_password
+  private def refresh_password
     # ...
   end
-  private :refresh_password
 end
 ```

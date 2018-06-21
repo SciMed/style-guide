@@ -1,12 +1,12 @@
 ```Ruby
 class UsersController < ActionController::Base
-  # good
-  def search
+  # Bad
+  def create_comment
     # ...
   end
 
-  # bad
-  def create_comment
+  # Good
+  def search
     # ...
   end
 end

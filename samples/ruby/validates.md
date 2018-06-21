@@ -1,7 +1,7 @@
 ```Ruby
-# bad
+# Bad
 validates_presence_of :email
 
-# good
+# Good
 validates :email, presence: true
 ```

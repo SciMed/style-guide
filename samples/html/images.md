@@ -1,4 +1,12 @@
-### Good
+# Bad
+
+```HTML
+<a href="/">
+  <image src="logo.png">
+</a>
+```
+
+# Good
 
 ```HTML
 <a href="/" class="logo"></a>
@@ -13,12 +21,3 @@
   width: 500px;
 }
 ```
-
-### Bad
-
-```HTML
-<a href="/">
-  <image src="logo.png">
-</a>
-```
-

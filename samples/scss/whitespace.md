@@ -1,15 +1,15 @@
-#SCSS Whitespace Guidelines
+# SCSS Whitespace Guidelines
 
 * One line after section comment
 * One line before section comment
-* One line before each selector's css declaration
+* One line before each selector's CSS declaration
 
 ```scss
 /* BASE */
 
 body {
   box-sizing: border-box;
-
+}
 
 /* MODULES */
 

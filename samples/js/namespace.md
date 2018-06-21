@@ -1,4 +1,4 @@
-All javascript objects should be namespaced under `window`
+All JavaScript objects should be namespaced under `window`
 
 ```coffee
 class window.Foo
@@ -9,7 +9,7 @@ $ ->
   new window.Foo
 ```
 
-Related javascript should be further namespaced
+Related JavaScript should be further namespaced:
 
 ```coffee
 window.SomeComponent ||= {} # this is required to ensure that SomeComponent exists before adding an object on it
@@ -17,8 +17,8 @@ window.SomeComponent ||= {} # this is required to ensure that SomeComponent exis
 class window.SomeComponent.Things
   constructor: ->
     console.log 'some component-namespaced things'
-    
+
 class window.SomeComponent.OtherThings
   constructor: ->
-    console.log 'some component-namespaced other things
+    console.log 'some component-namespaced other things'
 ```
