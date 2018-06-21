@@ -1,3 +1,6 @@
+# rubocop version: 0.57.2
+# rubocop-rspec version: 1.27.0
+
 require: rubocop-rspec
 
 AllCops:
@@ -145,12 +148,12 @@ Style/ConditionalAssignment:
 Style/Documentation:
   Exclude:
     - '**/controllers/**/*'
-Style/EmptyLineAfterGuardClause:
-  Enabled: true
 Style/EmptyMethod:
   EnforcedStyle: expanded
 Style/FormatStringToken:
   Enabled: false
+Style/IpAddresses:
+  Enabled: true
 Style/Lambda:
   EnforcedStyle: literal
 Style/NumericPredicate:
@@ -170,6 +173,8 @@ Style/StringMethods:
 # Defaults; may make sense to turn off for specific projects
 Layout/CaseIndentation:
   Enabled: false
+Layout/EmptyLineAfterGuardClause:
+  Enabled: true
 
 Rails/SaveBang:
   Enabled: true
