@@ -1,3 +1,6 @@
+# rubocop version: 0.57.2
+# rubocop-rspec version: 1.27.0
+
 require: rubocop-rspec
 
 AllCops:
@@ -13,10 +16,11 @@ AllCops:
     - '**/Rakefile'
     - '**/Vagrantfile'
     - '**/db/schema.rb'
-  DisplayCopNames: true
   TargetRubyVersion: 2.5
   TargetRailsVersion: 5.2
 
+Layout/ClassStructure:
+  Enabled: true
 Layout/FirstArrayElementLineBreak:
   Enabled: true
 Layout/FirstHashElementLineBreak:
@@ -66,6 +70,18 @@ Metrics/PerceivedComplexity:
 
 Naming/AccessorMethodName:
   Enabled: false
+Naming/UncommunicativeBlockParamName:
+  AllowedNames:
+    - id
+    - x
+    - y
+    - _
+Naming/UncommunicativeMethodParamName:
+  AllowedNames:
+    - id
+    - x
+    - y
+    - _
 Naming/VariableNumber:
   EnforcedStyle: snake_case
 
@@ -103,6 +119,8 @@ RSpec/DescribeClass:
     - '**/spec/features/**/*'
 RSpec/ExampleLength:
   Enabled: false
+RSpec/ExpectChange:
+  EnforcedStyle: block
 RSpec/LeadingSubject:
   Enabled: false
 RSpec/MessageChain:
@@ -134,6 +152,8 @@ Style/EmptyMethod:
   EnforcedStyle: expanded
 Style/FormatStringToken:
   Enabled: false
+Style/IpAddresses:
+  Enabled: true
 Style/Lambda:
   EnforcedStyle: literal
 Style/NumericPredicate:
@@ -153,6 +173,8 @@ Style/StringMethods:
 # Defaults; may make sense to turn off for specific projects
 Layout/CaseIndentation:
   Enabled: false
+Layout/EmptyLineAfterGuardClause:
+  Enabled: true
 
 Rails/SaveBang:
   Enabled: true
