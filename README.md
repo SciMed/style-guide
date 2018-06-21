@@ -564,7 +564,7 @@ Use React when building complex, stateful UIs.
 * Use `includes` or other pre-loading strategies to prevent n+1 queries.
 * Be aware of the following situations where preloading data can lead to
   worsened performance.
-  * [Example](./samples/preloading.md)
+  * [Example](./samples/ruby/preloading.md)
 * When an association needs to be preloaded, do so at the earliest possible
   opportunity, such as when loading a record with `params[:id]` in the
   controller layer. This will help provide a single source of truth about what
@@ -578,9 +578,9 @@ Use React when building complex, stateful UIs.
 
 * Utilize collection rendering rather than rendering a partial for each element
   in a collection.
-  * [Example](./samples/collection_rendering.md)
+  * [Example](./samples/ruby/collection_rendering.md)
 * Minimize external resources that need to be fetched upon page load.
-  * [Example](./samples/google_fonts.md)
+  * [Example](./samples/html/google_fonts.md)
 * Cache and memoize when appropriate.
 
 * Consider the following performance resources:
@@ -604,7 +604,7 @@ Use React when building complex, stateful UIs.
 * Set `config.profile_examples` in your `spec_helper.rb` to see if any tests are
   particularly slow.
 * Consider raising the logging level in your `rails_helper.rb` (e.g.
-  `Rails.logger.level = 4`)
+  `Rails.logger.level = 4`).
 * When most tables are not populated in a test with Database Cleaner's
   `:truncation` strategy, use `pre_count: true`.
   * [Reference](https://github.com/DatabaseCleaner/database_cleaner#additional-activerecord-options-for-truncation)

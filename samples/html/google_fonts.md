@@ -1,4 +1,4 @@
-Bad:
+# Bad
 ```html
 <link href="https://fonts.googleapis.com/css?family=Rammetto+One" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Supermercado+One" rel="stylesheet">
@@ -9,7 +9,7 @@ Bad:
 @import url('https://fonts.googleapis.com/css?family=Supermercado+One');
 ```
 
-Good:
+# Good
 ```html
 <link href="https://fonts.googleapis.com/css?family=Rammetto+One|Supermercado+One" rel="stylesheet">
 ```

@@ -1,5 +1,5 @@
 ```ruby
-# bad
+# Bad
 class Foo < ApplicationRecord
   has_many :bars
 end
@@ -15,7 +15,7 @@ Foo.includes(:bars).map { |foo| foo.bars.where(baz: true) }
 # In addition, the `bars` from the `includes` get loaded into memory. This
 # will lead to more garbage collection.
 
-# good
+# Good
 class Foo < ApplicationRecord
   has_many :bars
   has_many :bazzy_bars, -> { where(baz: true) }, class_name: 'Bar'
