@@ -582,9 +582,7 @@ Use React when building complex, stateful UIs.
 * Minimize external resources that need to be fetched upon page load.
   * [Example](./samples/google_fonts.md)
 * Cache and memoize when appropriate.
-* When possible, opt against reading or writing to the database in unit tests.
-* Set `config.profile_examples` in your `spec_helper.rb` to see if any tests are
-  particularly slow.
+
 * Consider the following performance resources:
   * _Ruby Performance Optimization_ by Alexander Dymo
   * [Rails Guide to Caching](http://guides.rubyonrails.org/caching_with_rails.html)
@@ -599,3 +597,18 @@ Use React when building complex, stateful UIs.
   * [ruby-prof](https://github.com/ruby-prof/ruby-prof)
   * [benchmark-ips](https://github.com/evanphx/benchmark-ips)
   * Chrome developer tools' Performance features (including performance audits)
+
+## Tests
+
+* When possible, opt against reading or writing to the database in unit tests.
+* Set `config.profile_examples` in your `spec_helper.rb` to see if any tests are
+  particularly slow.
+* Consider raising the logging level in your `rails_helper.rb` (e.g.
+  `Rails.logger.level = 4`)
+* When most tables are not populated in a test with Database Cleaner's
+  `:truncation` strategy, use `pre_count: true`.
+  * [Reference](https://github.com/DatabaseCleaner/database_cleaner#additional-activerecord-options-for-truncation)
+* Consider using the `:deletion` strategy with Database Cleaner between specs
+  instead of `:truncation` (but always `clean_with :truncation`
+  `before(:suite)`).
+  * [Reference](https://stackoverflow.com/questions/11419536/postgresql-truncation-speed/11423886#11423886)
