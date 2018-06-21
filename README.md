@@ -6,7 +6,7 @@ of development experience.
 
 **Read this before making any changes to the style guide**
 
-If you make any changes to the style guide, please clearly describe the logic that led to the decision clearly in your commit message. Developers who are not privy to the initial discussion will need to understand why the decision was made in order to evaluate whether the decision is still relevant and whether it is pertinent to their current situation.
+If you make any changes to the style guide, please clearly describe the logic that led to the decision in your commit message. Developers who are not privy to the initial discussion will need to understand why the decision was made in order to evaluate whether the decision is still relevant and whether it is pertinent to their current situation.
 
 #### The Runway
 
@@ -136,7 +136,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * When setting up a new application, use `rake db:schema:load` and `rake db:seed` unless you have a good reason to run migrations from scratch.
 * Keep the `schema.rb` (or `structure.sql`) up to date and under version control.
 * Migrations should define any classes that they use (if the class is deleted in the future, the migrations should still be able to run).
-* Use those database features! Enforce default values, null constraints, uniqueness, etc in the database (via migrations) instead of only in the application layer, as the database can avoid race conditions and is faster and more reliable.
+* Use those database features! Enforce default values, null constraints, uniqueness, etc. in the database (via migrations) instead of only in the application layer, as the database can avoid race conditions and is faster and more reliable.
 * If you have not-null constraints be sure to do dependent destroy on the parent. Otherwise you will get invalid query exceptions when things are deleted.
 * When you create a new migration, run it both `up` ***and*** `down` before committing the change (`rake db:migrate:redo` will run the very last migration down and then up again).
 * Prefer using `change` in migrations to writing individual `up` and `down` methods when possible.
@@ -448,7 +448,7 @@ Use React when building complex, stateful UIs.
 
 * Put the first selected column on the same line as `SELECT`. Put each additional
   selected column name on its own line, indented by two spaces.
-  * Example: 
+  * Example:
 
   ```sql
   SELECT users.first_name,
