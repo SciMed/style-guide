@@ -138,7 +138,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Keep the `schema.rb` (or `structure.sql`) up to date and under version control.
 * Migrations should define any classes that they use (if the class is deleted in the future, the migrations should still be able to run).
 * Use those database features! Enforce default values, null constraints, uniqueness, etc. in the database (via migrations) instead of only in the application layer, as the database can avoid race conditions and is faster and more reliable.
-* If you have not-null constraints be sure to do dependent destroy on the parent. Otherwise you will get invalid query exceptions when things are deleted.
+* If you have `NOT NULL` constraints, be sure to add `dependent: :destroy` on the parent. Otherwise, you will get invalid query exceptions when things are deleted.
 * When you create a new migration, run it both `up` ***and*** `down` before committing the change (`rake db:migrate:redo` will run the very last migration down and then up again).
 * Prefer using `change` in migrations to writing individual `up` and `down` methods when possible.
 * Make sure to update seeds/factories when adding columns (particularly those with validations) or tables.
