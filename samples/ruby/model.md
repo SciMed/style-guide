@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   # Please don't use default scopes.
   default_scope { where(active: true) }
 
+  # Gem additions and configuration
   has_attachment :document, resize_to_fit: true
   can_login, memorable: true
 
