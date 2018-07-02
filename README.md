@@ -22,22 +22,18 @@ If you make any changes to the style guide, please clearly describe the logic th
 * [Performance](#performance)
 
 # Ruby
-* Encapsulate generic functionality into separate libraries and gems.
-* Write integration tests using TDD/BDD.
 * Adhere to Rubocop when possible.
   * See our default [`.rubocop.yml`](./.rubocop.yml).
-* Adhere to Rails Best Practices when possible.
 * Freeze constants in their definitions to prevent constant mutation.
   * Example: `ITEMS = %w(banana apple cherry).freeze`
 * Never `rescue` or `fail`/`raise` a generic `Exception`. Instead, `rescue`/`fail`/`raise` a specific type of `Exception`.
 * Mark methods as private by calling `private def foo` when using recent Ruby versions (> 2.1.0). For earlier versions, mark methods as private by calling `private :my_method` directly after the end of the method.
 * Keep private methods clustered together at the end of the file.
-* Feel free to use libraries which add little bits of helpful functionality and don't take over the application or require all developers to learn a new skillset. If you are thinking of using a library or framework that will take over the application or require other developers to spend time learning it, be sure to discuss with everyone before using it in your project.
-* Write arrays on a single line when they are less than 80 characters long. Otherwise, write them as one line per item.
+* Write arrays on a single line when they are fewer than 80 characters long. Otherwise, write them as one line per item.
   * [Example](samples/ruby/arrays.md)
 
 #### Documentation
-* Document methods using [Yard](http://yardoc.org/) style documentation.
+* When documenting methods use [Yard](http://yardoc.org/) style documentation. This is especially important when purpose, parameters, or return values are ambiguous.
   * Example:
   ```ruby
   # @param [Array<String>] names The names that will be joined
@@ -50,6 +46,15 @@ If you make any changes to the style guide, please clearly describe the logic th
 
 # Rails
 
+#### General
+* Pretty much all of the application's code should stay out of `lib/`. Think of `lib/` as a place to put components that are generalized enough that they could be used in other applications (but then why not make those things into gems?).
+* Consider vendoring any code placed in the `lib/` directory as a gem.
+* Organize objects into `app/`: `concerns/`, `decorators/`, `modules/`, `services/`, `strategies/`, `validators/`.
+* *Even better*: organize models into gems or namespaces.
+* Do not camelCase acronyms in class names.
+  * [Example](samples/ruby/camelcasing.md)
+* Consider using methods instead of constants. Methods are easier to stub, test, and mark private.
+
 #### Routing
 
 * Avoid more than 1 level of resource nesting.
@@ -60,46 +65,31 @@ If you make any changes to the style guide, please clearly describe the logic th
 
 * Structure Controller content **[in this order](samples/ruby/controller.md)**.
 * Try to avoid adding non RESTful actions to a resource.
-* Storing anything in session is discouraged.
+* Storing anything other than the session id in session is discouraged.
   * This can be a security risk unless done carefully. This also makes the browser part of the current state of the application, allowing things to get out of whack. For example keeping the current working record in the session causes problems if users try to use the application with more than one tab or window.
 * Keep controllers skeletal—they shouldn't contain business logic.
 * Place non RESTful actions above RESTful actions in the controller.
 * Consider adding a resource if a controller has more than two non-default actions.
   * [Example](samples/ruby/restful_controller.md)
 * Each controller action should ideally invoke only one method other than `find` or `new`.
-* Share no more than two instance variables between a controller and a view.
-* Remove generated `respond_to` blocks from controller actions unless needed.
-* Remove generated comments on controller actions.
-* Keep empty controller action definitions.
+* If you find yourself needing more than two instance variables consider using a Presenter object, which could be more easily unit tested.
+* If you use code generation tools (e.g. scaffold) remove any unused code like `respond_to` blocks.
+* Ensure there is a method in the controller for every route that is rendered even if the method is empty.
 
 #### Models
 
 * Structure model content **[in this order](samples/ruby/model.md)**.
 * Using non-ActiveRecord models is encouraged.
-* Do not place non-ActiveRecord models in `lib/`, place them in `app/models/`.
-* Pretty much all of the application's code should stay out of `lib/`. Think of `lib/` as a place to put components that are generalized enough that they could be used in other applications (but then why not make those things into gems?).
-* Consider vendoring any code placed in the `lib/` directory as a gem.
-* Organize objects into `app/`: `concerns/`, `decorators/`, `modules/`, `services/`, `strategies/`, `validators/`.
-* *Even better*: organize models into gems or namespaces.
-* Do not camelCase acronyms in class names.
-  * [Example](samples/ruby/camelcasing.md)
-* Avoid adding `default_scope`.
+* Avoid adding `default_scope`. 
 * Avoid adding callbacks in favor of [an object decorator](samples/ruby/callback.md).
 * Avoid adding callbacks that modify other models.
-* Consider using methods instead of constants. Methods are easier to stub, test, and mark private.
 * Use of `class << self` is discouraged in ActiveRecord models.
 * Use of `has_and_belongs_to_many` is *strongly* discouraged.  Use `has_many :through` instead.
 * Use `validates` instead of the `validates_*_of` method.
   * [Example](samples/ruby/validates.md)
 * Use a Validator object for custom validations.
   * [Example](samples/ruby/validator.md)
-* Keep custom validators under `app/validators`.
-* Use scopes.
-* Use of `update_attribute` is discouraged because it skips validations. Note that it will also persist changes to any other dirty attributes on your model as well, not just the attribute that you are trying to update.
-* Use of `update_column`, `update_columns`, and `update_all` are discouraged because they skip validations and callbacks. However, if you do not need validations or callbacks, `update_column` is preferred over update_attribute because it is easier to remember that it does not run validations.
-* Custom Inflectors: It can be tough to decide whether to use customer inflectors for pluralization. The most important piece is to make sure that user facing text is pluralized correctly. You should be able to handle this with Internationalization alone. If you feel it will make future developers' lives easier, you can also write a custom inflector so that we can refer to the model correctly in Rails.
-  * [Internationalization example](samples/ruby/plural_i18n.md)
-  * [Custom inflector example](samples/ruby/custom_inflector.md)
+* Use of `update_attribute`, `update_column`, `update_columns`, and `update_all` skip validations. Rubocop should help you with this. `update_attribute` will also persist changes to any other dirty attributes on your model as well, not just the attribute that you are trying to update. However, if you do not need validations or callbacks, `update_column` is preferred over update_attribute because it is easier to remember that it does not run validations.
 * When accessing associations through other associations, use `has_many` or `has_one` `through` rather than a delegation or a custom method **when all target objects in the associations are persisted**. Use delegations or custom methods **when there is useful data that is not yet persisted**. Keeping the data in associations allows preloading to prevent n+1 queries and ensures that more processing is done via SQL than Ruby, which is more performant. Unfortunately, associations `through` other associations will not see non-persisted objects.
 
 #### Views
@@ -190,6 +180,9 @@ Model.reset_column_information
 * Consider using localization/internationalization config files to encapsulate customer-facing strings such as error messages when:
   * the text is likely to change frequently OR
   * the text is a template that is used in multiple places (i.e. to keep the code DRY). Note that i18n supports [variable interpolation](http://guides.rubyonrails.org/i18n.html#passing-variables-to-translations).
+* Custom Inflectors: It can be tough to decide whether to use customer inflectors for pluralization. The most important piece is to make sure that user facing text is pluralized correctly. You should be able to handle this with Internationalization alone. If you feel it will make future developers' lives easier, you can also write a custom inflector so that we can refer to the model correctly in Rails.
+  * [Internationalization example](samples/ruby/plural_i18n.md)
+  * [Custom inflector example](samples/ruby/custom_inflector.md)
 
 # JavaScript
 
