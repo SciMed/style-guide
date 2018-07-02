@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   has_attachment :document, resize_to_fit: true
   can_login, memorable: true
 
-  GENDERS = %w(male female)
+  GENDERS = %w(male female).freeze
 
   before_save :cook
   after_save :update_username_lower
@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
   validate :currently_active_member
 
   validates :email, presence: true
-  validates :password, format: { with: /\A\S{8,128}\z/, allow_nil: true}
+  validates :password, format: { with: /\A\S{8,128}\z/, allow_nil: true }
   validates :username, presence: true
   validates :username, uniqueness: { case_sensitive: false }
   validates :username, format: { with: /\A[A-Za-z][A-Za-z0-9._-]{2,19}\z/ }
