@@ -14,8 +14,6 @@ class User < ActiveRecord::Base
 
   GENDERS = %w(male female)
 
-  attr_accessible :login, :first_name, :last_name, :email, :password
-
   before_save :cook
   after_save :update_username_lower
 
