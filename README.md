@@ -95,9 +95,9 @@ If you make any changes to the style guide, please clearly describe the logic th
 #### Views
 
 * Accessing database models or the database from the view breaks the separation that is the goal of MVC. It would be best to build presenter objects which store the data needed for the view.
-  * In some cases this may not be worthwhile in practice, but it is good to consider the dependencies being built between the view and the database/models.
 * Never make complex formatting in the views, moving the formatting to
-  a presenter object. For example, if you are displaying a schedule, do not put the logic for grouping events into days in the view.
+  a presenter object.
+  * For example, if you are displaying a schedule, do not put the logic for grouping events into days in the view.
 * Avoid using DRY principles to reduce duplication of code that is visually
   the same, rather than essentially the same. Code should not be made DRY if
   the business motivation behind duplicated code differs between cases. Please see
@@ -109,9 +109,14 @@ If you make any changes to the style guide, please clearly describe the logic th
   * Note that underscores in keys will be translated to dashes when rendered to HTML. The previous example's data attribute will render as `data-input-method="foo"`.
 * Prefer `f.collection_select :foo` over `f.select :foo, options_from_collection_for_select` when possible.
   * Note that `collection_select` sets the selected value by default whereas `options_from_collection_for_select` needs the selected value to be specified as a parameter.
-* Use Rails helper for labels wherever possible.
 * Ensure that label tags connect with the correct form input.
-* Don't make partials for the fun of it. Make partials when it makes sense to have partials around. (It's no fun digging through 10 layers of partials if they don't have some benefit). It is discouraged to have partials more than 2 levels deep.
+  * Note that `form_with` does not do this automatically.
+* Don't make partials for the fun of it. It is discouraged to have partials more than 2 levels deep.
+  * This is both for ease of maintainability and performance.
+* Partials should rely on local variables rather than instance variables.
+* Utilize collection rendering rather than rendering a partial for each element
+  in a collection for purposes of performance.
+  * [Example](./samples/ruby/collection_rendering.md)
 * For new projects, use ERB as the templating engine. For old projects, use whatever is already in place.
 * Try to avoid multiline embedded Ruby—it's likely indicative of logic that should be extracted to a presenter, service object, or helper. When necessary, use the following format:
 ```
@@ -123,12 +128,10 @@ If you make any changes to the style guide, please clearly describe the logic th
 
 #### Migrations
 
-* Both `schema.rb` and migration files should be maintained so that developers can migrate from scratch or load the schema.
-* When setting up a new application, use `rake db:schema:load` and `rake db:seed` unless you have a good reason to run migrations from scratch.
-* Keep the `schema.rb` (or `structure.sql`) up to date and under version control.
+* Both `schema.rb`/`structure.sql` and migration files should be maintained so that developers can migrate from scratch or load the schema.
 * Migrations should define any classes that they use (if the class is deleted in the future, the migrations should still be able to run).
-* Use those database features! Enforce default values, null constraints, uniqueness, etc. in the database (via migrations) instead of only in the application layer, as the database can avoid race conditions and is faster and more reliable.
-* If you have `NOT NULL` constraints, be sure to add `dependent: :destroy` on the parent. Otherwise, you will get invalid query exceptions when things are deleted.
+* Use those database features! Enforce default values, null constraints, uniqueness, etc. in the database (via migrations) in addition to the application layer, as the database can avoid race conditions and is faster and more reliable.
+* If you have `NOT NULL` constraints, be sure to add a `dependent` option on the association. Otherwise, you will get invalid query exceptions when things are deleted. Also, consider a foreign key with the `CASCADE` option.
 * When you create a new migration, run it both `up` ***and*** `down` before committing the change (`rake db:migrate:redo` will run the very last migration down and then up again).
 * Prefer using `change` in migrations to writing individual `up` and `down` methods when possible.
 * Make sure to update seeds/factories when adding columns (particularly those with validations) or tables.
@@ -143,21 +146,31 @@ Model.reset_column_information
 
 * Avoid relying on production database dumps for development. Make sure there are reliable seeds so that future developers can get up and running and access all features quickly.
 * Create and update seeds as you develop.
+* Seeds should be capable of running multiple times without producing errors or bad duplicates.
 * Seeds should mirror the current state of the app and provide enough data to access and test all features of the application.
 * Data needed for all environments, including production, should be in seeds.
 * Other seeds should be kept in the `db/seeds` directory.
-* Rake tasks should be created in the `db:seed` namespace for development data.
+* Structure the seeds as follows:
+```
+db/
+  development/
+    model_1.rb
+  production/
+    model_1.rb
+  staging/
+    model_1.rb
+  seeds.rb
+  development.rb
+  production.rb
+  staging.rb
+```
 * Use FactoryGirl/Bot factories to seed development data.
-* Test the seeds in your test suite or on CI (based on time).
-* Create a Rails generator that creates a seed file when you create a new model. Opt
-  out of creating seeds, instead of opting in.
 * Tear down and rebuild your database regularly.
 
 #### Mailers
 
-* Suffix mailer names with `Mailer`.
 * Provide both HTML and plain-text view templates.
-* If you need to use a link in an email, always use the `_url`, not `_path` methods.
+* If you need to use a link in an email, always use the `_url`, not `_path` methods, to ensure the absolute path is correct.
 * Format the from and to addresses as `Your Name <info@your_site.com>`.
 * Consider sending emails in a background process to prevent page load delays.
 * When sending email to multiple users, send an individual email to each person rather than having multiple recipients in one email.
@@ -170,19 +183,22 @@ Model.reset_column_information
 * Use `Time.zone.today` to access the current date, `Time.zone.yesterday` to access yesterday's date (Rails 4.1.8+), and `Time.zone.tomorrow` (Rails 4.1.8+) to access tomorrow's date.
 
 #### Bundler
-* Structure Gemfile content **[in this order](samples/ruby/gemfile.md)**.
+* Structure Gemfile content in alphabetical order with groups at the bottom in the following order:
+  * `:development`
+  * `:test`
+  * `:staging`
+  * `:production`
 * **Do not** run `bundle update` unless for a specific gem. Updating all of the gems without paying attention could unintentionally break things.
 * Remove default comments.
-* Versioning is discouraged unless a specific version of the gem is required (but keep an eye out for breaking things when gem versions update!).
+* Versioning is discouraged unless a specific version of the gem is required (but keep an eye out for breaking things when gem versions update!). If you do need to version, add a comment.
+* Run `bundle audit` before pushing.
 
 #### Localization/Internationalization (i18n) configuration
 
+* Add a default date and datetime format to your `en.yml`.
 * Consider using localization/internationalization config files to encapsulate customer-facing strings such as error messages when:
   * the text is likely to change frequently OR
   * the text is a template that is used in multiple places (i.e. to keep the code DRY). Note that i18n supports [variable interpolation](http://guides.rubyonrails.org/i18n.html#passing-variables-to-translations).
-* Custom Inflectors: It can be tough to decide whether to use customer inflectors for pluralization. The most important piece is to make sure that user facing text is pluralized correctly. You should be able to handle this with Internationalization alone. If you feel it will make future developers' lives easier, you can also write a custom inflector so that we can refer to the model correctly in Rails.
-  * [Internationalization example](samples/ruby/plural_i18n.md)
-  * [Custom inflector example](samples/ruby/custom_inflector.md)
 
 # JavaScript
 
