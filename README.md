@@ -31,6 +31,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Keep private methods clustered together at the end of the file.
 * Write arrays on a single line when they are fewer than 80 characters long. Otherwise, write them as one line per item.
   * [Example](samples/ruby/arrays.md)
+* Avoid meta-programming classes for reasons of readability.
 
 #### Documentation
 * When documenting methods use [Yard](http://yardoc.org/) style documentation. This is especially important when purpose, parameters, or return values are ambiguous.
@@ -204,13 +205,14 @@ db/
 
 ## General conventions
 * Query DOM elements using `data-` attributes instead of CSS classes. CSS classes should be used exclusively for styling, whereas `data-` attributes should be used exclusively for JavaScript querying.
-* Do not rely on or store data in the DOM.
+* Any JS involving the DOM should be deferred until the DOM is ready.
+* Be careful when including data in the DOM.
   * This is particularly true from a security stand point. Do not put secure or sensitive information in the DOM. For example, do not have a hidden field with a SSN or that determines whether someone is an admin.
-* Always prefix jQuery variables with `$`
+* Always prefix jQuery variables with `$`.
   * Example: `$finder = $('.finder')`
-* Always prefix Immutable.js variables with `$$`
+* Always prefix Immutable.js variables with `$$`.
   * Example: `$$state`
-* When short-circuiting an event listener, explicitly call `event.stopPropogation` and/or `event.preventDefault` as appropriate rather than relying on `return false`.
+* When short-circuiting an event listener, explicitly call `event.stopPropagation` and/or `event.preventDefault` as appropriate rather than relying on `return false`.
   * This is because `return false` has different effects in different contexts (see the discussion [here](https://stackoverflow.com/a/4379435)).
 
 ## ES6
@@ -223,7 +225,7 @@ All new apps should:
 
 The most straightforward way to meet these requirement is by installing and configuring the `webpacker` gem.
 
-Prefer the ES6 `import` syntax when possible, but you can use `require` for npm packages where needed.
+* Prefer the ES6 `import` syntax when possible, but you can use `require` for npm packages where needed.
 
 ### eslint
 
@@ -242,7 +244,7 @@ Eslint can by run on the command line with `yarn eslint` if the following is add
 Eslint should be run as part of your project's default rake task.
 
 ## CoffeeScript
-Many of our legacy apps include CoffeeScript code for JS functionality. In these cases, come to a consensus within the project team about whether to install the `webpacker` gem to support modern JS or to add any new functionality in CoffeeScript.
+Only use CoffeeScript on applications that already use it; consider writing new features on those projects in modern JS.
 
 When using CoffeeScript:
 
@@ -251,23 +253,17 @@ When using CoffeeScript:
 * Use JS classes and encapsulation (e.g., IIFE or Object Literal notation) wherever possible.
   * [Class example](samples/js/class.md)
   * [Encapsulation example](samples/js/encapsulation.md)
-* Prefer a JavaScript framework over vanilla JavaScript.
-  * This means don't roll your own custom event library or other things that exist out there, but do make sure the company is on board with any new libraries that are used before including them in a project.
 * Separate responsibilities of vanilla JavaScript into separate entities.
 * CoffeeScript file extensions should not include `.js` where possible. Prefer `foo.coffee` to `foo.js.coffee.`
-* For ternary operations in CoffeeScript, prefer `if foo then bar else baz` (the `? :` syntax has surprising behavior).
-* In applications that are not using ReactJS, prefer JS templating libraries (Handlebars, Mustache) to rolling your own over-complicated JS.
+* For ternary operations in CoffeeScript, prefer `if foo then bar else baz`.
 
 ## React
 Use React when building complex, stateful UIs.
 
 ### Technology Stack
-* Use Redux when using React if building something stateful or at least moderately complex.
-* Use ES6.
-* Use Babel to transpile ES6.
-* Use WebPack to build JS artifacts.
-* Use yarn for dependency management.
-* Use ImmutableJS for the state tree.
+* In addition to the above suggestions:
+  * Use Redux when using React if building something stateful or at least moderately complex.
+  * Use ImmutableJS for the state tree.
 
 ### Redux
 * Use selectors to read the state tree.
@@ -276,22 +272,12 @@ Use React when building complex, stateful UIs.
 * Put selectors in the same file as the reducers for the same part of the state tree.
 
 ### Testing
-* Use the setup function pattern.
-  * [Example](samples/js/testing_setup_function.md)
-* Use reusable setup functions for building the state tree.
-  * [Example](samples/js/testing_setup_state.md)
-* Developers have found the following tools useful in testing, but conventions are still being established:
-  - [mocha](https://github.com/mochajs/mocha) (testing framework)
-  - [jest](https://github.com/facebook/jest) (alternative testing framework)
-  - [chai](https://github.com/chaijs/chai) (BDD)
-  - [sinon](https://github.com/sinonjs/sinon) (spies, stubs, mocks)
-  - [enzyme](https://github.com/airbnb/enzyme) (Airbnb test utils)
-  - [babel-plugin-rewire](https://github.com/speedskater/babel-plugin-rewire) (rewire dependencies; note that regular rewire will not work for webpack projects)
-  - [fetch-mock](https://github.com/wheresrhys/fetch-mock) (mocks the global fetch function)
-  - [jsdom](https://github.com/jsdom/jsdom) (server-side DOM implementation)
+* Use the following testing tools:
+  - [jest](https://github.com/facebook/jest)
 
 # JSON
-* If you are designing a JSON API, consider conforming to the [JSON API specification](http://jsonapi.org/format/). Also, it is generally considered good practice to keep your JSON structure as shallow as possible.
+* If you are designing a JSON API, consider conforming to the [JSON API specification](http://jsonapi.org/format/).
+* It is generally considered good practice to keep your JSON structure as shallow as possible.
 * Test the schema of JSON generated by your app.
   * Create a JSON schema according to the documentation provided [here](http://json-schema.org/).
   * Check your schema's validity using tools [like this one](http://www.jsonschemavalidator.net/).
@@ -314,7 +300,8 @@ Use React when building complex, stateful UIs.
     end
   end
   ```
-
+  
+* Consider logging error messages displayed to users as well.
 * When avoiding this logging (due to performance, for example), add a comment to
   the `rescue` block that informs future developers why logging is not
   occurring.
@@ -322,49 +309,37 @@ Use React when building complex, stateful UIs.
 # SCSS
 * See [this example](samples/scss/whitespace.md) for whitespace usage.
 * Use agreed-upon CSS framework (e.g. [semantic-ui](https://github.com/doabit/semantic-ui-sass)) where possible.
-* Order styles alphabetically within a selector.
+* Try to group styles by function; consider alphabetizing when unsure.
 * Use the SCSS `@import` declaration to require stylesheets vs `*= require`.
-* Imported SASS module filenames should begin with an underscore and end with `.scss` only.
-  * Example: `_mystyles.scss`
 * Use the `asset-url` helper for images and fonts.
   * [Example](samples/scss/asset_url.md)
   * Note that if you use any of the Ruby helpers, the file name requires `.erb` at the end of the file name (e.g. `my_styles.scss.erb`).
 * Lowercase and dasherize class names.
-* Avoid the `>` direct descendant selector when the descendant is a tag.
+* Avoid the `>` direct descendant selector when the descendant is a tag for performance reasons.
   * [Example](samples/scss/descendant.md)
 * Avoid ID selectors.
 * Use SCSS variables (for example, colors are often used in multiple places).
 * Generic naming is favored over domain-driven naming (e.g. `.aside` vs `.cytometry`).
 * Prefer naming elements by content type over visual traits (e.g. `.aside` vs `.left-side-bar`).
-* Encapsulate framework and grid system class names into semantic styles.
-  * [Example](samples/html/mixins.md)
 * Use `box-sizing: border-box;`.
   * Whenever browsers support it, this allows you to define the size of actual boxes, rather than the size before padding and borders are added. Generally works for IE8+.
 * Write out the full hex code in uppercase.
   * Example: `#AAAAAA` instead of `#aaa`.
-* Avoid meta-programming classes.
 * SASS file extensions should not include `.css` where possible. Prefer `foo.scss` to `foo.css.scss`.
 * Prefer `.scss` over `.sass`.
 * Follow [SMACSS guidelines](https://smacss.com/book/categorizing) for CSS organization (Base, Layout, Module, State, Theme).
-* Avoid model-specific CSS.
 * Always use a CSS reset. If the CSS framework being used does not provide one, consider using [normalize-rails](https://github.com/markmcconachie/normalize-rails).
 
 # HTML
-* Do not use tables for presentational layout. *That's sooo 1999.*
-* Do **not *not*** use tables for tabular data *That's sooo 2001.*
 * Do not use `<image>` tags for decorative content.
   * [Example](samples/html/images.md)
-* Use of presentational markup is discouraged (`<b>`, `<i>`, `<blink>`, etc).
-* Do not name tags if they don't need to be named.
-* Do not directly apply framework and grid system class names.
-  * [Example](samples/html/mixins.md)
+* Use of presentational markup is discouraged (`<b>`, `<i>`, etc).
 * Use of XHTML markup is discouraged, e.g. `<br />`.
 * Use layout tags (e.g. `<section>`, `<header>`, `<footer>`, `<aside>`).
   * Note that you are _not_ bound to have only one `<header>` or one `<footer>` tag on a page, but you can only have one `<main>` tag.
-* Put the JavaScript includes in the bottom of your page, not in the top of the page.
-* Modals should be in a partial suffixed with `_modal.html.erb`.
+* If in a partial, modal file names should be suffixed with `_modal.html.erb`.
 * Double-quote raw HTML attributes.
-  * Example: `<i id="foo"></i>`
+  * Example: `<div id="foo"></div>`
 
 # RSpec
 
