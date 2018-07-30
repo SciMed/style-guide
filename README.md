@@ -348,15 +348,14 @@ Use React when building complex, stateful UIs.
   * See our default [`.rubocop.yml`](./.rubocop.yml).
 * Avoid incidental state when setting up expectations.
   * [Example](samples/specs/incidental_state.md)
-* Do not write iterators to generate tests; they make debugging more difficult (all of the tests share line numbers and the `it` description block). Or consider printing a custom error message to give more information about which test is failing.
+* Be careful when using iterators to generate tests; they make debugging more difficult (all of the tests share line numbers and the `it` description block). Or consider printing a custom error message to give more information about which test is failing.
   * It's okay not to be DRY if repetition of code improves readability.
-  * [Example](samples/specs/iterators.md)
 * Use factories rather than fixtures.
 * Use linting with FactoryGirl/Bot.
-* Use `described_class` rather than the class name inside the top-level describe block.
-  * [Example](samples/specs/described_class.md)
-* Avoid redefining major parts of the application in tests. For example, don't re-define `Rails.development?`.
+* Avoid redefining parts of the application in tests. For example, don't re-define `Rails.development?`.
 * Follow the whitespace guide [here](https://github.com/SciMed/style-guide/blob/master/samples/specs/whitespace.md).
+* Prefer `let!` over `let` and `before`.
+* Review the internal best practices guide on GitLab.
 
 #### What to test
 * It would be best to test all possible paths through a method, including edge cases.
@@ -368,52 +367,44 @@ Use React when building complex, stateful UIs.
 
 #### Mocking and stubbing
 
-* Prefer "verifying" doubles when mocking (e.g. `instance_double`).
-  * [Example](samples/specs/instance_double.md)
 * Use `let` blocks for assignment instead of `before(:each)` (`let` blocks are lazily evaluated).
 * Stub all external connections (HTTP, FTP, etc).
-* In controllers, mock models and stub their methods.
 * Prefer writing integration tests over controller tests.
 
 #### Expectation syntax
 * Favor new syntax (on new projects, use RSpec 3.0+), e.g. favor `expect` over `should` on RSpec 2.11+.
-  * [Example](samples/specs/expectation_syntax.md)
 
 #### Description blocks
 
 * Always provide a description string to `it` blocks unless the block contains a [Shoulda Matcher](http://matchers.shoulda.io/) expectation.
-* For consistency, use single quotes unless double quotes are needed.
 * Keep the full spec description as grammatically correct as possible.
   * [Example](samples/specs/full_description.md)
 * Format `describe` block descriptions for class methods as `'.some_class_method_name'` and for instance methods as `'#some_instance_method_name'`.
-* Begin `it` block descriptions with `'returns'` or some other verb that describes the functionality (third person, present tense) rather than `'should'`.
-  * [Example](samples/specs/it_block_description.md)
-* Begin `context` blocks with `having` or `when`.
 * Avoid conditionals in `it` block descriptions. Instead, use `context` blocks to organize different states.
   * [Example](samples/specs/conditional_block_description.md)
-* Prefer using only one expectation per `it` block, particularly for unit tests.
+* Prefer using only one expectation per `it` block for unit tests.
   * If setup is expensive, it may be reasonable to use multiple expectations in a single `it` block.
 
 #### Capybara
 * Prefer using `describe`, `context`, and `it` instead of `feature` and `scenario`.
-* Take care to not use brittle selectors.
 
 # Documentation
 * Keep the README in the project root directory.
-* Use markdown in the `docs/` directory.
-* Keep the README up-to-date, useful, and accurate.
+* Use markdown in the `docs/` directory when appropriate.
 * When a new medium or large feature gets added, add a paragraph or a couple of paragraphs to the README describing the real life scenarios and people including their goals and how it is intended to be used.
 * The README should include information about overall application components, process, server infrastructure, and dependencies that people will need to understand to understand the application.
 * The README should describe how to run the tests.
 * The README should describe which systems and browsers are supported.
 * The README should describe how a developer can get the application up and running.
+* The README should describe the deploy process.
 * Prefer adding documentation to the `README` and `docs/` over the wiki. If documentation exists elsewhere, link to it from the README.
+* If you notice any of the above has become outdated, update the README accordingly.
 
 # SQL
 
 ## General
 
-* Write SQL keywords in upper case.
+* Write SQL keywords and function calls in upper case.
 * Write table names, column names, and aliases in lower case.
 * Put primary keywords for the main query at the beginning of a new line.
   * Example:
@@ -424,7 +415,7 @@ Use React when building complex, stateful UIs.
   WHERE ...
   ORDER BY ...
   ```
-* When using heredoc for SQL strings, use `<<-SQL` as the opening tag.
+* When using heredoc for SQL strings, use `<<~SQL` as the opening tag.
   This allows for SQL syntax highlighting in certain text editors.
 * For performance reasons, prefer Common Table Expressions over subqueries when available.
 * Avoid making materialized views that depend upon other materialized views.
@@ -545,7 +536,6 @@ Use React when building complex, stateful UIs.
 * Consider using `select` when writing ActiveRecord queries.
   * Not only will the query be faster, Ruby will be able to instantiate fewer
     and lighter-weight objects, thereby leading to less garbage collection.
-* Use `includes` or other pre-loading strategies to prevent n+1 queries.
 * Be aware of the following situations where preloading data can lead to
   worsened performance.
   * [Example](./samples/ruby/preloading.md)
@@ -565,7 +555,6 @@ Use React when building complex, stateful UIs.
   * [Example](./samples/ruby/collection_rendering.md)
 * Minimize external resources that need to be fetched upon page load.
   * [Example](./samples/html/google_fonts.md)
-* Cache and memoize when appropriate.
 
 * Consider the following performance resources:
   * _Ruby Performance Optimization_ by Alexander Dymo
@@ -596,3 +585,4 @@ Use React when building complex, stateful UIs.
   instead of `:truncation` (but always `clean_with :truncation`
   `before(:suite)`).
   * [Reference](https://stackoverflow.com/questions/11419536/postgresql-truncation-speed/11423886#11423886)
+* Use FactoryBot >= 4.8 for the config option `FactoryBot.use_parent_strategy` to ensure that associated data is not accidentally created
