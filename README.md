@@ -530,7 +530,9 @@ Use React when building complex, stateful UIs.
   * Use ActiveRecord's `minimum` over `map`/`pluck` and Ruby's `min`.
   * Use ActiveRecord's `sum` over `map`/`pluck` and Ruby's `sum`.
   * Use ActiveRecord's `average` over a custom `average` or `mean` method.
-
+  
+* Use ActiveRecord's `exists?` over its `any?` for Rails < 5.1.
+  [Source](http://www.ombulabs.com/blog/benchmark/performance/rails/present-vs-any-vs-exists.html)
 * Use database indexes (including multi-column and partial indexes when
   appropriate).
 * Consider using `select` when writing ActiveRecord queries.
