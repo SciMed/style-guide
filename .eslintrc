@@ -23,6 +23,12 @@
     "comma-dangle": ["error", "never"],
     "class-methods-use-this": "off",
     "function-paren-newline": ["error", "consistent"],
-    "prefer-destructuring": "off"
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-underscore-dangle": "off",
+    "no-unused-vars": [2, {"args": "all", "argsIgnorePattern": "^_"}],
+    "prefer-destructuring": "off",
+    // Defaults; feel free to modify on project by project basis if given reason to
+    "no-param-reassign": "warn",
+    "import/no-extraneous-dependencies": "on"
   }
 }
