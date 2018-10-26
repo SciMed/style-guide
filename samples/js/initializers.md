@@ -1,31 +1,36 @@
-application.coffee:
+in `app/client/packs/application.js` (or another file that is always loaded)
 
-```coffee
-...
-$ ->
-  $body = $('body')
-  new window.Initializers($body)
+```js
+$(document).ready(() => new Initializer($('body')).initialize());
 
-  $body.on 'cocoon:after-insert' ($newField) ->
-    new window.Initializers($newField)
 ```
 
-initializers.coffee:
 
-```coffee
-class window.Initializers
-  constructor: ($scope) ->
-    @$scope = $scope
-    @select2
-    @bestInPlace
-    @datePicker
-    @tooltip
+in `initializer.js`:
 
-  select2: ->
-    @$scope.find('.select2').select2
-      allowClear: true
-      placeholder: 'Select Option'
+```js
+export default class Initializer {
+  constructor($scope) {
+    this.$scope = $scope;
+  }
 
-  tooltip: ->
-    @$scope.find("[data-toggle='tooltip']").tooltip()
+  initialize() {
+    this.initializeTooltips();
+    this.initializeDatePickers();
+  }
+
+  initializeTooltips() {
+    const $tooltips = this.$scope.find('[data-content]');
+    $tooltips.each((index, element) => {
+      const $element = $(element);
+      const useInlinePopup = $element.data('inline');
+      $element.popup({ inline: useInlinePopup, lastResort: 'bottom center' });
+    });
+  }
+
+  initializeDatePickers() {
+    const $datePickers = this.$scope.find('[data-date-picker]');
+    $datePickers.each((index, element) => new DatePicker($(element)).init());
+  }
+}
 ```

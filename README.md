@@ -81,7 +81,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 
 * Structure model content **[in this order](samples/ruby/model.md)**.
 * Using non-ActiveRecord models is encouraged.
-* Avoid adding `default_scope`. 
+* Avoid adding `default_scope`.
 * Avoid adding callbacks in favor of [an object decorator](samples/ruby/callback.md).
 * Avoid adding callbacks that modify other models.
 * Use of `class << self` is discouraged in ActiveRecord models.
@@ -214,6 +214,8 @@ db/
   * Example: `$$state`
 * When short-circuiting an event listener, explicitly call `event.stopPropagation` and/or `event.preventDefault` as appropriate rather than relying on `return false`.
   * This is because `return false` has different effects in different contexts (see the discussion [here](https://stackoverflow.com/a/4379435)).
+* Use an Initializer class to set up application-wide JavaScript functionality such as date pickers, tooltips, dropdowns, and the like.  It should be run with the whole HTML body upon page load, and can be re-run with portions of the DOM that are inserted/updated via AJAX.
+  * [Example](samples/js/initializers.md)
 
 ## ES6
 All new apps should:
@@ -300,7 +302,7 @@ Use React when building complex, stateful UIs.
     end
   end
   ```
-  
+
 * Consider logging error messages displayed to users as well.
 * When avoiding this logging (due to performance, for example), add a comment to
   the `rescue` block that informs future developers why logging is not
@@ -530,7 +532,7 @@ Use React when building complex, stateful UIs.
   * Use ActiveRecord's `minimum` over `map`/`pluck` and Ruby's `min`.
   * Use ActiveRecord's `sum` over `map`/`pluck` and Ruby's `sum`.
   * Use ActiveRecord's `average` over a custom `average` or `mean` method.
-  
+
 * Use ActiveRecord's `exists?` over its `any?` for Rails < 5.1.
   [Source](http://www.ombulabs.com/blog/benchmark/performance/rails/present-vs-any-vs-exists.html)
 * Use database indexes (including multi-column and partial indexes when
