@@ -9,6 +9,9 @@ $(document).ready(() => new Initializer($('body')).initialize());
 in `initializer.js`:
 
 ```js
+import DatePicker from './DatePicker';
+
+
 export default class Initializer {
   constructor($scope) {
     this.$scope = $scope;
@@ -21,7 +24,7 @@ export default class Initializer {
 
   initializeTooltips() {
     const $tooltips = this.$scope.find('[data-content]');
-    $tooltips.each((index, element) => {
+    $tooltips.each((_index, element) => {
       const $element = $(element);
       const useInlinePopup = $element.data('inline');
       $element.popup({ inline: useInlinePopup, lastResort: 'bottom center' });
@@ -30,7 +33,7 @@ export default class Initializer {
 
   initializeDatePickers() {
     const $datePickers = this.$scope.find('[data-date-picker]');
-    $datePickers.each((index, element) => new DatePicker($(element)).init());
+    $datePickers.each((_index, element) => new DatePicker($(element)).init());
   }
 }
 ```
