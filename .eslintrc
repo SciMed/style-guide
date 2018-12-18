@@ -29,6 +29,6 @@
     "prefer-destructuring": "off",
     // Defaults; feel free to modify on project by project basis if given reason to
     "no-param-reassign": "warn",
-    "import/no-extraneous-dependencies": "on"
+    "import/no-extraneous-dependencies": "error"
   }
 }
