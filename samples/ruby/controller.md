@@ -1,5 +1,5 @@
 ```Ruby
-class UsersController < ActionController::Base
+class UsersController < ApplicationController
   extend Auditable
   include Emailable
 
