@@ -27,8 +27,10 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Freeze constants in their definitions to prevent constant mutation.
   * Example: `ITEMS = %w(banana apple cherry).freeze`
 * Never `rescue` or `fail`/`raise` a generic `Exception`. Instead, `rescue`/`fail`/`raise` a specific type of `Exception`.
-* Mark methods as private by calling `private def foo` when using recent Ruby versions (> 2.1.0). For earlier versions, mark methods as private by calling `private :my_method` directly after the end of the method.
-* Keep private methods clustered together at the end of the file.
+* Mark instance methods as private by calling `private def foo` when using recent Ruby versions (> 2.1.0). For earlier versions, mark methods as private by calling `private :my_method` directly after the end of the method.
+* Mark class methods as private by calling `private_class_method def self.foo` when using recent Ruby versions (> 2.1.0). For earlier versions, mark methods as private by calling `private_class_method :my_method` directly after the end of the method.
+* Keep private instance methods clustered together at the end of the file.
+* Keep private class methods clustered together after public class methods but before public instance methods.
 * Write arrays on a single line when they are fewer than 80 characters long. Otherwise, write them as one line per item.
   * [Example](samples/ruby/arrays.md)
 * Avoid meta-programming classes for reasons of readability.
