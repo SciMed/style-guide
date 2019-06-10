@@ -24,9 +24,6 @@ If you make any changes to the style guide, please clearly describe the logic th
 # Ruby
 * Adhere to Rubocop when possible.
   * See our default [`.rubocop.yml`](./.rubocop.yml).
-* Freeze constants in their definitions to prevent constant mutation.
-  * Example: `ITEMS = %w(banana apple cherry).freeze`
-* Never `rescue` or `fail`/`raise` a generic `Exception`. Instead, `rescue`/`fail`/`raise` a specific type of `Exception`.
 * Mark instance methods as private by calling `private def foo` when using recent Ruby versions (> 2.1.0). For earlier versions, mark methods as private by calling `private :my_method` directly after the end of the method.
 * Mark class methods as private by calling `private_class_method def self.foo` when using recent Ruby versions (> 2.1.0). For earlier versions, mark methods as private by calling `private_class_method :my_method` directly after the end of the method.
 * Keep private instance methods clustered together at the end of the file.
@@ -51,10 +48,9 @@ If you make any changes to the style guide, please clearly describe the logic th
 
 #### General
 * Pretty much all of the application's code should stay out of `lib/`. Think of `lib/` as a place to put components that are generalized enough that they could be used in other applications (but then why not make those things into gems?).
-* Consider vendoring any code placed in the `lib/` directory as a gem.
-* Organize objects into `app/`: `concerns/`, `decorators/`, `modules/`, `services/`, `strategies/`, `validators/`.
-* *Even better*: organize models into gems or namespaces.
-* Do not camelCase acronyms in class names.
+* Organize objects into `app/`: `presenters/`, `services/`, `serializers/`, `validators/`. If you have another collection of objects that are general enough to warrant their own folder, feel free to do so (e.g. `app/forms`).
+* Organize classes into namespaces when appropriate.
+* Treat acronyms as words in class names.
   * [Example](samples/ruby/camelcasing.md)
 * Consider using methods instead of constants. Methods are easier to stub, test, and mark private.
 
@@ -67,14 +63,20 @@ If you make any changes to the style guide, please clearly describe the logic th
 #### Controllers
 
 * Structure Controller content **[in this order](samples/ruby/controller.md)**.
-* Try to avoid adding non RESTful actions to a resource.
+* Try to avoid adding non RESTful actions to a resource. Consider if a non RESTful action for one controller could be a RESTful action for a new controller (that does not necessarily map to a model).
 * Storing anything other than the session id in session is discouraged.
   * This can be a security risk unless done carefully. This also makes the browser part of the current state of the application, allowing things to get out of whack. For example keeping the current working record in the session causes problems if users try to use the application with more than one tab or window.
 * Keep controllers skeletal—they shouldn't contain business logic.
-* Place non RESTful actions above RESTful actions in the controller.
-* Consider adding a resource if a controller has more than two non-default actions.
-  * [Example](samples/ruby/restful_controller.md)
-* Each controller action should ideally invoke only one method other than `find` or `new`.
+* Controllers should ideally only have the following responsibilities:
+  * Looking up objects
+  * Redirecting
+  * View rendering
+  * Set flash
+  * Assigning raw params to objects
+    * Converting params into the form they will take in the database should be done via service objects
+  * Wrapping objects in presenters
+  * Authentication/authorization
+  * Instantiating/calling service objects
 * If you find yourself needing more than two instance variables consider using a Presenter object, which could be more easily unit tested.
 * If you use code generation tools (e.g. scaffold) remove any unused code like `respond_to` blocks.
 * Ensure there is a method in the controller for every route that is rendered even if the method is empty.
