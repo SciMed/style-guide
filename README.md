@@ -90,8 +90,6 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Avoid adding callbacks that modify other models.
 * Use of `class << self` is discouraged in ActiveRecord models.
 * Use of `has_and_belongs_to_many` is *strongly* discouraged.  Use `has_many :through` instead.
-* Use `validates` instead of the `validates_*_of` method.
-  * [Example](samples/ruby/validates.md)
 * Use a Validator object for custom validations.
   * [Example](samples/ruby/validator.md)
 * Use of `update_attribute`, `update_column`, `update_columns`, and `update_all` skip validations. Rubocop should help you with this. `update_attribute` will also persist changes to any other dirty attributes on your model as well, not just the attribute that you are trying to update. However, if you do not need validations or callbacks, `update_column` is preferred over update_attribute because it is easier to remember that it does not run validations.
@@ -140,6 +138,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * When you create a new migration, run it both `up` ***and*** `down` before committing the change (`rake db:migrate:redo` will run the very last migration down and then up again).
 * Prefer using `change` in migrations to writing individual `up` and `down` methods when possible.
 * Make sure to update seeds/factories when adding columns (particularly those with validations) or tables.
+* If you are doing something that cannot be reversed (such as removing data or deleting a column), raise `ActiveRecord::IrreversibleMigration` in your `down` method. Please leave a comment about why the migration is irreversible.
 * If you are modifying data in a migration be sure to call two methods at the beginning of the migration. If you don't reset the column information then some data could be silently lost instead of saved. Also, Rails will only reset column information once even if you call it multiple times, which is why the `schema_cache` needs to be cleared first.
 
 ```ruby
@@ -158,18 +157,20 @@ Model.reset_column_information
 * Structure the seeds as follows:
 ```
 db/
-  development/
-    model_1.rb
-  production/
-    model_1.rb
-  staging/
-    model_1.rb
+  seeds/
+    development/
+      model_1.rb
+    production/
+      model_1.rb
+    staging/
+      model_1.rb
+    development.rb
+    production.rb
+    staging.rb
   seeds.rb
-  development.rb
-  production.rb
-  staging.rb
 ```
-* Use FactoryGirl/Bot factories to seed development data.
+* Consider using [Seed Bank](https://github.com/james2m/seedbank) to help with your seeds.
+* Consider using FactoryGirl/Bot factories to seed development data.
 * Tear down and rebuild your database regularly.
 
 #### Mailers
@@ -182,11 +183,6 @@ db/
   * This increases security because users can't see each other's addresses and makes it easier to handle errors with invalid email addresses.
 * Log when emails are sent and when they fail to send.
 
-#### Time
-
-* Use `Time.zone.now` in lieu of `Time.now` or `Time.current` when referencing the current time. See Issue #11 for more information.
-* Use `Time.zone.today` to access the current date, `Time.zone.yesterday` to access yesterday's date (Rails 4.1.8+), and `Time.zone.tomorrow` (Rails 4.1.8+) to access tomorrow's date.
-
 #### Bundler
 * Structure Gemfile content in alphabetical order with groups at the bottom in the following order:
   * `:development`
@@ -197,6 +193,7 @@ db/
 * Remove default comments.
 * Versioning is discouraged unless a specific version of the gem is required (but keep an eye out for breaking things when gem versions update!). If you do need to version, add a comment.
 * Run `bundle audit` before pushing.
+* Prefer using `update --source` or `update --conservative` when you want to update a specific gem without updating its dependencies.
 
 #### Localization/Internationalization (i18n) configuration
 
@@ -220,6 +217,7 @@ db/
   * This is because `return false` has different effects in different contexts (see the discussion [here](https://stackoverflow.com/a/4379435)).
 * Use an Initializer class to set up application-wide JavaScript functionality such as date pickers, tooltips, dropdowns, and the like.  It should be run with the whole HTML body upon page load, and can be re-run with portions of the DOM that are inserted/updated via AJAX.
   * [Example](samples/js/initializers.md)
+* Use `getUTCDay()` over `getDay` to prevent surprises due to time zones
 
 ## ES6
 All new apps should:
