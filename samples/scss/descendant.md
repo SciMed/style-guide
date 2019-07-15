@@ -1,11 +1,11 @@
 ```SCSS
 /* Bad */
 .aside > p {
-  color: #444;
+  color: #444444;
 }
 
 /* Good */
 .aside > .signature {
-  color: #444;
+  color: #444444;
 }
 ```
