@@ -27,7 +27,7 @@ body {
 
 #results {
   .sort_link {
-    background:none !important;
+    background: none !important;
   }
 
   form.button_to {
