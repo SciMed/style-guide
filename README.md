@@ -93,6 +93,7 @@ If you make any changes to the style guide, please clearly describe the logic th
   * [Example](samples/ruby/validator.md)
 * Use of `update_attribute`, `update_column`, `update_columns`, and `update_all` skip validations. Rubocop should help you with this. `update_attribute` will also persist changes to any other dirty attributes on your model as well, not just the attribute that you are trying to update. However, if you do not need validations or callbacks, `update_column` is preferred over update_attribute because it is easier to remember that it does not run validations.
 * When accessing associations through other associations, use `has_many` or `has_one` `through` rather than a delegation or a custom method **when all target objects in the associations are persisted**. Use delegations or custom methods **when there is useful data that is not yet persisted**. Keeping the data in associations allows preloading to prevent n+1 queries and ensures that more processing is done via SQL than Ruby, which is more performant. Unfortunately, associations `through` other associations will not see non-persisted objects.
+* Extract complicated scopes into a Database View.
 
 #### Views
 
@@ -364,10 +365,9 @@ Use React when building complex, stateful UIs.
 
 #### What to test
 * Prefer checking exception type over checking a specific error message.
-* Use shared examples to test common behavior, but avoid including tests that take a long time to execute.
-* Use [shoulda-matchers](https://github.com/thoughtbot/shoulda-matchers) for testing validations, associations, and delegations in models.
+* Use shared examples to test common behavior.
+* Use [shoulda-matchers](https://github.com/thoughtbot/shoulda-matchers) for testing validations, associations, nested attributes, and delegations in models.
 * Prefer testing complicated scopes using an integration test that confirms the expected behavior against persisted records.
-* Extract complicated scopes into a QueryBuilder object for easier unit-testing.
 
 #### Mocking and stubbing
 
