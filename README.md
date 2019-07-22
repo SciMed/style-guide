@@ -353,14 +353,16 @@ Use React when building complex, stateful UIs.
 * Be careful when using iterators to generate tests; they make debugging more difficult (all of the tests share line numbers and the `it` description block). Or consider printing a custom error message to give more information about which test is failing.
   * It's okay not to be DRY if repetition of code improves readability.
 * Use factories rather than fixtures.
-* Use linting with FactoryGirl/Bot.
+* Use linting with FactoryGirl/Bot (`FactoryBot.lint`).
+* When testing attributes that are set via FactoryBot/Girl, make sure to set the attribute directly in the test rather than relying on the default Factory value.
+  * This ensures that someone reading the test only needs to look at the test file to understand what is being checked.
+  * Also makes changing the factory less destructive.
 * Avoid redefining parts of the application in tests. For example, don't re-define `Rails.development?`.
 * Follow the whitespace guide [here](https://github.com/SciMed/style-guide/blob/master/samples/specs/whitespace.md).
 * Prefer `let!` over `let` and `before`.
-* Review the internal best practices guide on GitLab.
+* Review the [internal best practices guide](https://git.scimedsolutions.com/scimed/Technical-Knowledge-Base/wikis/testing-lessons-learned) on GitLab.
 
 #### What to test
-* It would be best to test all possible paths through a method, including edge cases.
 * Prefer checking exception type over checking a specific error message.
 * Use shared examples to test common behavior, but avoid including tests that take a long time to execute.
 * Use [shoulda-matchers](https://github.com/thoughtbot/shoulda-matchers) for testing validations, associations, and delegations in models.
