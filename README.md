@@ -372,8 +372,9 @@ Use React when building complex, stateful UIs.
 #### Mocking and stubbing
 
 * Use `let` blocks for assignment instead of `before(:each)` (`let` blocks are lazily evaluated).
+* When writing unit tests, stub out all public dependencies that are not the unit itself.
 * Stub all external connections (HTTP, FTP, etc).
-* Prefer writing integration tests over controller tests.
+* Prefer liberally writing feature tests over controller tests.
 
 #### Expectation syntax
 * Favor new syntax (on new projects, use RSpec 3.0+), e.g. favor `expect` over `should` on RSpec 2.11+.
