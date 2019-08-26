@@ -123,6 +123,9 @@ RSpec/ExpectChange:
   EnforcedStyle: block
 RSpec/LeadingSubject:
   Enabled: false
+RSpec/LetSetup:
+  Exclude:
+    - '**/spec/features/**/*'
 RSpec/MessageChain:
   Enabled: false
 RSpec/MultipleExpectations:
