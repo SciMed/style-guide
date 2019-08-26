@@ -393,15 +393,16 @@ Use React when building complex, stateful UIs.
 #### Capybara
 * Prefer using `describe`, `context`, and `it` instead of `feature` and `scenario`.
 
-# Documentation
+# Project Documentation
 * Keep the README in the project root directory.
 * Use markdown in the `docs/` directory when appropriate.
-* When a new medium or large feature gets added, add a paragraph or a couple of paragraphs to the README describing the real life scenarios and people including their goals and how it is intended to be used.
-* The README should include information about overall application components, process, server infrastructure, and dependencies that people will need to understand to understand the application.
-* The README should describe how to run the tests.
-* The README should describe which systems and browsers are supported.
-* The README should describe how a developer can get the application up and running.
-* The README should describe the deploy process.
+* When a new medium or large feature gets added, add a paragraph or a couple of paragraphs of documentation (perhaps as a new file in the `docs/` folder) describing the real life scenarios and people including their goals and how it is intended to be used.
+* Deploy and server information should go in `docs/DEPLOY.md`. Link to this document in the README. This document should include the following:
+  * Deploy instructions.
+  * Consider adding a link to the Tempus task template for the deploys.
+  * Links to credentials for each server.
+  * Link to the application for each environment.
+* The README should include information about dependencies that people will need to understand to understand the application, how to run the tests, which systems and browsers are supported, and how a developer can get the application up and running.
 * Prefer adding documentation to the `README` and `docs/` over the wiki. If documentation exists elsewhere, link to it from the README.
 * If you notice any of the above has become outdated, update the README accordingly.
 
@@ -424,6 +425,7 @@ Use React when building complex, stateful UIs.
   This allows for SQL syntax highlighting in certain text editors.
 * For performance reasons, prefer Common Table Expressions over subqueries when available.
 * Avoid making materialized views that depend upon other materialized views.
+* Don't be afraid to add new database views.
 
 ## SELECT
 
