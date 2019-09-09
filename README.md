@@ -35,7 +35,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * When documenting methods use [Yard](http://yardoc.org/) style documentation. This is especially important when purpose, parameters, or return values are ambiguous.
   * Example:
   ```ruby
-  # @param [Array<String>] names The names that will be joined
+  # @param names [Array<String>] The names that will be joined
   # @return [String] a concatenated list of names
   def foo(names)
     ...
