@@ -79,6 +79,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * If you find yourself needing more than two instance variables consider using a Presenter object, which could be more easily unit tested.
 * If you use code generation tools (e.g. scaffold) remove any unused code like `respond_to` blocks.
 * Ensure there is a method in the controller for every route that is rendered even if the method is empty.
+* Setting `current_user` should be the responsibility of the `ApplicationController`
 
 #### Models
 
