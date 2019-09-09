@@ -30,6 +30,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Write arrays on a single line when they are fewer than 80 characters long. Otherwise, write them as one line per item.
   * [Example](samples/ruby/arrays.md)
 * Avoid meta-programming classes for reasons of readability.
+* Define your `Rakefile` to be similar to [the example](./samples/ruby/Rakefile).
 
 #### Documentation
 * When documenting methods use [Yard](http://yardoc.org/) style documentation. This is especially important when purpose, parameters, or return values are ambiguous.
@@ -270,7 +271,7 @@ Eslint can by run on the command line with `yarn eslint` if the following is add
 }
 ```
 
-Eslint should be run as part of your project's default rake task.
+Eslint should be run as part of your project's default rake task. See [the example Rakefile](./samples/ruby/Rakefile).
 
 ## CoffeeScript
 Only use CoffeeScript on applications that already use it; consider writing new features on those projects in modern JS. You may find the following tool useful for converting JS to CoffeeScript: http://js2.coffee/
