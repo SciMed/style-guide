@@ -135,6 +135,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 
 * Both `schema.rb`/`structure.sql` and migration files should be maintained so that developers can migrate from scratch or load the schema.
 * Migrations should define any classes that they use (if the class is deleted in the future, the migrations should still be able to run).
+  * [Example](./samples/ruby/migration.md)
 * Use those database features! Enforce default values, null constraints, uniqueness, etc. in the database (via migrations) in addition to the application layer, as the database can avoid race conditions and is faster and more reliable.
 * If you have `NOT NULL` constraints, be sure to add a `dependent` option on the association. Otherwise, you will get invalid query exceptions when things are deleted. Also, consider a foreign key with the `CASCADE` option.
 * When you create a new migration, run it both `up` ***and*** `down` before committing the change (`rake db:migrate:redo` will run the very last migration down and then up again).
@@ -142,11 +143,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Make sure to update seeds/factories when adding columns (particularly those with validations) or tables.
 * If you are doing something that cannot be reversed (such as removing data or deleting a column), raise `ActiveRecord::IrreversibleMigration` in your `down` method. Please leave a comment about why the migration is irreversible.
 * If you are modifying data in a migration be sure to call two methods at the beginning of the migration. If you don't reset the column information then some data could be silently lost instead of saved. Also, Rails will only reset column information once even if you call it multiple times, which is why the `schema_cache` needs to be cleared first.
-
-```ruby
-Model.connection.schema_cache.clear!
-Model.reset_column_information
-```
+  * [Example](./samples/ruby/migration.md)
 
 #### Seeds
 
