@@ -197,6 +197,7 @@ db/
 #### Localization/Internationalization (i18n) configuration
 
 * Add a default date and datetime format to your `en.yml`.
+  * [Example](./samples/ruby/en.yml.md)
 * Consider using localization/internationalization config files to encapsulate customer-facing strings such as error messages when:
   * the text is likely to change frequently OR
   * the text is a template that is used in multiple places (i.e. to keep the code DRY). Note that i18n supports [variable interpolation](http://guides.rubyonrails.org/i18n.html#passing-variables-to-translations).
