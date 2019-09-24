@@ -1,7 +1,7 @@
-# rubocop version: 0.71.0
-# rubocop-performance version: 1.3.0
-# rubocop-rails version: 2.0.1
-# rubocop-rspec version: 1.33.0
+# rubocop version: 0.74.0
+# rubocop-performance version: 1.4.1
+# rubocop-rails version: 2.3.2
+# rubocop-rspec version: 1.35.0
 
 require:
   - rubocop-performance
@@ -22,11 +22,9 @@ AllCops:
     - '**/Vagrantfile'
     - '**/db/schema.rb'
   TargetRubyVersion: 2.6
-  TargetRailsVersion: 5.2
+  TargetRailsVersion: 6.0
 
 Layout/ClassStructure:
-  Enabled: true
-Layout/EmptyLineAfterGuardClause:
   Enabled: true
 Layout/FirstArrayElementLineBreak:
   Enabled: true
@@ -157,9 +155,9 @@ RSpec/NamedSubject:
   Enabled: false
 RSpec/NestedGroups:
   Enabled: false
-RSpec/SubjectStub:
-  Enabled: false
 RSpec/ReturnFromStub:
+  Enabled: false
+RSpec/SubjectStub:
   Enabled: false
 
 Style/AccessModifierDeclarations:
@@ -171,6 +169,8 @@ Style/CollectionMethods:
 Style/ConditionalAssignment:
   EnforcedStyle: assign_inside_condition
   IncludeTernaryExpressions: false
+Style/DateTime:
+  Enabled: true
 Style/Documentation:
   Exclude:
     - '**/controllers/**/*'
@@ -205,8 +205,6 @@ Style/StringMethods:
   Enabled: true
 
 # Defaults; may make sense to change for specific projects
-Layout/CaseIndentation:
-  Enabled: false
 Layout/EmptyLineAfterGuardClause:
   Enabled: true
 
