@@ -129,6 +129,9 @@ Rails/UniqBeforePluck:
 # Prefer eql
 RSpec/BeEql:
   Enabled: false
+RSpec/BeforeAfterAll:
+  Exclude:
+    - '**/spec/models/powers/*'
 RSpec/ContextWording:
   Prefixes:
     - by
@@ -147,6 +150,9 @@ RSpec/ExpectChange:
   EnforcedStyle: block
 RSpec/ImplicitSubject:
   Enabled: false
+RSpec/InstanceVariable:
+  Exclude:
+    - '**/spec/models/powers/*'
 RSpec/LeadingSubject:
   Enabled: false
 RSpec/MessageChain:
