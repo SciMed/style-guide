@@ -31,6 +31,10 @@ If you make any changes to the style guide, please clearly describe the logic th
   * [Example](samples/ruby/arrays.md)
 * Avoid meta-programming classes for reasons of readability.
 * Define your `Rakefile` to be similar to [the example](./samples/ruby/Rakefile).
+* When writing predicate methods (methods ending in `?`), prefer having them return explicit `true` or `false` values rather than truthy or falsey values.
+* When writing Ruby modules, keep them in the following locations based on use case:
+  * When the module is meant for a model or controller, put them in `app/models/concerns/` or `app/controllers/concerns/` (even if they are not an explicit `ActiveSupport::Concern).
+  * When the module is not meant for a model or controller, keep it in the directory for its namespace (e.g. `SpreadsheetImporters::Formatter` would likely live in `app/services/spreadsheet_importers/formatter.rb`).
 
 #### Documentation
 * When documenting methods use [Yard](http://yardoc.org/) style documentation. This is especially important when purpose, parameters, or return values are ambiguous.
@@ -343,6 +347,11 @@ Use React when building complex, stateful UIs.
 * If in a partial, modal file names should be suffixed with `_modal.html.erb`.
 * Double-quote raw HTML attributes.
   * Example: `<div id="foo"></div>`
+* Default to the following FontAwesome icons for these common use cases:
+  * Save: 'check'
+  * Delete: 'times'
+  * Cancel: 'ban'
+  * Edit: 'pencil alternate'
 
 # RSpec
 
@@ -358,9 +367,12 @@ Use React when building complex, stateful UIs.
 * When testing attributes that are set via FactoryBot/Girl, make sure to set the attribute directly in the test rather than relying on the default Factory value.
   * This ensures that someone reading the test only needs to look at the test file to understand what is being checked.
   * Also makes changing the factory less destructive.
+* Define factories in `spec/factories/model_name.rb` rather than `spec/factories.rb`.
+* Prefer using FactoryBot traits over nested factories.
 * Avoid redefining parts of the application in tests. For example, don't re-define `Rails.development?`.
 * Follow the whitespace guide [here](https://github.com/SciMed/style-guide/blob/master/samples/specs/whitespace.md).
 * Prefer `let!` over `let` and `before`.
+* Keep files used for specs (such as spreadsheets, PDFs or images) in `spec/assets/`.
 * Review the [internal best practices guide](https://git.scimedsolutions.com/scimed/Technical-Knowledge-Base/wikis/testing-lessons-learned) on GitLab.
 
 #### What to test
