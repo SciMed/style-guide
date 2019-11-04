@@ -14,6 +14,12 @@ class User < ActiveRecord::Base
   can_login, memorable: true
 
   GENDERS = %w(male female).freeze
+  
+  enum state: {
+    'Draft' => 'draft',
+    'Complete' => 'complete',
+    'Published' => 'published'
+  }
 
   before_save :cook
   after_save :update_username_lower
