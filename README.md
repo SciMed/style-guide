@@ -359,6 +359,8 @@ Use React when building complex, stateful UIs.
 * Adhere to Rubocop [(rubocop-rspec)](https://github.com/nevir/rubocop-rspec) when possible.
   * See our default [`.rubocop.yml`](./.rubocop.yml).
 * Avoid incidental state when setting up expectations.
+  * [Example](samples/specs/support_classes.md)
+* Avoid defining new constants in specs, as it could lead to flakey tests due to application constants being overwritten.
   * [Example](samples/specs/incidental_state.md)
 * Be careful when using iterators to generate tests; they make debugging more difficult (all of the tests share line numbers and the `it` description block). Or consider printing a custom error message to give more information about which test is failing.
   * It's okay not to be DRY if repetition of code improves readability.
