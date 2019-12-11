@@ -1,7 +1,7 @@
-# rubocop version: 0.75.1
-# rubocop-performance version: 1.5.0
-# rubocop-rails version: 2.3.2
-# rubocop-rspec version: 1.36.0
+# rubocop version: 0.77.0
+# rubocop-performance version: 1.5.1
+# rubocop-rails version: 2.4.0
+# rubocop-rspec version: 1.37.0
 
 require:
   - rubocop-performance
@@ -86,13 +86,13 @@ Metrics/PerceivedComplexity:
 Naming/AccessorMethodName:
   Exclude:
     - '**/app/controllers/**/*'
-Naming/UncommunicativeBlockParamName:
+Naming/BlockParameterName:
   AllowedNames:
     - id
     - x
     - y
     - _
-Naming/UncommunicativeMethodParamName:
+Naming/MethodParameterName:
   AllowedNames:
     - id
     - x
@@ -216,6 +216,8 @@ Style/StringMethods:
 Layout/EmptyLineAfterGuardClause:
   Enabled: true
 
+Rails/FilePath:
+  EnforcedStyle: slashes
 Rails/SaveBang:
   Enabled: true
 
