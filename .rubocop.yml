@@ -1,7 +1,12 @@
-# rubocop version: 0.57.2
-# rubocop-rspec version: 1.27.0
+# rubocop version: 0.77.0
+# rubocop-performance version: 1.5.1
+# rubocop-rails version: 2.4.0
+# rubocop-rspec version: 1.37.0
 
-require: rubocop-rspec
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
   Exclude:
@@ -16,9 +21,11 @@ AllCops:
     - '**/Rakefile'
     - '**/Vagrantfile'
     - '**/db/schema.rb'
-  TargetRubyVersion: 2.5
-  TargetRailsVersion: 5.2
+  TargetRubyVersion: 2.6
+  TargetRailsVersion: 6.0
 
+Layout/CaseIndentation:
+  IndentOneStep: true
 Layout/ClassStructure:
   Enabled: true
 Layout/FirstArrayElementLineBreak:
@@ -28,6 +35,10 @@ Layout/FirstHashElementLineBreak:
 Layout/FirstMethodArgumentLineBreak:
   Enabled: true
 Layout/FirstMethodParameterLineBreak:
+  Enabled: true
+Layout/MultilineHashKeyLineBreaks:
+  Enabled: true
+Layout/MultilineMethodArgumentLineBreaks:
   Enabled: true
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
@@ -42,6 +53,8 @@ Layout/SpaceBeforeFirstArg:
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - '**/spec/**/*'
+Lint/NumberConversion:
+  Enabled: true
 
 Metrics/AbcSize:
   Exclude:
@@ -51,6 +64,7 @@ Metrics/BlockLength:
     - '**/config/**/*'
     - '**/helpers/**/*'
     - '**/db/migrate/**/*'
+    - '**/db/seeds/**/*'
     - '**/spec/**/*'
 Metrics/CyclomaticComplexity:
   Max: 5
@@ -65,18 +79,24 @@ Metrics/MethodLength:
   Max: 15
   Exclude:
     - '**/db/migrate/**/*'
+Metrics/ModuleLength:
+  Exclude:
+    - '**/db/seeds/**/*'
 Metrics/PerceivedComplexity:
   Max: 5
 
 Naming/AccessorMethodName:
-  Enabled: false
-Naming/UncommunicativeBlockParamName:
+  Exclude:
+    - '**/app/controllers/**/*'
+Naming/BlockParameterName:
   AllowedNames:
     - id
     - x
     - y
+    - k
+    - v
     - _
-Naming/UncommunicativeMethodParamName:
+Naming/MethodParameterName:
   AllowedNames:
     - id
     - x
@@ -89,12 +109,14 @@ Naming/VariableNumber:
 # `foo.casecmp(bar).zero?`
 Performance/Casecmp:
   Enabled: false
-
-Rails:
+Performance/CaseWhenSplat:
   Enabled: true
+
 Rails/Blank:
   NilOrEmpty: false
   UnlessPresent: false
+Rails/FilePath:
+  EnforcedStyle: slashes
 # Keyword arguments aren't functionally equivalent to positional arguments.
 # Using keyword arguments in controller specs makes the param keys strings and
 # not symbols, even if adding `.with_indifferent_access`.
@@ -113,14 +135,30 @@ Rails/UniqBeforePluck:
 # Prefer eql
 RSpec/BeEql:
   Enabled: false
+RSpec/BeforeAfterAll:
+  Exclude:
+    - '**/spec/models/powers/*'
+RSpec/ContextWording:
+  Prefixes:
+    - by
+    - when
+    - with
+    - without
 # No class to describe for feature tests
 RSpec/DescribeClass:
   Exclude:
     - '**/spec/features/**/*'
+RSpec/EmptyLineAfterExample:
+  Enabled: false
 RSpec/ExampleLength:
   Enabled: false
 RSpec/ExpectChange:
   EnforcedStyle: block
+RSpec/ImplicitSubject:
+  Enabled: false
+RSpec/InstanceVariable:
+  Exclude:
+    - '**/spec/models/powers/*'
 RSpec/LeadingSubject:
   Enabled: false
 RSpec/LetSetup:
@@ -134,9 +172,9 @@ RSpec/NamedSubject:
   Enabled: false
 RSpec/NestedGroups:
   Enabled: false
-RSpec/SubjectStub:
-  Enabled: false
 RSpec/ReturnFromStub:
+  Enabled: false
+RSpec/SubjectStub:
   Enabled: false
 
 Style/AccessModifierDeclarations:
@@ -148,9 +186,21 @@ Style/CollectionMethods:
 Style/ConditionalAssignment:
   EnforcedStyle: assign_inside_condition
   IncludeTernaryExpressions: false
+Style/DateTime:
+  Enabled: true
 Style/Documentation:
   Exclude:
     - '**/controllers/**/*'
+    - '**/app/helpers/application_helper.rb'
+    - '**/app/mailers/application_mailer.rb'
+    - '**/app/models/application_record.rb'
+Style/DocumentationMethod:
+  Enabled: true
+  Exclude:
+    - '**/config/**/*'
+    - '**/controllers/**/*'
+    - '**/db/**/*'
+    - '**/spec/**/*'
 Style/EmptyMethod:
   EnforcedStyle: expanded
 Style/FormatStringToken:
@@ -163,8 +213,6 @@ Style/NumericPredicate:
   Enabled: false
 Style/OptionHash:
   Enabled: true
-Style/SafeNavigation:
-  Enabled: false
 Style/Send:
   Enabled: true
 # Prevents self-documentation
@@ -173,9 +221,7 @@ Style/SingleLineBlockParams:
 Style/StringMethods:
   Enabled: true
 
-# Defaults; may make sense to turn off for specific projects
-Layout/CaseIndentation:
-  Enabled: false
+# Defaults; may make sense to change for specific projects
 Layout/EmptyLineAfterGuardClause:
   Enabled: true
 
