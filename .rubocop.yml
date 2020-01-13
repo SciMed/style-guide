@@ -194,13 +194,6 @@ Style/Documentation:
     - '**/app/helpers/application_helper.rb'
     - '**/app/mailers/application_mailer.rb'
     - '**/app/models/application_record.rb'
-Style/DocumentationMethod:
-  Enabled: true
-  Exclude:
-    - '**/config/**/*'
-    - '**/controllers/**/*'
-    - '**/db/**/*'
-    - '**/spec/**/*'
 Style/EmptyMethod:
   EnforcedStyle: expanded
 Style/FormatStringToken:
@@ -232,6 +225,13 @@ RSpec/LetSetup:
   Exclude:
     - '**/spec/features/**/*'
 
+Style/DocumentationMethod:
+  Enabled: true
+  Exclude:
+    - '**/config/**/*'
+    - '**/controllers/**/*'
+    - '**/db/**/*'
+    - '**/spec/**/*'
 Style/RedundantBegin:
   Enabled: true
 Style/ZeroLengthPredicate:
