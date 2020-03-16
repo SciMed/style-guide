@@ -23,7 +23,6 @@ If you make any changes to the style guide, please clearly describe the logic th
 # Ruby
 * Adhere to Rubocop when possible.
   * See our default [`.rubocop.yml`](./.rubocop.yml).
-* Mark instance methods as private by calling `private def foo` when using recent Ruby versions (> 2.1.0). For earlier versions, mark methods as private by calling `private :my_method` directly after the end of the method.
 * Mark class methods as private by calling `private_class_method def self.foo` when using recent Ruby versions (> 2.1.0). For earlier versions, mark methods as private by calling `private_class_method :my_method` directly after the end of the method.
 * Keep private instance methods clustered together at the end of the file.
 * Keep private class methods clustered together after public class methods but before public instance methods.
@@ -37,7 +36,7 @@ If you make any changes to the style guide, please clearly describe the logic th
   * When the module is not meant for a model or controller, keep it in the directory for its namespace (e.g. `SpreadsheetImporters::Formatter` would likely live in `app/services/spreadsheet_importers/formatter.rb`).
 
 #### Documentation
-* When documenting methods use [Yard](http://yardoc.org/) style documentation. This is especially important when purpose, parameters, or return values are ambiguous.
+* When documenting methods use [Yard](http://yardoc.org/) style documentation. This is especially important when purpose, parameters, or return values are ambiguous. Aim to document each public method.
   * Example:
   ```ruby
   # @param names [Array<String>] The names that will be joined
@@ -63,6 +62,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Avoid more than 1 level of resource nesting.
   * [Example](samples/ruby/nested_routes.md)
 * Do not use the `match` wildcard route matcher.
+* Only add routes that are explicitly used/enabled. Use `only` or `except` in your routes file to prevent additional unsupported routes from being created.
 
 #### Controllers
 
@@ -94,7 +94,6 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Avoid adding callbacks in favor of [an object decorator](samples/ruby/callback.md).
 * Avoid adding callbacks that modify other models.
 * Use of `class << self` is discouraged in ActiveRecord models.
-* Use of `has_and_belongs_to_many` is *strongly* discouraged.  Use `has_many :through` instead.
 * Use a Validator object for custom validations.
   * [Example](samples/ruby/validator.md)
 * Use of `update_attribute`, `update_column`, `update_columns`, and `update_all` skip validations. Rubocop should help you with this. `update_attribute` will also persist changes to any other dirty attributes on your model as well, not just the attribute that you are trying to update. However, if you do not need validations or callbacks, `update_column` is preferred over update_attribute because it is easier to remember that it does not run validations.
