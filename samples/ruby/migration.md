@@ -4,7 +4,8 @@
 class Article < ApplicationRecord
   belongs_to :user
 end
-class User < ApplicationRecord; end
+class User < ApplicationRecord
+end
 
 class AddAuthorColumnToUsers < ActiveRecord::Migration
   def up
