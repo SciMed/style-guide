@@ -1,5 +1,5 @@
 ```Ruby
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   extend Auditable
   include Emailable
 
