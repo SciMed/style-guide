@@ -1,7 +1,7 @@
-# rubocop version: 0.77.0
-# rubocop-performance version: 1.5.1
-# rubocop-rails version: 2.4.0
-# rubocop-rspec version: 1.37.0
+# rubocop version: 0.80.1
+# rubocop-performance version: 1.5.2
+# rubocop-rails version: 2.4.2
+# rubocop-rspec version: 1.38.1
 
 require:
   - rubocop-performance
@@ -21,7 +21,7 @@ AllCops:
     - '**/Rakefile'
     - '**/Vagrantfile'
     - '**/db/schema.rb'
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 2.7
   TargetRailsVersion: 6.0
 
 Layout/CaseIndentation:
@@ -198,6 +198,12 @@ Style/EmptyMethod:
   EnforcedStyle: expanded
 Style/FormatStringToken:
   Enabled: false
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
 Style/IpAddresses:
   Enabled: true
 Style/Lambda:
@@ -220,6 +226,8 @@ Layout/EmptyLineAfterGuardClause:
 
 Rails/SaveBang:
   Enabled: true
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
 
 RSpec/LetSetup:
   Exclude:
