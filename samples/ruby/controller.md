@@ -6,8 +6,6 @@ class UsersController < ApplicationController
   # Permissions statements, e.g.
   power :clients
 
-  login_user
-
   before_action :user_params
   after_action :refresh_password
 
