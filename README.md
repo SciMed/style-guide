@@ -29,10 +29,10 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Write arrays on a single line when they are fewer than 80 characters long. Otherwise, write them as one line per item.
   * [Example](samples/ruby/arrays.md)
 * Avoid meta-programming classes for reasons of readability.
-* Define your `Rakefile` to be similar to [the example](./samples/ruby/Rakefile).
+* Define your `Rakefile` to be similar to [the example](./Rakefile).
 * When writing predicate methods (methods ending in `?`), prefer having them return explicit `true` or `false` values rather than truthy or falsey values.
 * When writing Ruby modules, keep them in the following locations based on use case:
-  * When the module is meant for a model or controller, put them in `app/models/concerns/` or `app/controllers/concerns/` (even if they are not an explicit `ActiveSupport::Concern).
+  * When the module is meant for a model or controller, put them in `app/models/concerns/` or `app/controllers/concerns/` (even if they are not an explicit `ActiveSupport::Concern`).
   * When the module is not meant for a model or controller, keep it in the directory for its namespace (e.g. `SpreadsheetImporters::Formatter` would likely live in `app/services/spreadsheet_importers/formatter.rb`).
 
 #### Documentation
@@ -204,7 +204,7 @@ db/
 * Consider using localization/internationalization config files to encapsulate customer-facing strings such as error messages when:
   * the text is likely to change frequently OR
   * the text is a template that is used in multiple places (i.e. to keep the code DRY). Note that i18n supports [variable interpolation](http://guides.rubyonrails.org/i18n.html#passing-variables-to-translations).
-  
+
 #### Logging
 * When rescuing errors, log the error message and backtrace similarly to the
   following:
@@ -551,7 +551,7 @@ Use React when building complex, stateful UIs.
   * Use ActiveRecord's `sum` over `map`/`pluck` and Ruby's `sum`.
   * Use ActiveRecord's `average` over a custom `average` or `mean` method.
 
-* Use ActiveRecord's `exists?` over its `any?` for Rails < 5.1.
+* Use ActiveRecord's `exists?` over its `any?` for Rails less than 5.1.
   [Source](http://www.ombulabs.com/blog/benchmark/performance/rails/present-vs-any-vs-exists.html)
 * Use database indexes (including multi-column and partial indexes when
   appropriate).
