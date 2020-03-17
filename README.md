@@ -19,6 +19,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * [RSpec](#rspec)
 * [SQL](#sql)
 * [Performance](#performance)
+* [Miscellaneous] (#miscellaneous)
 
 # Ruby
 * Adhere to Rubocop when possible.
@@ -608,3 +609,8 @@ Use React when building complex, stateful UIs.
   `before(:suite)`).
   * [Reference](https://stackoverflow.com/questions/11419536/postgresql-truncation-speed/11423886#11423886)
 * Use FactoryBot >= 4.8 for the config option `FactoryBot.use_parent_strategy` to ensure that associated data is not accidentally created
+
+
+# Miscellaneous
+
+* Document the project's supported browsers in a `.browserslistrc` file in the root directory of the project.  See [this example](./.browserslistrc).
