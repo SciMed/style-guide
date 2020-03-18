@@ -1,0 +1,11 @@
+# documents the browsers this project is meant to support.
+# uses the `browserslist` npm package: https://github.com/browserslist/browserslist
+#
+# run `npx browserslist` on the command line in this file's directory to list
+# the browser versions these rules currently match.
+#
+# note that this config will be used by various tools (like babel and postcss)
+# to determine how to process JS/CSS. see https://github.com/browserslist/browserslist-example
+
+last 1 Chrome major version
+last 1 Firefox major version
