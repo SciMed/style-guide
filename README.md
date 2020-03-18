@@ -19,7 +19,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * [RSpec](#rspec)
 * [SQL](#sql)
 * [Performance](#performance)
-* [Miscellaneous] (#miscellaneous)
+* [Miscellaneous](#miscellaneous)
 
 # Ruby
 * Adhere to Rubocop when possible.
