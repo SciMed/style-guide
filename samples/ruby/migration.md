@@ -1,10 +1,10 @@
 ```rb
 # frozen_string_literal: true
 
+class User < ApplicationRecord
+end
 class Article < ApplicationRecord
   belongs_to :user
-end
-class User < ApplicationRecord
 end
 
 class AddAuthorColumnToUsers < ActiveRecord::Migration
