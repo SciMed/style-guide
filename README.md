@@ -128,11 +128,16 @@ If you make any changes to the style guide, please clearly describe the logic th
   in a collection for purposes of performance.
   * [Example](./samples/ruby/collection_rendering.md)
 * For new projects, use ERB as the templating engine. For old projects, use whatever is already in place.
-* Try to avoid multiline embedded Ruby—it's likely indicative of logic that should be extracted to a presenter, service object, or helper. When necessary, use the following format:
-```
-<%
-  some_long_ruby
-  some_more_long_ruby
+* Try to avoid multiline embedded Ruby—it's likely indicative of logic that should be extracted to a presenter or service object. When necessary, use the following format:
+
+```erb
+<%=
+  f.select(
+    :foo,
+    select_options(...),
+    class: 'foo',
+    data: { bar: :baz }
+  )
 %>
 ```
 
@@ -146,7 +151,8 @@ If you make any changes to the style guide, please clearly describe the logic th
 * When you create a new migration, run it both `up` ***and*** `down` before committing the change (`rake db:migrate:redo` will run the very last migration down and then up again).
 * Prefer using `change` in migrations to writing individual `up` and `down` methods when possible.
 * Make sure to update seeds/factories when adding columns (particularly those with validations) or tables.
-* If you are doing something that cannot be reversed (such as removing data or deleting a column), raise `ActiveRecord::IrreversibleMigration` in your `down` method. Please leave a comment about why the migration is irreversible.
+* If you are doing something that cannot be reversed (such as removing data or deleting a column), raise `ActiveRecord::IrreversibleMigration` in your `down` method. Please leave a comment about why the migration is irreversible. Try to avoid irreversible migrations when possible.
+* If a migration is partially reversible, implement the partial reversion and leave a comment as to what the unreverted side effects will likely be.
 * If you are modifying data in a migration be sure to call two methods at the beginning of the migration. If you don't reset the column information then some data could be silently lost instead of saved. Also, Rails will only reset column information once even if you call it multiple times, which is why the `schema_cache` needs to be cleared first.
   * [Example](./samples/ruby/migration.md)
 
@@ -173,19 +179,18 @@ db/
     staging.rb
   seeds.rb
 ```
-* Consider using [Seed Bank](https://github.com/james2m/seedbank) to help with your seeds.
 * Consider using FactoryGirl/Bot factories to seed development data.
 * Tear down and rebuild your database regularly.
 
 #### Mailers
 
-* Provide both HTML and plain-text view templates.
+* Provide both HTML and plain-text view templates, or use `premailer-rails` to auto-generate text templates based on your HTML templates.
 * If you need to use a link in an email, always use the `_url`, not `_path` methods, to ensure the absolute path is correct.
 * Format the from and to addresses as `Your Name <info@your_site.com>`.
 * Consider sending emails in a background process to prevent page load delays.
 * When sending email to multiple users, send an individual email to each person rather than having multiple recipients in one email.
   * This increases security because users can't see each other's addresses and makes it easier to handle errors with invalid email addresses.
-* Log when emails are sent and when they fail to send.
+* Log when emails are sent and when they fail to send. Consider separating the email logs from the application logs.
 
 #### Bundler
 * Structure Gemfile content in alphabetical order with groups at the bottom in the following order:
@@ -196,7 +201,7 @@ db/
 * **Do not** run `bundle update` unless for a specific gem. Updating all of the gems without paying attention could unintentionally break things.
 * Remove default comments.
 * Versioning is discouraged unless a specific version of the gem is required (but keep an eye out for breaking things when gem versions update!). If you do need to version, add a comment.
-* Run `bundle audit` before pushing.
+* Run `bundle audit --update` before pushing.
 * Prefer using `update --source` or `update --conservative` when you want to update a specific gem without updating its dependencies.
 
 #### Localization/Internationalization (i18n) configuration
