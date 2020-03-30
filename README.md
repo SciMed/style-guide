@@ -57,6 +57,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * Treat acronyms as words in class names.
   * [Example](samples/ruby/camelcasing.md)
 * Consider using methods instead of constants. Methods are easier to stub, test, and mark private.
+* Avoid using single letter functions (such as `j`, `l`, and `t`). Use their more descriptive aliases instead.
 
 #### Routing
 
