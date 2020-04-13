@@ -332,6 +332,7 @@ Use React when building complex, stateful UIs.
   * [Example](samples/scss/descendant.md)
 * Use caution when using ID selectors.
 * Use SCSS variables (for example, colors are often used in multiple places).
+  * Place variables in either your `application.scss` or `base/_variables.scss`.
 * Generic naming is favored over domain-driven naming (e.g. `.aside` vs `.cytometry`).
 * Prefer naming elements by content type over visual traits (e.g. `.aside` vs `.left-side-bar`).
 * Use `box-sizing: border-box;`.
