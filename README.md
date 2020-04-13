@@ -386,7 +386,6 @@ Use React when building complex, stateful UIs.
 * Review the [internal best practices guide](https://git.scimedsolutions.com/scimed/Technical-Knowledge-Base/wikis/testing-lessons-learned) on GitLab.
 
 #### What to test
-* Prefer checking exception type over checking a specific error message.
 * Use shared examples to test common behavior.
 * Use [shoulda-matchers](https://github.com/thoughtbot/shoulda-matchers) for testing validations, associations, nested attributes, and delegations in models.
 * Prefer testing complicated scopes using an integration test that confirms the expected behavior against persisted records.
