@@ -340,8 +340,9 @@ Use React when building complex, stateful UIs.
   * Example: `#AAAAAA` instead of `#aaa`.
 * SCSS file extensions should not include `.css` where possible. Prefer `foo.scss` to `foo.css.scss`.
 * Prefer `.scss` over `.sass`.
-* Follow [SMACSS guidelines](https://smacss.com/book/categorizing) for CSS organization (Base, Layout, Module, State, Theme).
+* Follow [SMACSS guidelines](http://smacss.com/book/categorizing) for CSS organization (Base, Layout, Module, State, Theme).
 * Always use a CSS reset. If the CSS framework being used does not provide one, consider using [normalize-rails](https://github.com/markmcconachie/normalize-rails).
+* When creating individual [S]CSS files, prefix the file name with `_` to denote that that file is a partial that should be compiled into `application.css` rather than being served by itself as a separate file.
 
 # HTML
 * Do not use `<image>` tags for decorative content.
