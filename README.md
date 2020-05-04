@@ -19,6 +19,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 * [RSpec](#rspec)
 * [SQL](#sql)
 * [Performance](#performance)
+* [Language and Punctuation](#language)
 * [Miscellaneous](#miscellaneous)
 
 # Ruby
@@ -617,6 +618,15 @@ Use React when building complex, stateful UIs.
   * [Reference](https://stackoverflow.com/questions/11419536/postgresql-truncation-speed/11423886#11423886)
 * Use FactoryBot >= 4.8 for the config option `FactoryBot.use_parent_strategy` to ensure that associated data is not accidentally created
 
+
+# Language and Punctuation
+
+* Avoid using exclamation points in client-facing messages unless needed.
+* Prefer using `&mdash;` over `--`.
+* Prefer usage of the Oxford comma.
+* Check for typos in client-facing messages. Consider using a spellchecker in your primary text editor.
+* Within a project, please be consistent with button text (e.g. all buttons to persist changes should say "Save" rather than some that say "Edit" and some that say "Save").
+* Use "Log In" as a verb and "Login" as a noun/adjective.
 
 # Miscellaneous
 
