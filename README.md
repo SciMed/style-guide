@@ -253,6 +253,7 @@ db/
 * Use an Initializer class to set up application-wide JavaScript functionality such as date pickers, tooltips, dropdowns, and the like.  It should be run with the whole HTML body upon page load and can be re-run with portions of the DOM that are inserted/updated via AJAX.
   * [Example](samples/js/initializers.md)
 * Use `getUTCDay()` over `getDay()` to prevent surprises due to time zones.
+* Consider [RIP.js](https://gitlab.com/scimedsolutions/refresh_in_place) when your JS needs would be served by refreshing parts of the page
 
 ## Modern JavaScript
 All new apps should:
