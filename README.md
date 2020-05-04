@@ -129,6 +129,7 @@ If you make any changes to the style guide, please clearly describe the logic th
   in a collection for purposes of performance.
   * [Example](./samples/ruby/collection_rendering.md)
 * For new projects, use ERB as the templating engine. For old projects, use whatever is already in place.
+* Prefer `form_with` over `form_tag` and `form_for` when it is available. Ensure that it generates `id` attributes (possibly by setting `Rails.application.config.action_view.form_with_generates_ids = true`).
 * Try to avoid multiline embedded Ruby—it's likely indicative of logic that should be extracted to a presenter or service object. When necessary, use the following format:
 
 ```erb
