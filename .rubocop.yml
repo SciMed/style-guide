@@ -1,7 +1,7 @@
-# rubocop version: 0.80.1
-# rubocop-performance version: 1.5.2
-# rubocop-rails version: 2.4.2
-# rubocop-rspec version: 1.38.1
+# rubocop version: 0.86.0
+# rubocop-performance version: 1.6.1
+# rubocop-rails version: 2.6.0
+# rubocop-rspec version: 1.40.0
 
 require:
   - rubocop-performance
@@ -36,6 +36,13 @@ Layout/FirstMethodArgumentLineBreak:
   Enabled: true
 Layout/FirstMethodParameterLineBreak:
   Enabled: true
+Layout/LineLength:
+  Exclude:
+    - '**/bin/**/*'
+    - '**/config/**/*'
+    - '**/db/migrate/**/*'
+    - '**/spec/**/*'
+  Max: 80
 Layout/MultilineHashKeyLineBreaks:
   Enabled: true
 Layout/MultilineMethodArgumentLineBreaks:
@@ -44,6 +51,8 @@ Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
 Layout/SpaceBeforeFirstArg:
   Exclude:
     - '**/spec/factories/**/*'
@@ -53,7 +62,15 @@ Layout/SpaceBeforeFirstArg:
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - '**/spec/**/*'
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
 Lint/NumberConversion:
+  Enabled: true
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
   Enabled: true
 
 Metrics/AbcSize:
@@ -68,13 +85,6 @@ Metrics/BlockLength:
     - '**/spec/**/*'
 Metrics/CyclomaticComplexity:
   Max: 5
-Metrics/LineLength:
-  Exclude:
-    - '**/bin/**/*'
-    - '**/config/**/*'
-    - '**/db/migrate/**/*'
-    - '**/spec/**/*'
-  Max: 80
 Metrics/MethodLength:
   Max: 15
   Exclude:
@@ -196,6 +206,9 @@ Style/Documentation:
     - '**/app/models/application_record.rb'
 Style/EmptyMethod:
   EnforcedStyle: expanded
+Style/ExponentialNotation:
+  Enabled: true
+  EnforcedStyle: scientific
 Style/FormatStringToken:
   Enabled: false
 Style/HashEachMethods:
@@ -212,10 +225,18 @@ Style/NumericPredicate:
   Enabled: false
 Style/OptionHash:
   Enabled: true
+Style/RedundantFetchBlock:
+  Enabled: true
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+Style/RedundantRegexpEscape:
+  Enabled: true
 Style/Send:
   Enabled: true
 # Prevents self-documentation
 Style/SingleLineBlockParams:
+  Enabled: false
+Style/SlicingWithRange:
   Enabled: false
 Style/StringMethods:
   Enabled: true
@@ -228,10 +249,6 @@ Rails/SaveBang:
   Enabled: true
 Rails/UniqueValidationWithoutIndex:
   Enabled: false
-
-RSpec/LetSetup:
-  Exclude:
-    - '**/spec/features/**/*'
 
 Style/DocumentationMethod:
   Enabled: true
