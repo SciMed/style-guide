@@ -1,7 +1,7 @@
 # rubocop version: 0.88.0
 # rubocop-performance version: 1.7.1
 # rubocop-rails version: 2.7.1
-# rubocop-rspec version: 1.40.0
+# rubocop-rspec version: 1.42.0
 
 require:
   - rubocop-performance
@@ -175,6 +175,8 @@ Rails/Output:
     - '**/lib/tasks/**/*'
 Rails/Pluck:
   Enabled: true
+Rails/PluckId:
+  Enabled: false
 Rails/PluckInWhere:
   Enabled: true
 Rails/RenderInline:
