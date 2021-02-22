@@ -1,7 +1,7 @@
-# rubocop version: 0.88.0
-# rubocop-performance version: 1.7.1
-# rubocop-rails version: 2.7.1
-# rubocop-rspec version: 1.42.0
+# rubocop version: 1.10.0
+# rubocop-performance version: 1.9.2
+# rubocop-rails version: 2.9.1
+# rubocop-rspec version: 2.2.0
 
 require:
   - rubocop-performance
@@ -22,11 +22,18 @@ AllCops:
     - '**/Vagrantfile'
     - '**/db/schema.rb'
   TargetRubyVersion: 2.7
-  TargetRailsVersion: 6.0
+  TargetRailsVersion: 6.1
 
+Gemspec/DateAssignment:
+  Enabled: true
+
+Layout/BeginEndAlignment:
+  Enabled: true
 Layout/CaseIndentation:
   IndentOneStep: true
 Layout/ClassStructure:
+  Enabled: true
+Layout/EmptyLineAfterMultilineCondition:
   Enabled: true
 Layout/FirstArrayElementLineBreak:
   Enabled: true
@@ -53,26 +60,94 @@ Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
+Layout/SpaceBeforeBrackets:
+  Enabled: true
 Layout/SpaceBeforeFirstArg:
   Exclude:
     - '**/spec/factories/**/*'
 
+Lint/AmbiguousAssignment:
+  Enabled: true
 # Disabled for specs to allow following pattern:
 # expect { Foo.create }.to change { Foo.count }
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - '**/spec/**/*'
+Lint/BinaryOperatorWithIdenticalOperands:
+  Enabled: true
+Lint/ConstantDefinitionInBlock:
+  Enabled: true
+Lint/DeprecatedConstants:
+  Enabled: true
 Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+Lint/DuplicateBranch:
   Enabled: true
 Lint/DuplicateElsifCondition:
   Enabled: true
+Lint/DuplicateRegexpCharacterClassElement:
+  Enabled: true
+Lint/DuplicateRequire:
+  Enabled: true
+Lint/DuplicateRescueException:
+  Enabled: true
+Lint/EmptyBlock:
+  Enabled: true
+Lint/EmptyConditionalBody:
+  Enabled: true
+Lint/EmptyClass:
+  Enabled: false
+Lint/EmptyFile:
+  Enabled: true
+Lint/FloatComparison:
+  Enabled: true
+Lint/HashCompareByIdentity:
+  Enabled: true
+Lint/IdentityComparison:
+  Enabled: true
+Lint/LambdaWithoutLiteralBlock:
+  Enabled: true
+Lint/MissingSuper:
+  Enabled: true
 Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+Lint/NoReturnInBeginEndBlocks:
   Enabled: true
 Lint/NumberConversion:
   Enabled: true
+Lint/NumberedParameterAssignment:
+  Enabled: true
+Lint/OrAssignmentToConstant:
+  Enabled: true
+Lint/OutOfRangeRegexpRef:
+  Enabled: true
 Lint/RaiseException:
   Enabled: true
+Lint/RedundantDirGlobSort:
+  Enabled: true
+Lint/RedundantSafeNavigation:
+  Enabled: true
+Lint/SelfAssignment:
+  Enabled: true
 Lint/StructNewOverride:
+  Enabled: true
+Lint/SymbolConversion:
+  Enabled: true
+Lint/ToEnumArguments:
+  Enabled: true
+Lint/TopLevelReturnWithArgument:
+  Enabled: true
+Lint/TripleQuotes:
+  Enabled: true
+Lint/UnexpectedBlockArity:
+  Enabled: true
+Lint/UnmodifiedReduceAccumulator:
+  Enabled: true
+Lint/UnreachableLoop:
+  Enabled: true
+Lint/UselessMethodDefinition:
+  Enabled: true
+Lint/UselessTimes:
   Enabled: true
 
 Metrics/AbcSize:
@@ -119,7 +194,13 @@ Naming/VariableNumber:
 
 Performance/AncestorsInclude:
   Enabled: false
+# We're preferring this from a stylistic point of view; it does not actually
+# impact performance
+Performance/ArraySemiInfiniteRangeSlice:
+  Enabled: true
 Performance/BigDecimalWithNumericArgument:
+  Enabled: true
+Performance/BlockGivenWithExplicitBlock:
   Enabled: true
 # `foo.downcase == bar.downcase` is more readable than
 # `foo.casecmp(bar).zero?`
@@ -127,7 +208,13 @@ Performance/Casecmp:
   Enabled: false
 Performance/CaseWhenSplat:
   Enabled: true
+Performance/CollectionLiteralInLoop:
+  Enabled: true
+Performance/ConstantRegexp:
+  Enabled: true
 Performance/IoReadlines:
+  Enabled: true
+Performance/MethodObjectAsBlock:
   Enabled: true
 Performance/RedundantSortBlock:
   Enabled: true
@@ -141,8 +228,16 @@ Performance/Squeeze:
   Enabled: true
 Performance/StringInclude:
   Enabled: true
+Performance/Sum:
+  Enabled: true
 
 Rails/ActiveRecordCallbacksOrder:
+  Enabled: true
+Rails/AfterCommitOverride:
+  Enabled: true
+Rails/ArelStar:
+  Enabled: true
+Rails/AttributeDefaultBlockValue:
   Enabled: true
 Rails/Blank:
   NilOrEmpty: false
@@ -185,9 +280,15 @@ Rails/RenderPlainText:
   Enabled: true
 Rails/ShortI18n:
   Enabled: false
+Rails/SquishedSQLHeredocs:
+  Enabled: false
 Rails/UniqBeforePluck:
   EnforcedStyle: aggressive
+Rails/WhereEquals:
+  Enabled: true
 Rails/WhereExists:
+  Enabled: true
+Rails/WhereNot:
   Enabled: true
 
 # Prefer eql
@@ -230,14 +331,20 @@ RSpec/NamedSubject:
   Enabled: false
 RSpec/NestedGroups:
   Enabled: false
+RSpec/RepeatedIncludeExample:
+  Enabled: true
 RSpec/ReturnFromStub:
   Enabled: false
+RSpec/StubbedMock:
+  Enabled: true
 RSpec/SubjectStub:
   Enabled: false
 
 Style/AccessModifierDeclarations:
   EnforcedStyle: inline
 Style/AccessorGrouping:
+  Enabled: true
+Style/ArgumentsForwarding:
   Enabled: true
 Style/ArrayCoercion:
   Enabled: true
@@ -247,7 +354,15 @@ Style/BisectedAttrAccessor:
   Enabled: true
 Style/CaseLikeIf:
   Enabled: false
+Style/ClassEqualityComparison:
+  Enabled: true
+Style/ClassMethodsDefinitions:
+  Enabled: true
+Style/CollectionCompact:
+  Enabled: true
 Style/CollectionMethods:
+  Enabled: true
+Style/CombinableLoops:
   Enabled: true
 Style/ConditionalAssignment:
   EnforcedStyle: assign_inside_condition
@@ -260,16 +375,28 @@ Style/Documentation:
     - '**/app/helpers/application_helper.rb'
     - '**/app/mailers/application_mailer.rb'
     - '**/app/models/application_record.rb'
+Style/DocumentDynamicEvalDefinition:
+  Enabled: true
 Style/EmptyMethod:
   EnforcedStyle: expanded
+Style/EndlessMethod:
+  Enabled: true
+Style/ExplicitBlockArgument:
+  Enabled: true
 Style/ExponentialNotation:
   Enabled: true
   EnforcedStyle: scientific
 Style/FormatStringToken:
   Enabled: false
+Style/GlobalStdStream:
+  Enabled: true
 Style/HashAsLastArrayItem:
   Enabled: false
+Style/HashConversion:
+  Enabled: true
 Style/HashEachMethods:
+  Enabled: true
+Style/HashExcept:
   Enabled: true
 Style/HashLikeCase:
   Enabled: true
@@ -277,14 +404,26 @@ Style/HashTransformKeys:
   Enabled: true
 Style/HashTransformValues:
   Enabled: true
+Style/IfWithBooleanLiteralBranches:
+  Enabled: true
 Style/IpAddresses:
   Enabled: true
 Style/Lambda:
   EnforcedStyle: literal
+Style/KeywordParametersOrder:
+  Enabled: true
+Style/NegatedIfElseCondition:
+  Enabled: true
+Style/NilLambda:
+  Enabled: true
 Style/NumericPredicate:
   Enabled: false
+Style/OptionalBooleanParameter:
+  Enabled: true
 Style/OptionHash:
   Enabled: true
+Style/RedundantArgument:
+  Enabled: false
 Style/RedundantAssignment:
   Enabled: true
 Style/RedundantFetchBlock:
@@ -294,6 +433,18 @@ Style/RedundantFileExtensionInRequire:
 Style/RedundantRegexpCharacterClass:
   Enabled: true
 Style/RedundantRegexpEscape:
+  Enabled: true
+Style/RedundantSelfAssignment:
+  Enabled: true
+Style/SingleArgumentDig:
+  Enabled: true
+Style/SoleNestedConditional:
+  Enabled: true
+Style/StaticClass:
+  Enabled: false
+Style/StringConcatenation:
+  Enabled: true
+Style/SwapValues:
   Enabled: true
 Style/Send:
   Enabled: true
@@ -309,6 +460,8 @@ Style/StringMethods:
 Layout/EmptyLineAfterGuardClause:
   Enabled: true
 
+Rails/OrderById:
+  Enabled: true
 Rails/SaveBang:
   Enabled: true
 Rails/UniqueValidationWithoutIndex:
