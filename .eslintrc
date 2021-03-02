@@ -10,14 +10,14 @@
   },
   "globals": {
     "CKEDITOR": true,
-    "Rails": true,
-   },
+    "Rails": true
+  },
   "extends": "airbnb",
   "plugins": [
-      "react",
-      "jsx-a11y",
-      "import",
-      "jest"
+    "react",
+    "jsx-a11y",
+    "import",
+    "jest"
   ],
   "rules": {
     "comma-dangle": ["error", "never"],
