@@ -1,11 +1,16 @@
 # rubocop version: 1.10.0
 # rubocop-performance version: 1.9.2
 # rubocop-rails version: 2.9.1
+# rubocop-rake version: 0.5.1
 # rubocop-rspec version: 2.2.0
+#
+# In addition, feel free to use rubocop-md for linting Markdown files with Ruby
+# code snippets
 
 require:
   - rubocop-performance
   - rubocop-rails
+  - rubocop-rake
   - rubocop-rspec
 
 AllCops:
@@ -289,6 +294,17 @@ Rails/WhereEquals:
 Rails/WhereExists:
   Enabled: true
 Rails/WhereNot:
+  Enabled: true
+
+Rake/ClassDefinitionInTask:
+  Enabled: true
+Rake/Desc:
+  Enabled: true
+Rake/DuplicateNamespace:
+  Enabled: true
+Rake/DuplicateTask:
+  Enabled: true
+Rake/MethodDefinitionInTask:
   Enabled: true
 
 # Prefer eql
