@@ -307,6 +307,7 @@ RSpec/ContextWording:
 RSpec/DescribeClass:
   Exclude:
     - '**/spec/features/**/*'
+    - '**/spec/requests/**/*'
 RSpec/EmptyLineAfterExample:
   Enabled: false
 RSpec/ExampleLength:
@@ -323,6 +324,7 @@ RSpec/LeadingSubject:
 RSpec/LetSetup:
   Exclude:
     - '**/spec/features/**/*'
+    - '**/spec/requests/**/*'
 RSpec/MessageChain:
   Enabled: false
 RSpec/MultipleExpectations:
