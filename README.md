@@ -36,6 +36,10 @@ If you make any changes to the style guide, please clearly describe the logic th
 * When writing Ruby modules, keep them in the following locations based on use case:
   * When the module is meant for a model or controller, put them in `app/models/concerns/` or `app/controllers/concerns/` (even if they are not an explicit `ActiveSupport::Concern`).
   * When the module is not meant for a model or controller, keep it in the directory for its namespace (e.g. `SpreadsheetImporters::Formatter` would likely live in `app/services/spreadsheet_importers/formatter.rb`).
+* When calling methods, include the optional parentheses unless the method call fits on one line and fulfills one of the following criteria. If such a criterion is fulfilled, you may choose to use the parentheses or not.
+  * The method call takes place in a view
+  * The method call takes place in a spec
+  * The caller of the method is implicit and a class (e.g. `has_many`, `before_action`)
 
 #### Documentation
 * When documenting methods use [Yard](http://yardoc.org/) style documentation. This is especially important when purpose, parameters, or return values are ambiguous. Aim to document each public method.
