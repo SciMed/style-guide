@@ -299,6 +299,7 @@ RSpec/BeforeAfterAll:
     - '**/spec/models/powers/*'
 RSpec/ContextWording:
   Prefixes:
+    - as
     - by
     - when
     - with
