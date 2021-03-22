@@ -55,6 +55,8 @@ Layout/LineLength:
     - '**/db/migrate/**/*'
     - '**/spec/**/*'
   Max: 80
+Layout/MultilineArrayLineBreaks:
+  Enabled: true
 Layout/MultilineHashKeyLineBreaks:
   Enabled: true
 Layout/MultilineMethodArgumentLineBreaks:
@@ -325,6 +327,8 @@ RSpec/DescribeClass:
   Exclude:
     - '**/spec/features/**/*'
     - '**/spec/requests/**/*'
+RSpec/DescribedClassModuleWrapping:
+  Enabled: true
 RSpec/EmptyLineAfterExample:
   Enabled: false
 RSpec/ExampleLength:
@@ -390,10 +394,12 @@ Style/DateTime:
   Enabled: true
 Style/Documentation:
   Exclude:
-    - '**/controllers/**/*'
     - '**/app/helpers/application_helper.rb'
     - '**/app/mailers/application_mailer.rb'
     - '**/app/models/application_record.rb'
+    - '**/controllers/**/*'
+    - '**/db/migrate/**/*'
+    - '**/presenters/**/*'
 Style/DocumentDynamicEvalDefinition:
   Enabled: true
 Style/EmptyMethod:
@@ -430,6 +436,58 @@ Style/IpAddresses:
 Style/Lambda:
   EnforcedStyle: literal
 Style/KeywordParametersOrder:
+  Enabled: true
+Style/MethodCallWithArgsParentheses:
+  Enabled: true
+  Exclude:
+    - '**/config/**/*'
+    - '**/db/migrate/**/*'
+    - '**/spec/**/*'
+  IgnoredMethods:
+    # ActiveModel/ActiveRecord
+    - accepts_nested_attributes_for
+    - alias_attribute
+    - attr_readonly
+    - enum
+    - belongs_to
+    - has_many
+    - has_one
+    - has_many_attached
+    - has_one_attached
+    - has_rich_text
+    - delegate
+    - validate
+    - validates
+    - validates_with
+    - before_validation
+    - after_validation
+    - before_save
+    - around_save
+    - before_create
+    - around_create
+    - after_create
+    - after_save
+    - after_commit
+    - after_rollback
+    - before_update
+    - around_update
+    - after_update
+    - before_destroy
+    - around_destroy
+    - after_destroy
+    - scope
+    # ActionController
+    - after_action
+    - around_action
+    - before_action
+    - redirect_to
+    - render
+    # CarrierWave
+    - store
+    - mount_uploader
+    # Consul
+    - power
+Style/MultilineMethodSignature:
   Enabled: true
 Style/NegatedIfElseCondition:
   Enabled: true
@@ -473,6 +531,8 @@ Style/SingleLineBlockParams:
 Style/SlicingWithRange:
   Enabled: false
 Style/StringMethods:
+  Enabled: true
+Style/TrailingCommaInBlockArgs:
   Enabled: true
 
 # Defaults; may make sense to change for specific projects
