@@ -20,6 +20,7 @@ AllCops:
     - '**/node_modules/**/*'
     - '**/script/**/*'
     - '**/spec/test_app/**/*'
+    - '**/vendor/**/*'
     - '**/*.gemspec'
     - '**/Gemfile'
     - '**/Guardfile'
