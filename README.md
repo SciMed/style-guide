@@ -25,6 +25,7 @@ If you make any changes to the style guide, please clearly describe the logic th
 # Ruby
 * Adhere to Rubocop when possible.
   * See our default [`.rubocop.yml`](./.rubocop.yml).
+  * In general, we disable Rubocop rules via magic comment around the method, block or line that contains the offense. For `Metrics/ClassLength` and `Metrics/BlockLength`, we disable them by adding the file to the `Exclude` list under the offending cop in the project's `.rubocop.yml`.
 * Mark class methods as private by calling `private_class_method def self.foo` when using recent Ruby versions (> 2.1.0). For earlier versions, mark methods as private by calling `private_class_method :my_method` directly after the end of the method.
 * Keep private instance methods clustered together at the end of the file.
 * Keep private class methods clustered together after public class methods but before public instance methods.
