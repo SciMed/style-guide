@@ -27,16 +27,10 @@ AllCops:
     - '**/Rakefile'
     - '**/Vagrantfile'
     - '**/db/schema.rb'
+  NewCops: enable
   TargetRubyVersion: 2.7
   TargetRailsVersion: 6.1
 
-Gemspec/DateAssignment:
-  Enabled: true
-
-Layout/BeginEndAlignment:
-  Enabled: true
-Layout/CaseIndentation:
-  IndentOneStep: true
 Layout/ClassStructure:
   Enabled: true
 Layout/EmptyLineAfterMultilineCondition:
@@ -56,6 +50,8 @@ Layout/LineLength:
     - '**/db/migrate/**/*'
     - '**/spec/**/*'
   Max: 80
+Layout/MultilineArrayLineBreaks:
+  Enabled: true
 Layout/MultilineHashKeyLineBreaks:
   Enabled: true
 Layout/MultilineMethodArgumentLineBreaks:
@@ -64,96 +60,18 @@ Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
-Layout/SpaceAroundMethodCallOperator:
-  Enabled: true
-Layout/SpaceBeforeBrackets:
-  Enabled: true
 Layout/SpaceBeforeFirstArg:
   Exclude:
     - '**/spec/factories/**/*'
 
-Lint/AmbiguousAssignment:
-  Enabled: true
 # Disabled for specs to allow following pattern:
 # expect { Foo.create }.to change { Foo.count }
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - '**/spec/**/*'
-Lint/BinaryOperatorWithIdenticalOperands:
-  Enabled: true
-Lint/ConstantDefinitionInBlock:
-  Enabled: true
-Lint/DeprecatedConstants:
-  Enabled: true
-Lint/DeprecatedOpenSSLConstant:
-  Enabled: true
-Lint/DuplicateBranch:
-  Enabled: true
-Lint/DuplicateElsifCondition:
-  Enabled: true
-Lint/DuplicateRegexpCharacterClassElement:
-  Enabled: true
-Lint/DuplicateRequire:
-  Enabled: true
-Lint/DuplicateRescueException:
-  Enabled: true
-Lint/EmptyBlock:
-  Enabled: true
-Lint/EmptyConditionalBody:
-  Enabled: true
 Lint/EmptyClass:
   Enabled: false
-Lint/EmptyFile:
-  Enabled: true
-Lint/FloatComparison:
-  Enabled: true
-Lint/HashCompareByIdentity:
-  Enabled: true
-Lint/IdentityComparison:
-  Enabled: true
-Lint/LambdaWithoutLiteralBlock:
-  Enabled: true
-Lint/MissingSuper:
-  Enabled: true
-Lint/MixedRegexpCaptureTypes:
-  Enabled: true
-Lint/NoReturnInBeginEndBlocks:
-  Enabled: true
 Lint/NumberConversion:
-  Enabled: true
-Lint/NumberedParameterAssignment:
-  Enabled: true
-Lint/OrAssignmentToConstant:
-  Enabled: true
-Lint/OutOfRangeRegexpRef:
-  Enabled: true
-Lint/RaiseException:
-  Enabled: true
-Lint/RedundantDirGlobSort:
-  Enabled: true
-Lint/RedundantSafeNavigation:
-  Enabled: true
-Lint/SelfAssignment:
-  Enabled: true
-Lint/StructNewOverride:
-  Enabled: true
-Lint/SymbolConversion:
-  Enabled: true
-Lint/ToEnumArguments:
-  Enabled: true
-Lint/TopLevelReturnWithArgument:
-  Enabled: true
-Lint/TripleQuotes:
-  Enabled: true
-Lint/UnexpectedBlockArity:
-  Enabled: true
-Lint/UnmodifiedReduceAccumulator:
-  Enabled: true
-Lint/UnreachableLoop:
-  Enabled: true
-Lint/UselessMethodDefinition:
-  Enabled: true
-Lint/UselessTimes:
   Enabled: true
 
 Metrics/AbcSize:
@@ -204,47 +122,15 @@ Performance/AncestorsInclude:
 # impact performance
 Performance/ArraySemiInfiniteRangeSlice:
   Enabled: true
-Performance/BigDecimalWithNumericArgument:
-  Enabled: true
-Performance/BlockGivenWithExplicitBlock:
-  Enabled: true
 # `foo.downcase == bar.downcase` is more readable than
 # `foo.casecmp(bar).zero?`
 Performance/Casecmp:
   Enabled: false
 Performance/CaseWhenSplat:
   Enabled: true
-Performance/CollectionLiteralInLoop:
-  Enabled: true
-Performance/ConstantRegexp:
-  Enabled: true
 Performance/IoReadlines:
   Enabled: true
-Performance/MethodObjectAsBlock:
-  Enabled: true
-Performance/RedundantSortBlock:
-  Enabled: true
-Performance/RedundantStringChars:
-  Enabled: true
-Performance/ReverseFirst:
-  Enabled: true
-Performance/SortReverse:
-  Enabled: true
-Performance/Squeeze:
-  Enabled: true
-Performance/StringInclude:
-  Enabled: true
-Performance/Sum:
-  Enabled: true
 
-Rails/ActiveRecordCallbacksOrder:
-  Enabled: true
-Rails/AfterCommitOverride:
-  Enabled: true
-Rails/ArelStar:
-  Enabled: true
-Rails/AttributeDefaultBlockValue:
-  Enabled: true
 Rails/Blank:
   NilOrEmpty: false
   UnlessPresent: false
@@ -252,21 +138,11 @@ Rails/DefaultScope:
   Enabled: true
 Rails/FilePath:
   EnforcedStyle: slashes
-Rails/FindById:
-  Enabled: true
 # Keyword arguments aren't functionally equivalent to positional arguments.
 # Using keyword arguments in controller specs makes the param keys strings and
 # not symbols, even if adding `.with_indifferent_access`.
 Rails/HttpPositionalArguments:
   Enabled: false
-Rails/Inquiry:
-  Enabled: true
-Rails/MailerName:
-  Enabled: true
-Rails/MatchRoute:
-  Enabled: true
-Rails/NegateInclude:
-  Enabled: true
 # There are often no reasonable defaults for not null columns
 Rails/NotNullColumn:
   Enabled: false
@@ -274,41 +150,14 @@ Rails/Output:
   Exclude:
     - '**/db/seeds.rb'
     - '**/lib/tasks/**/*'
-Rails/Pluck:
-  Enabled: true
-Rails/PluckId:
-  Enabled: false
-Rails/PluckInWhere:
-  Enabled: true
-Rails/RenderInline:
-  Enabled: true
-Rails/RenderPlainText:
-  Enabled: true
 Rails/ShortI18n:
   Enabled: false
 Rails/SquishedSQLHeredocs:
   Enabled: false
 Rails/UniqBeforePluck:
   EnforcedStyle: aggressive
-Rails/WhereEquals:
-  Enabled: true
-Rails/WhereExists:
-  Enabled: true
-Rails/WhereNot:
-  Enabled: true
 
-Rake/ClassDefinitionInTask:
-  Enabled: true
-Rake/Desc:
-  Enabled: true
-Rake/DuplicateNamespace:
-  Enabled: true
-Rake/DuplicateTask:
-  Enabled: true
-Rake/MethodDefinitionInTask:
-  Enabled: true
-
-# Prefer eql
+# Prefer eq
 RSpec/BeEql:
   Enabled: false
 RSpec/BeforeAfterAll:
@@ -326,6 +175,8 @@ RSpec/DescribeClass:
   Exclude:
     - '**/spec/features/**/*'
     - '**/spec/requests/**/*'
+RSpec/DescribedClassModuleWrapping:
+  Enabled: true
 RSpec/EmptyLineAfterExample:
   Enabled: false
 RSpec/ExampleLength:
@@ -351,38 +202,20 @@ RSpec/NamedSubject:
   Enabled: false
 RSpec/NestedGroups:
   Enabled: false
-RSpec/RepeatedIncludeExample:
-  Enabled: true
 RSpec/ReturnFromStub:
   Enabled: false
-RSpec/StubbedMock:
-  Enabled: true
 RSpec/SubjectStub:
   Enabled: false
 
 Style/AccessModifierDeclarations:
   EnforcedStyle: inline
-Style/AccessorGrouping:
-  Enabled: true
-Style/ArgumentsForwarding:
-  Enabled: true
 Style/ArrayCoercion:
   Enabled: true
 Style/AutoResourceCleanup:
   Enabled: true
-Style/BisectedAttrAccessor:
-  Enabled: true
-Style/CaseLikeIf:
-  Enabled: false
-Style/ClassEqualityComparison:
-  Enabled: true
 Style/ClassMethodsDefinitions:
   Enabled: true
-Style/CollectionCompact:
-  Enabled: true
 Style/CollectionMethods:
-  Enabled: true
-Style/CombinableLoops:
   Enabled: true
 Style/ConditionalAssignment:
   EnforcedStyle: assign_inside_condition
@@ -391,89 +224,89 @@ Style/DateTime:
   Enabled: true
 Style/Documentation:
   Exclude:
-    - '**/controllers/**/*'
     - '**/app/helpers/application_helper.rb'
     - '**/app/mailers/application_mailer.rb'
     - '**/app/models/application_record.rb'
-Style/DocumentDynamicEvalDefinition:
-  Enabled: true
+    - '**/controllers/**/*'
+    - '**/db/migrate/**/*'
+    - '**/presenters/**/*'
 Style/EmptyMethod:
   EnforcedStyle: expanded
-Style/EndlessMethod:
-  Enabled: true
-Style/ExplicitBlockArgument:
-  Enabled: true
 Style/ExponentialNotation:
-  Enabled: true
   EnforcedStyle: scientific
 Style/FormatStringToken:
   Enabled: false
-Style/GlobalStdStream:
-  Enabled: true
 Style/HashAsLastArrayItem:
   Enabled: false
-Style/HashConversion:
-  Enabled: true
-Style/HashEachMethods:
-  Enabled: true
-Style/HashExcept:
-  Enabled: true
-Style/HashLikeCase:
-  Enabled: true
-Style/HashTransformKeys:
-  Enabled: true
-Style/HashTransformValues:
-  Enabled: true
-Style/IfWithBooleanLiteralBranches:
-  Enabled: true
 Style/IpAddresses:
   Enabled: true
 Style/Lambda:
   EnforcedStyle: literal
-Style/KeywordParametersOrder:
+Style/MethodCallWithArgsParentheses:
   Enabled: true
-Style/NegatedIfElseCondition:
-  Enabled: true
-Style/NilLambda:
+  Exclude:
+    - '**/config/**/*'
+    - '**/db/migrate/**/*'
+    - '**/spec/**/*'
+  IgnoredMethods:
+    # ActiveModel/ActiveRecord
+    - accepts_nested_attributes_for
+    - alias_attribute
+    - attr_readonly
+    - enum
+    - belongs_to
+    - has_many
+    - has_one
+    - has_many_attached
+    - has_one_attached
+    - has_rich_text
+    - delegate
+    - validate
+    - validates
+    - validates_with
+    - before_validation
+    - after_validation
+    - before_save
+    - around_save
+    - before_create
+    - around_create
+    - after_create
+    - after_save
+    - after_commit
+    - after_rollback
+    - before_update
+    - around_update
+    - after_update
+    - before_destroy
+    - around_destroy
+    - after_destroy
+    - scope
+    # ActionController
+    - after_action
+    - around_action
+    - before_action
+    - redirect_to
+    - render
+    # CarrierWave
+    - store
+    - mount_uploader
+    # Consul
+    - power
+Style/MultilineMethodSignature:
   Enabled: true
 Style/NumericPredicate:
   Enabled: false
-Style/OptionalBooleanParameter:
-  Enabled: true
 Style/OptionHash:
   Enabled: true
 Style/RedundantArgument:
   Enabled: false
-Style/RedundantAssignment:
-  Enabled: true
-Style/RedundantFetchBlock:
-  Enabled: true
-Style/RedundantFileExtensionInRequire:
-  Enabled: true
-Style/RedundantRegexpCharacterClass:
-  Enabled: true
-Style/RedundantRegexpEscape:
-  Enabled: true
-Style/RedundantSelfAssignment:
-  Enabled: true
-Style/SingleArgumentDig:
-  Enabled: true
-Style/SoleNestedConditional:
-  Enabled: true
-Style/StaticClass:
-  Enabled: false
-Style/StringConcatenation:
-  Enabled: true
-Style/SwapValues:
-  Enabled: true
 Style/Send:
   Enabled: true
-# Prevents self-documentation
-Style/SingleLineBlockParams:
-  Enabled: false
 Style/SlicingWithRange:
   Enabled: false
 Style/StringMethods:
+  Enabled: true
+Style/TrailingCommaInBlockArgs:
   Enabled: true
 
 # Defaults; may make sense to change for specific projects
