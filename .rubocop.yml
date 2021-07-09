@@ -31,6 +31,8 @@ AllCops:
   TargetRubyVersion: 2.7
   TargetRailsVersion: 6.1
 
+Layout/CaseIndentation:
+  IndentOneStep: true
 Layout/ClassStructure:
   Enabled: true
 Layout/EmptyLineAfterMultilineCondition:
