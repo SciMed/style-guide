@@ -353,6 +353,7 @@ Use React when building complex, stateful UIs.
 * If in a partial, modal file names should be suffixed with `_modal.html.erb`.
 * Double-quote raw HTML attributes.
   * Example: `<div id="foo"></div>`
+* `data` attributes should use `-` as a word separator (e.g. `data-attribute` rather than `data_attribute`)
 * Default to the following FontAwesome icons for these common use cases:
   * Save: 'check'
   * Delete: 'times'
