@@ -248,6 +248,7 @@ db/
   * [Example](samples/js/initializers.md)
 * Use `getUTCDay()` over `getDay()` to prevent surprises due to time zones.
 * Consider [RIP.js](https://gitlab.com/scimedsolutions/refresh_in_place) when your JS needs would be served by refreshing parts of the page
+* Avoid writing inline JavaScript in your HTML
 
 ## Modern JavaScript
 All new apps should:
@@ -346,6 +347,7 @@ Use React when building complex, stateful UIs.
   * [Example](samples/html/images.md)
 * Use of presentational markup is discouraged (`<b>`, `<i>`, etc).
 * Use of XHTML markup is discouraged, e.g. `<br />`.
+* Avoid inline CSS and JavaScript
 * Use layout tags (e.g. `<section>`, `<header>`, `<footer>`, `<aside>`).
   * Note that you are _not_ bound to have only one `<header>` or one `<footer>` tag on a page, but you can only have one `<main>` tag.
 * If in a partial, modal file names should be suffixed with `_modal.html.erb`.
