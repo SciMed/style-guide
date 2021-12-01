@@ -42,18 +42,6 @@ If you make any changes to the style guide, please clearly describe the logic th
   * The method call takes place in a spec
   * The caller of the method is implicit and a class (e.g. `has_many`, `before_action`)
 
-#### Documentation
-* When documenting methods use [Yard](http://yardoc.org/) style documentation. This is especially important when purpose, parameters, or return values are ambiguous. Aim to document each public method.
-  * Example:
-  ```ruby
-  # @param names [Array<String>] The names that will be joined
-  # @return [String] a concatenated list of names
-  def foo(names)
-    ...
-    list_of_names
-  end
-  ```
-
 # Rails
 
 #### General
