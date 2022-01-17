@@ -302,6 +302,8 @@ Style/OptionHash:
   Enabled: true
 Style/RedundantArgument:
   Enabled: false
+Style/RegexpLiteral:
+  AllowInnerSlashes: true
 Style/Send:
   Enabled: true
 Style/SlicingWithRange:
