@@ -625,6 +625,9 @@ Use React when building complex, stateful UIs.
 * Check for typos in client-facing messages. Consider using a spellchecker in your primary text editor.
 * Within a project, please be consistent with button text (e.g. all buttons to persist changes should say "Save" rather than some that say "Edit" and some that say "Save").
 * Use "Log In" as a verb and "Login" as a noun/adjective.
+* Use title case for page headers, button text, and table headers; use normal
+  sentence casing (i.e., only capitalize the first word and proper nouns)
+  elsewhere, including form input labels.
 
 # Miscellaneous
 

@@ -45,6 +45,8 @@ Layout/FirstMethodArgumentLineBreak:
   Enabled: true
 Layout/FirstMethodParameterLineBreak:
   Enabled: true
+Layout/LineEndStringConcatenationIndentation:
+  EnforcedStyle: indented
 Layout/LineLength:
   Exclude:
     - '**/bin/**/*'
@@ -144,6 +146,8 @@ Rails/FilePath:
 # Using keyword arguments in controller specs makes the param keys strings and
 # not symbols, even if adding `.with_indifferent_access`.
 Rails/HttpPositionalArguments:
+  Enabled: false
+Rails/LexicallyScopedActionFilter:
   Enabled: false
 # There are often no reasonable defaults for not null columns
 Rails/NotNullColumn:
