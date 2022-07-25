@@ -152,6 +152,8 @@ Rails/LexicallyScopedActionFilter:
 # There are often no reasonable defaults for not null columns
 Rails/NotNullColumn:
   Enabled: false
+Rails/OrderById:
+  Enabled: false
 Rails/Output:
   Exclude:
     - '**/db/seeds.rb'
