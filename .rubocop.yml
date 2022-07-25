@@ -147,6 +147,8 @@ Rails/FilePath:
 # not symbols, even if adding `.with_indifferent_access`.
 Rails/HttpPositionalArguments:
   Enabled: false
+Rails/Rails/I18nLocaleTexts:
+  Enabled: false
 Rails/LexicallyScopedActionFilter:
   Enabled: false
 # There are often no reasonable defaults for not null columns
