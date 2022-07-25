@@ -76,7 +76,7 @@ Lint/AmbiguousBlockAssociation:
 Lint/EmptyClass:
   Enabled: false
 Lint/NumberConversion:
-  Enabled: true
+  Enabled: false
 
 Metrics/AbcSize:
   Exclude:
