@@ -147,7 +147,7 @@ Rails/FilePath:
 # not symbols, even if adding `.with_indifferent_access`.
 Rails/HttpPositionalArguments:
   Enabled: false
-Rails/Rails/I18nLocaleTexts:
+Rails/I18nLocaleTexts:
   Enabled: false
 Rails/LexicallyScopedActionFilter:
   Enabled: false
@@ -325,8 +325,6 @@ Style/TrailingCommaInBlockArgs:
 Layout/EmptyLineAfterGuardClause:
   Enabled: true
 
-Rails/OrderById:
-  Enabled: true
 Rails/SaveBang:
   Enabled: true
 Rails/UniqueValidationWithoutIndex:
