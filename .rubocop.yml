@@ -258,7 +258,7 @@ Style/MethodCallWithArgsParentheses:
     - '**/config/**/*'
     - '**/db/migrate/**/*'
     - '**/spec/**/*'
-  IgnoredMethods:
+  AllowedMethods:
     # ActiveModel/ActiveRecord
     - accepts_nested_attributes_for
     - alias_attribute
