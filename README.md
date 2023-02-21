@@ -1,9 +1,5 @@
 # :high_heel: A Highly Fashionable Style Guide
 
-
-**Note: The style guide has moved [to GitLab](https://gitlab.com/scimedsolutions/style-guide).**
-
-
 This guide provides a set of best practices and style prescriptions
 for application development based on SciMed Solutions' years
 of development experience.

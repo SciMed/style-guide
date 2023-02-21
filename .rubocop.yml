@@ -1,11 +1,4 @@
-# rubocop version: 1.10.0
-# rubocop-performance version: 1.9.2
-# rubocop-rails version: 2.9.1
-# rubocop-rake version: 0.5.1
-# rubocop-rspec version: 2.2.0
-#
-# In addition, feel free to use rubocop-md for linting Markdown files with Ruby
-# code snippets
+# Feel free to use rubocop-md for linting Markdown files with Ruby code snippets
 
 require:
   - rubocop-performance
@@ -28,7 +21,7 @@ AllCops:
     - '**/Vagrantfile'
     - '**/db/schema.rb'
   NewCops: enable
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.1
   TargetRailsVersion: 6.1
 
 Layout/CaseIndentation:
@@ -111,6 +104,8 @@ Naming/BlockParameterName:
     - k
     - v
     - _
+Naming/BlockForwarding:
+  EnforcedStyle: explicit
 Naming/MethodParameterName:
   AllowedNames:
     - id
@@ -248,6 +243,8 @@ Style/FormatStringToken:
   Enabled: false
 Style/HashAsLastArrayItem:
   Enabled: false
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never
 Style/IpAddresses:
   Enabled: true
 Style/Lambda:

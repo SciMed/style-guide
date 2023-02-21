@@ -1,13 +1,13 @@
 ```rb
 # frozen_string_literal: true
 
-class User < ApplicationRecord
-end
-class Article < ApplicationRecord
-  belongs_to :user
-end
-
 class AddAuthorColumnToUsers < ActiveRecord::Migration
+  class User < ApplicationRecord
+  end
+  class Article < ApplicationRecord
+    belongs_to :user
+  end
+
   def up
     add_column :users, :author, :boolean, default: false
     
