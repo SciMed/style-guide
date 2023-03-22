@@ -1,6 +1,7 @@
 # Feel free to use rubocop-md for linting Markdown files with Ruby code snippets
 
 require:
+  - rubocop-capybara
   - rubocop-performance
   - rubocop-rails
   - rubocop-rake
@@ -44,7 +45,7 @@ Layout/LineLength:
   Exclude:
     - '**/bin/**/*'
     - '**/config/**/*'
-    - '**/db/migrate/**/*'
+    - '**/db/**/*'
     - '**/spec/**/*'
   Max: 80
 Layout/MultilineArrayLineBreaks:
@@ -74,6 +75,7 @@ Lint/NumberConversion:
 Metrics/AbcSize:
   Exclude:
     - '**/db/migrate/**/*'
+    - '**/db/seeds/**/*'
 Metrics/BlockLength:
   Exclude:
     - '**/config/**/*'
@@ -83,15 +85,22 @@ Metrics/BlockLength:
     - '**/spec/**/*'
 Metrics/CyclomaticComplexity:
   Max: 5
+  Exclude:
+    - '**/db/migrate/**/*'
+    - '**/db/seeds/**/*'
 Metrics/MethodLength:
   Max: 15
   Exclude:
     - '**/db/migrate/**/*'
+    - '**/db/seeds/**/*'
 Metrics/ModuleLength:
   Exclude:
     - '**/db/seeds/**/*'
 Metrics/PerceivedComplexity:
   Max: 5
+  Exclude:
+    - '**/db/migrate/**/*'
+    - '**/db/seeds/**/*'
 
 Naming/AccessorMethodName:
   Exclude:
@@ -203,6 +212,8 @@ RSpec/MessageChain:
   Enabled: false
 RSpec/MultipleExpectations:
   Enabled: false
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
 RSpec/NamedSubject:
   Enabled: false
 RSpec/NestedGroups:
@@ -233,7 +244,7 @@ Style/Documentation:
     - '**/app/mailers/application_mailer.rb'
     - '**/app/models/application_record.rb'
     - '**/controllers/**/*'
-    - '**/db/migrate/**/*'
+    - '**/db/**/*'
     - '**/presenters/**/*'
 Style/EmptyMethod:
   EnforcedStyle: expanded
