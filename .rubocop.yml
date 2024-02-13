@@ -6,6 +6,7 @@ require:
   - rubocop-rails
   - rubocop-rake
   - rubocop-rspec
+  - rubocop-factory_bot
 
 AllCops:
   Exclude:
@@ -22,8 +23,8 @@ AllCops:
     - '**/Vagrantfile'
     - '**/db/schema.rb'
   NewCops: enable
-  TargetRubyVersion: 3.1
-  TargetRailsVersion: 6.1
+  TargetRubyVersion: 3.2
+  TargetRailsVersion: 7.1
 
 Layout/CaseIndentation:
   IndentOneStep: true
@@ -69,8 +70,6 @@ Lint/AmbiguousBlockAssociation:
     - '**/spec/**/*'
 Lint/EmptyClass:
   Enabled: false
-Lint/NumberConversion:
-  Enabled: false
 
 Metrics/AbcSize:
   Exclude:
@@ -95,6 +94,7 @@ Metrics/MethodLength:
     - '**/db/seeds/**/*'
 Metrics/ModuleLength:
   Exclude:
+    - '**/db/migrate/**/*'
     - '**/db/seeds/**/*'
 Metrics/PerceivedComplexity:
   Max: 5
@@ -184,11 +184,6 @@ RSpec/ContextWording:
     - when
     - with
     - without
-# No class to describe for feature tests
-RSpec/DescribeClass:
-  Exclude:
-    - '**/spec/features/**/*'
-    - '**/spec/requests/**/*'
 RSpec/DescribedClassModuleWrapping:
   Enabled: true
 RSpec/EmptyLineAfterExample:
@@ -208,6 +203,7 @@ RSpec/LetSetup:
   Exclude:
     - '**/spec/features/**/*'
     - '**/spec/requests/**/*'
+    - '**/spec/system/**/*'
 RSpec/MessageChain:
   Enabled: false
 RSpec/MultipleExpectations:

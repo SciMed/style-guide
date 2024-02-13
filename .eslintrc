@@ -1,10 +1,11 @@
 {
   "parserOptions": {
-    "ecmaVersion": 2018,
+    "ecmaVersion": "latest",
     "sourceType": "module"
   },
   "env": {
     "browser": true,
+    "es2021": true,
     "jquery": true,
     "jest/globals": true
   },
@@ -20,14 +21,36 @@
     "jest"
   ],
   "rules": {
-    "comma-dangle": ["error", "never"],
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
     "class-methods-use-this": "off",
-    "function-paren-newline": ["error", "consistent"],
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "function-paren-newline": [
+      "error",
+      "consistent"
+    ],
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
     "no-underscore-dangle": "off",
-    "no-unused-vars": [2, {"args": "all", "argsIgnorePattern": "^_"}],
+    "no-unused-vars": [
+      2,
+      {
+        "args": "all",
+        "argsIgnorePattern": "^_"
+      }
+    ],
     "prefer-destructuring": "off",
-    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }]
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function"
+      }
+    ]
     // Defaults; feel free to modify on project by project basis if given reason to
     "no-param-reassign": "warn",
     "import/no-extraneous-dependencies": "error"
