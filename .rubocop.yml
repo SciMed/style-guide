@@ -6,7 +6,6 @@ require:
   - rubocop-rails
   - rubocop-rake
   - rubocop-rspec
-  - rubocop-factory_bot
 
 AllCops:
   Exclude:
