@@ -413,7 +413,9 @@ Use React when building complex, stateful UIs.
 #### Capybara
 * Prefer using `describe`, `context`, and `it` instead of `feature` and `scenario`.
 
-# Project Documentation
+# Documentation
+
+* Use [YARD](https://rubydoc.info/gems/yard/file/docs/GettingStarted.md)-style documentation to document all public methods, including `initialize` (you don't need to summarize the purpose of `initialize` or specify its return type, but do document the parameters). You do not need to document controller classes.
 * Keep the README in the project root directory.
 * Use markdown in the `docs/` directory when appropriate.
 * When a new medium or large feature gets added, add a paragraph or a couple of paragraphs of documentation (perhaps as a new file in the `docs/` folder) describing the real life scenarios and people including their goals and how it is intended to be used.
